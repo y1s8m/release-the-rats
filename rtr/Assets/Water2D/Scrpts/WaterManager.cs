@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Water2D;
 
 public class WaterManager : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class WaterManager : MonoBehaviour
                 flowing = true;
                 timePassed = 0f;
                 waterSpawner.SetActive(true);
+                Water2D_Spawner.instance.RestartWaterSpawning();
             }
         }
     }

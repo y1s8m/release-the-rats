@@ -149,34 +149,7 @@
 		{
 			//Application.targetFrameRate = 60;
 
-			_parent = new GameObject ("_metaBalls");
-			_parent.hideFlags = HideFlags.HideInHierarchy;
-			WaterDropsObjects [0].transform.SetParent (_parent.transform);
-			WaterDropsObjects [0].transform.localScale = new Vector3 (size, size, 1f);
-			WaterDropsObjects [0].GetComponent<MetaballParticleClass>().Active = false;
-
-
-
-
-
-            for (int i = 1; i < WaterDropsObjects.Length; i++) {
-				WaterDropsObjects[i] = Instantiate(WaterDropsObjects[0], gameObject.transform.position, new Quaternion(0,0,0,0)) as GameObject;
-				WaterDropsObjects [i].GetComponent<MetaballParticleClass>().Active = false;
-				WaterDropsObjects [i].transform.SetParent (_parent.transform);
-				WaterDropsObjects [i].transform.localScale = new Vector3 (size, size, 1f);
-                WaterDropsObjects[i].layer = WaterDropsObjects[0].layer;
-                //WaterDropsObjects[i].SetActive(false);
-            }
-
-            WaterDropsObjects[0].SetActive(false);
-
-            AllBallsCount = WaterDropsObjects.Length;
-
-
-			microSpawns = new List<microSpawn>(5); // Up to 5 microspwawn
-
-
-            instance.Spawn();
+			Begin();
         }
 
 		public void RunMicroSpawn(Vector3 pos, int amount, Vector2 initVel)
@@ -384,6 +357,41 @@
 			WaterMaterial.SetColor ("_Color", fill);
 			WaterMaterial.SetColor ("_StrokeColor", stroke);
 
+		}
+
+		private void Begin() {
+			_parent = new GameObject ("_metaBalls");
+			_parent.hideFlags = HideFlags.HideInHierarchy;
+			WaterDropsObjects [0].transform.SetParent (_parent.transform);
+			WaterDropsObjects [0].transform.localScale = new Vector3 (size, size, 1f);
+			WaterDropsObjects [0].GetComponent<MetaballParticleClass>().Active = false;
+
+
+
+
+
+            for (int i = 1; i < WaterDropsObjects.Length; i++) {
+				WaterDropsObjects[i] = Instantiate(WaterDropsObjects[0], gameObject.transform.position, new Quaternion(0,0,0,0)) as GameObject;
+				WaterDropsObjects [i].GetComponent<MetaballParticleClass>().Active = false;
+				WaterDropsObjects [i].transform.SetParent (_parent.transform);
+				WaterDropsObjects [i].transform.localScale = new Vector3 (size, size, 1f);
+                WaterDropsObjects[i].layer = WaterDropsObjects[0].layer;
+                //WaterDropsObjects[i].SetActive(false);
+            }
+
+            WaterDropsObjects[0].SetActive(false);
+
+            AllBallsCount = WaterDropsObjects.Length;
+
+
+			microSpawns = new List<microSpawn>(5); // Up to 5 microspwawn
+
+
+            instance.Spawn();
+		}
+
+		public void RestartWaterSpawning() {
+			Begin();
 		}
 
 	}
