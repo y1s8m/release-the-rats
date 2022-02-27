@@ -34,6 +34,11 @@ public class MainMenuController : MonoBehaviour
         SettingsPanel.SetActive(true);
     }
 
+    public void OnMainMenuSettingsExitClick()
+    {
+        SettingsPanel.SetActive(false);
+    }
+
     public void OnMainMenuExitClick()
     {
         Application.Quit();
