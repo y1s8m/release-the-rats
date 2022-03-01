@@ -10,6 +10,8 @@ public class StaminaBar : MonoBehaviour
     void Start()
     {
         bar = transform.Find("Bar");
+
+        SetSize(PlayerController.instance.stamina);
     }
 
     public void SetSize(float sizeNormalized)

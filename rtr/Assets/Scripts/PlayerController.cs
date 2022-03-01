@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	// player variables
-	private float stamina = 1f;
+	public static PlayerController instance
+	{
+		get
+		{
+			if (m_instance == null)
+			{
+				m_instance = FindObjectOfType<PlayerController>();
+			}
+
+			return m_instance;
+		}
+	}
+
+	private static PlayerController m_instance;
+
+	// player movement variables
+	public float stamina = 1f;
 	private float maxStamina = 1f;
 	private bool outOfStamina = false;
+	private float wallStamCost = 0.005f;
+	private float jumpStamCost = 0.4f;
 
 	private float speed = 50f;
+	private float origSpeed = 50f;
 	private float moveSmoothing = 0.05f;
 	private float jumpForce = 500f;
+
 	private float horizontalMove = 0.0f;
+	private float verticalMove = 0.0f;
 
 	private Vector3 zeroVel = Vector3.zero;
 
@@ -30,56 +50,58 @@ public class PlayerController : MonoBehaviour
 	private Animator playerAnimator;
 	private SpriteRenderer playerRenderer;
 
-	private void Start()
-	{
-		staminaBar.SetSize(stamina);
+    private void Awake()
+    {
+		if (instance != this)
+		{
+			Destroy(gameObject);
+		}
 
 		playerRigidbody = GetComponent<Rigidbody2D>();
 		playerAnimator = GetComponent<Animator>();
 		playerRenderer = GetComponent<SpriteRenderer>();
+	}
 
+    private void Start()
+	{
 		playerRigidbody.gravityScale = gravityScale;
 	}
 
     private void Update()
     {
 		horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+		verticalMove = Input.GetAxisRaw("Vertical") * speed;
 
-		if (stamina != 0 && Input.GetButtonDown("Jump") && jumped == false)
+		if (Input.GetButtonDown("Jump") && !jumped && !outOfStamina)
 		{
 			jumped = true;
-			onWall = false;
 
-			playerRigidbody.gravityScale = gravityScale;
 			//playerAnimator.SetBool("isOnGround", false);
 			//AudioManager.instance.PlayOneShot(jumpSound);
 		}
-		if (stamina != 0 && Input.GetKeyDown(KeyCode.Q) && !onWall)
+		if (Input.GetKeyDown(KeyCode.Q) && !onWall && !outOfStamina)
         {
 			onWall = true;
-			jumped = false;
-			canJump = true;
 
 			playerRigidbody.velocity = Vector2.zero;
 			playerRigidbody.gravityScale = 0f;
-        }
+
+			speed = origSpeed / 2;
+		}
 		if (Input.GetKeyDown(KeyCode.E) && onWall)
 		{
 			onWall = false;
+			canJump = false;
 
 			playerRigidbody.gravityScale = gravityScale;
+
+			speed = origSpeed;
 		}
 	}
 
     private void FixedUpdate()
 	{
-		if (outOfStamina)
-        {
-			onWall = false;
-			playerRigidbody.gravityScale = gravityScale;
-        }
-
-		Move(horizontalMove * Time.fixedDeltaTime, false, jumped);
+		Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime, false, jumped);
 	}
 
 	private void UpdateStamina(float c)
@@ -89,27 +111,47 @@ public class PlayerController : MonoBehaviour
         {
 			stamina = 0;
 			outOfStamina = true;
-        }
+
+			onWall = false;
+			canJump = false;
+
+			playerRigidbody.gravityScale = gravityScale;
+
+			speed = origSpeed;
+		}
 		staminaBar.SetSize(stamina);
     }
 
 
-	public void Move(float move, bool crouch, bool jump)
+	private void Move(float horizMove, float vertMove, bool crouch, bool jump)
 	{
 		// Move the character by finding the target velocity
-		Vector3 targetVelocity = new Vector2(move * 10f, playerRigidbody.velocity.y);
+		Vector3 targetVelocity;
+		
+		if (onWall)
+		{
+			targetVelocity = new Vector2(horizMove * 10f, vertMove * 10f);
+
+			jumped = false;
+			canJump = true;
+
+			UpdateStamina(stamina - wallStamCost);
+			if (horizMove > 0 || vertMove > 0) UpdateStamina(stamina - wallStamCost);
+		} else
+        {
+			targetVelocity = new Vector2(horizMove * 10f, playerRigidbody.velocity.y);
+		}
+
 		// And then smoothing it out and applying it to the character
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
 
-		if (onWall && move > 0) UpdateStamina(stamina - 0.01f);
-
 		// If the input is moving the player right and the player is facing left...
-		if (move > 0 && !lookingRight)
+		if (horizMove > 0 && !lookingRight)
 		{
 			Flip();
 		}
 		// Otherwise if the input is moving the player left and the player is facing right...
-		else if (move < 0 && lookingRight)
+		else if (horizMove < 0 && lookingRight)
 		{
 			Flip();
 		}
@@ -119,10 +161,13 @@ public class PlayerController : MonoBehaviour
 		{
 			// Add a vertical force to the player.
 			jumped = false;
+			onWall = false;
 			onGround = false;
 			canJump = false;
 
-			UpdateStamina(stamina - 0.4f);
+			playerRigidbody.gravityScale = gravityScale;
+
+			UpdateStamina(stamina - jumpStamCost);
 
 			playerRigidbody.AddForce(new Vector2(0f, jumpForce));
 		}
@@ -142,8 +187,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
+		// "Ground" tagged objects are level grounds, platforms, and pipes
+		if (collision.gameObject.tag == "Ground")
+		{
 			onGround = true;
 			canJump = true;
 			onWall = false;
@@ -152,5 +198,23 @@ public class PlayerController : MonoBehaviour
 			// reset max stamina
 			UpdateStamina(maxStamina);
 		}
+	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+		// "Slippery" tagged regions are not meant to be traversed via wall
+        if (collision.gameObject.tag == "Slippery")
+        {
+			if (onWall) wallStamCost *= 2;
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+		// "Slippery" tagged regions are not meant to be traversed via wall
+		if (collision.gameObject.tag == "Slippery")
+		{
+			if (onWall) wallStamCost /= 2;
+		}
+	}
 }
