@@ -295,9 +295,22 @@ public class PlayerController : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "Metaball_liquid")
 		{
-			//touchingWater = true;
 			UpdateHP(hp - 0.03f);
 		}
+		else if (collision.gameObject.tag == "Cheese")
+		{
+			GameManager.instance.IncCheeseCounter();
+			Destroy(collision.gameObject);
+		}
+		else if (collision.gameObject.tag == "OtherRat")
+		{
+			GameManager.instance.IncRatSaveCounter();
+			Destroy(collision.gameObject);
+		}
+		else if (collision.gameObject.tag == "NextLevelPipe")
+        {
+			GameManager.instance.LoadNextLevel();
+        }
 	}
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -306,10 +319,6 @@ public class PlayerController : MonoBehaviour
 		if (collision.gameObject.tag == "Slippery")
 		{
 			if (onWall) wallStamCost /= 2;
-		}
-		else if (collision.gameObject.tag == "Metaball_liquid")
-		{
-			//touchingWater = false;
 		}
 	}
 

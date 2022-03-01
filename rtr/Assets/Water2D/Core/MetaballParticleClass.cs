@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MetaballParticleClass : MonoBehaviour {
-
-
+public class MetaballParticleClass : MonoBehaviour
+{
 	public GameObject MObject;
 	public float LifeTime;
+
 	public bool Active{
 		get{ return _active;}
 		set{ _active = value;
@@ -20,8 +20,6 @@ public class MetaballParticleClass : MonoBehaviour {
 		}
 	}
 	public bool witinTarget; // si esta dentro de la zona de vaso de vidrio en la meta
-
-
 
 	bool _active;
 	float delta;
@@ -55,8 +53,6 @@ public class MetaballParticleClass : MonoBehaviour {
 
 	}
 
-
-
 	void VelocityLimiter()
 	{
 		
@@ -68,4 +64,11 @@ public class MetaballParticleClass : MonoBehaviour {
 		rb.velocity = _vel;
 	}
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+			delta = LifeTime - 0.3f;
+        }
+    }
 }
