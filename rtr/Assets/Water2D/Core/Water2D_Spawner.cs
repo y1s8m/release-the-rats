@@ -300,7 +300,7 @@
         {
            
 
-            IsWaterInScene = true;
+			IsWaterInScene = true;
 
             int auxCount = 0;
            // while (true)
@@ -361,7 +361,7 @@
 
 		private void Begin() {
 			_parent = new GameObject ("_metaBalls");
-			_parent.hideFlags = HideFlags.HideInHierarchy;
+			//_parent.hideFlags = HideFlags.HideInHierarchy;
 			WaterDropsObjects [0].transform.SetParent (_parent.transform);
 			WaterDropsObjects [0].transform.localScale = new Vector3 (size, size, 1f);
 			WaterDropsObjects [0].GetComponent<MetaballParticleClass>().Active = false;
