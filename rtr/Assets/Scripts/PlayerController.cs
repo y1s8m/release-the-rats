@@ -48,6 +48,12 @@ public class PlayerController : MonoBehaviour
 	private bool canJump = false;
 	private bool lookingRight = true;
 
+	// water-related variables
+	public float damageRate;
+
+	private float damageTimer = 0f;
+	private int numWaterDrops = 0;
+
 	public Transform startPos;
 
 	[SerializeField] private GameObject ratSprite;
@@ -113,6 +119,14 @@ public class PlayerController : MonoBehaviour
 		if (dead) return;
 
 		Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime, false, jumped);
+
+		if (numWaterDrops > 2) {
+			damageTimer += Time.fixedDeltaTime;
+			if (damageTimer >= damageRate) {
+				damageTimer = 0f;
+				UpdateHP(hp - .03f);
+			}
+		}
 	}
 
 	private void UpdateHP(float c)
@@ -281,7 +295,7 @@ public class PlayerController : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "Metaball_liquid")
 		{
-			touchingWater = true;
+			//touchingWater = true;
 			UpdateHP(hp - 0.03f);
 		}
 	}
@@ -295,7 +309,15 @@ public class PlayerController : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "Metaball_liquid")
 		{
-			touchingWater = false;
+			//touchingWater = false;
 		}
+	}
+
+	public void AddWaterDrop() {
+		numWaterDrops++;
+	}
+
+	public void SubtractWaterDrop() {
+		numWaterDrops--;
 	}
 }
