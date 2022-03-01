@@ -842,7 +842,7 @@ RenderTexture:
     m_WrapW: 1
   m_Dimension: 2
   m_VolumeDepth: 1
---- !u!84 &641048882
+--- !u!84 &777496181
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -856,8 +856,8 @@ RenderTexture:
   m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
   serializedVersion: 3
-  m_Width: 310
-  m_Height: 987
+  m_Width: 916
+  m_Height: 439
   m_AntiAliasing: 1
   m_MipCount: -1
   m_DepthFormat: 1
@@ -1769,7 +1769,7 @@ MonoBehaviour:
   WaterMaterial: {fileID: 2100000, guid: d5c0106e08a52ab4c89dabe7772d546e, type: 2}
   FillColor: {r: 0.3529412, g: 0.39607844, b: 0.34117648, a: 1}
   StrokeColor: {r: 0.41960785, g: 0.5176471, b: 0.40784314, a: 1}
-  initSpeed: {x: 0, y: -1.8}
+  initSpeed: {x: 0, y: -5}
   DynamicChanges: 1
   btn_0: 0
   btn_1: 0
