@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaminaBar : MonoBehaviour
+public class PlayerStatBar : MonoBehaviour
 {
     private Transform bar;
 
@@ -10,8 +10,7 @@ public class StaminaBar : MonoBehaviour
     void Start()
     {
         bar = transform.Find("Bar");
-
-        SetSize(PlayerController.instance.stamina);
+        bar.localScale = new Vector3(1f, 1f);
     }
 
     public void SetSize(float sizeNormalized)

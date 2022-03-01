@@ -20,9 +20,15 @@ public class PlayerController : MonoBehaviour
 	private static PlayerController m_instance;
 
 	// player movement variables
+	private float hp = 1f;
+	private float maxHP = 1f;
+	private bool dead = false;
+	private bool touchingWater = false;
+
 	public float stamina = 1f;
 	private float maxStamina = 1f;
 	private bool outOfStamina = false;
+
 	private float wallStamCost = 0.005f;
 	private float jumpStamCost = 0.4f;
 
@@ -38,17 +44,19 @@ public class PlayerController : MonoBehaviour
 
 	private bool jumped = false;
 	private bool onGround = false;
+	private bool onWall = false;
 	private bool canJump = false;
 	private bool lookingRight = true;
 
-	private bool onWall = false;
+	public Transform startPos;
 
-	[SerializeField] private StaminaBar staminaBar;
+	[SerializeField] private GameObject ratSprite;
+	[SerializeField] private PlayerStatBar hpBar;
+	[SerializeField] private PlayerStatBar staminaBar;
 
 	private float gravityScale = 1f;
 	private Rigidbody2D playerRigidbody;
 	private Animator playerAnimator;
-	private SpriteRenderer playerRenderer;
 
     private void Awake()
     {
@@ -59,7 +67,6 @@ public class PlayerController : MonoBehaviour
 
 		playerRigidbody = GetComponent<Rigidbody2D>();
 		playerAnimator = GetComponent<Animator>();
-		playerRenderer = GetComponent<SpriteRenderer>();
 	}
 
     private void Start()
@@ -69,6 +76,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+		if (dead) return;
+
 		horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 		verticalMove = Input.GetAxisRaw("Vertical") * speed;
 
@@ -101,15 +110,32 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
 	{
+		if (dead) return;
+
 		Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime, false, jumped);
+	}
+
+	private void UpdateHP(float c)
+	{
+		hp = c;
+		hp = Mathf.Clamp(hp, 0, 1);
+		if (hp == 0)
+		{
+			if (!dead) StartCoroutine(Die());
+
+			playerRigidbody.gravityScale = gravityScale;
+
+			speed = origSpeed;
+		}
+		hpBar.SetSize(hp);
 	}
 
 	private void UpdateStamina(float c)
     {
 		stamina = c;
-		if (stamina < 0)
-        {
-			stamina = 0;
+		stamina = Mathf.Clamp(stamina, 0, 1);
+		if (stamina == 0)
+		{
 			outOfStamina = true;
 
 			onWall = false;
@@ -157,6 +183,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		// If the player should jump...
+		if (!canJump) jumped = false;
 		if (canJump && jump)
 		{
 			// Add a vertical force to the player.
@@ -180,23 +207,64 @@ public class PlayerController : MonoBehaviour
 		lookingRight = !lookingRight;
 
 		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		ratSprite.transform.localScale = new Vector3(-ratSprite.transform.localScale.x, ratSprite.transform.localScale.y, ratSprite.transform.localScale.z);
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Reset()
+	{
+		dead = false;
+
+		// reset max stamina
+		UpdateHP(maxHP);
+		UpdateStamina(maxStamina);
+
+		onGround = false;
+		jumped = false;
+		canJump = false;
+		onWall = false;
+
+		lookingRight = true;
+		ratSprite.transform.localScale = new Vector3(Mathf.Abs(ratSprite.transform.localScale.x), ratSprite.transform.localScale.y, ratSprite.transform.localScale.z);
+
+		transform.position = startPos.position;
+    }
+
+    private IEnumerator Die()
     {
-		// "Ground" tagged objects are level grounds, platforms, and pipes
+		dead = true;
+
+		playerRigidbody.velocity = Vector2.zero;
+		playerRigidbody.gravityScale = gravityScale;
+
+		yield return new WaitForSeconds(5f);
+
+		Reset();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (dead) return;
+
 		if (collision.gameObject.tag == "Ground")
 		{
 			onGround = true;
 			canJump = true;
 			onWall = false;
 			outOfStamina = false;
+		}
+	}
 
-			// reset max stamina
-			UpdateStamina(maxStamina);
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+		if (dead) return;
+
+		// "Ground" tagged objects are level grounds, platforms, and pipes
+		if (collision.gameObject.tag == "Ground")
+		{
+			// reset max stats
+			// healing at ground while touching water kinda buggy
+			if (!touchingWater) UpdateHP(hp + 0.05f);
+			UpdateStamina(stamina + 0.05f);
 		}
 	}
 
@@ -207,7 +275,16 @@ public class PlayerController : MonoBehaviour
         {
 			if (onWall) wallStamCost *= 2;
         }
-    }
+		else if (collision.gameObject.tag == "Checkpoint")
+        {
+			startPos = collision.gameObject.transform;
+		}
+		else if (collision.gameObject.tag == "Metaball_liquid")
+		{
+			touchingWater = true;
+			UpdateHP(hp - 0.03f);
+		}
+	}
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -215,6 +292,10 @@ public class PlayerController : MonoBehaviour
 		if (collision.gameObject.tag == "Slippery")
 		{
 			if (onWall) wallStamCost /= 2;
+		}
+		else if (collision.gameObject.tag == "Metaball_liquid")
+		{
+			touchingWater = false;
 		}
 	}
 }
