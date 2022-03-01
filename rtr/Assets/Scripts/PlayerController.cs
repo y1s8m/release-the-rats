@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
 			damageTimer += Time.fixedDeltaTime;
 			if (damageTimer >= damageRate) {
 				damageTimer = 0f;
-				UpdateHP(hp - .03f);
+				UpdateHP(hp - .01f);
 			}
 		}
 	}

@@ -68,7 +68,7 @@ public class MetaballParticleClass : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-			delta = LifeTime - 0.3f;
+			//delta = LifeTime - 0.1f;
         }
     }
 }
