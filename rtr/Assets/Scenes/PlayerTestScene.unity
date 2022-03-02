@@ -244,26 +244,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &125245233 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 199430, guid: 260f8a927a5e2c3479cee6ec91f61b88, type: 3}
-  m_PrefabInstance: {fileID: 781211479}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &125245234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125245233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c2373eb07dd7684c9dba42696ad9838, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 935880108}
-  playerTransform: {fileID: 19142181}
-  dampTime: 0.3
 --- !u!1 &193257719
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +786,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!84 &565137394
+--- !u!84 &581738829
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -820,8 +800,8 @@ RenderTexture:
   m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
   serializedVersion: 3
-  m_Width: 916
-  m_Height: 439
+  m_Width: 415
+  m_Height: 987
   m_AntiAliasing: 1
   m_MipCount: -1
   m_DepthFormat: 1
@@ -900,7 +880,7 @@ PrefabInstance:
     - target: {fileID: 6200582024934476846, guid: 260f8a927a5e2c3479cee6ec91f61b88, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 565137394}
+      objectReference: {fileID: 581738829}
     - target: {fileID: 6200582024934476846, guid: 260f8a927a5e2c3479cee6ec91f61b88, type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0.21176471
@@ -913,49 +893,12 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.r
       value: 0.23529412
       objectReference: {fileID: 0}
+    - target: {fileID: 9019846399389511791, guid: 260f8a927a5e2c3479cee6ec91f61b88, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 19142181}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 260f8a927a5e2c3479cee6ec91f61b88, type: 3}
---- !u!20 &935880108 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 6200582023666877025, guid: 260f8a927a5e2c3479cee6ec91f61b88, type: 3}
-  m_PrefabInstance: {fileID: 781211479}
-  m_PrefabAsset: {fileID: 0}
---- !u!84 &1094693358
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 3
-  m_Width: 916
-  m_Height: 439
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 1
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1117520087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,6 +1934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc06cf55a4b31ad438fd6ced82cd3075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashing: 0
   timeFlowing: 3
   timeNotFlowing: 3
   waterSpawner: {fileID: 3806294479991701475}
