@@ -8,6 +8,10 @@ public class AudioManager : MonoBehaviour
 
     public Slider VolumeSlider;
 
+    public AudioClip pourSound;
+
+    private AudioSource audio;
+
     public static AudioManager instance
     {
         get
@@ -34,6 +38,8 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();
+
         if(PlayerPrefs.HasKey("musicVolume")){
             Load();
         }
@@ -41,6 +47,7 @@ public class AudioManager : MonoBehaviour
             PlayerPrefs.SetFloat("musicVolume", 1);
             Load();
         }
+
     }
 
     public void ChangeVolume()
@@ -62,5 +69,9 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayPourSound() {
+        audio.PlayOneShot(pourSound);
     }
 }

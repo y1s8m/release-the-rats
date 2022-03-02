@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdff6450caeeee4f8f7b741340f3686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VolumeSlider: {fileID: 0}
+  pourSound: {fileID: 8300000, guid: d8e43589b3b0e2541970e3a2c0e9ff29, type: 3}
 --- !u!82 &8798817213638137227
 AudioSource:
   m_ObjectHideFlags: 0
