@@ -5,19 +5,22 @@ using Water2D;
 
 public class WaterManager : MonoBehaviour
 {
+    public bool flashing = false;
     public float timeFlowing;
     public float timeNotFlowing;
     
     public GameObject waterSpawner;
 
-    private bool flowing = false;
+    private bool flowing = true;
     private bool playing = true;
     private float timePassed = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        waterSpawner.SetActive(false);
+        flowing = true;
+        timePassed = 0f;
+        waterSpawner.SetActive(true);
     }
 
     // Update is called once per frame
@@ -27,7 +30,7 @@ public class WaterManager : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if (playing) {
+        if (playing && flashing) {
             timePassed += Time.fixedDeltaTime;
             if (flowing && timePassed >= timeFlowing) {
                 flowing = false;

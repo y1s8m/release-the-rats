@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 	// player movement variables
 	private float hp = 1f;
 	private float maxHP = 1f;
-	private bool dead = false;
+	public bool dead = false;
 	private bool touchingWater = false;
 
 	public float stamina = 1f;
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
 			damageTimer += Time.fixedDeltaTime;
 			if (damageTimer >= damageRate) {
 				damageTimer = 0f;
-				UpdateHP(hp - .01f);
+				UpdateHP(hp - .02f);
 			}
 		}
 	}
@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
 		onWall = false;
 
 		lookingRight = true;
-		ratSprite.transform.localScale = new Vector3(Mathf.Abs(ratSprite.transform.localScale.x), ratSprite.transform.localScale.y, ratSprite.transform.localScale.z);
+		ratSprite.transform.localScale = new Vector3(-1 * Mathf.Abs(ratSprite.transform.localScale.x), ratSprite.transform.localScale.y, ratSprite.transform.localScale.z);
 
 		transform.position = startPos.position;
     }
@@ -255,71 +255,34 @@ public class PlayerController : MonoBehaviour
 		Reset();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+	public void EnterGroundCollision()
+    {
+		onGround = true;
+		canJump = true;
+		onWall = false;
+		outOfStamina = false;
+	}
+	
+	public void StayGroundCollision()
+    {
+		// reset max stats
+		if (!touchingWater) UpdateHP(hp + 0.05f);
+		UpdateStamina(stamina + 0.05f);
+	}
+
+	public void EnterTriggerCheckpoint(Transform cp)
+    {
+		startPos = cp;
+	}
+
+	public void EnterTriggerSlippery ()
 	{
-		if (dead) return;
-
-		if (collision.gameObject.tag == "Ground")
-		{
-			onGround = true;
-			canJump = true;
-			onWall = false;
-			outOfStamina = false;
-		}
+		if (onWall) wallStamCost *= 2;
 	}
 
-    private void OnCollisionStay2D(Collision2D collision)
+    public void ExitTriggerSlippery()
     {
-		if (dead) return;
-
-		// "Ground" tagged objects are level grounds, platforms, and pipes
-		if (collision.gameObject.tag == "Ground")
-		{
-			// reset max stats
-			// healing at ground while touching water kinda buggy
-			if (!touchingWater) UpdateHP(hp + 0.05f);
-			UpdateStamina(stamina + 0.05f);
-		}
-	}
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-		// "Slippery" tagged regions are not meant to be traversed via wall
-        if (collision.gameObject.tag == "Slippery")
-        {
-			if (onWall) wallStamCost *= 2;
-        }
-		else if (collision.gameObject.tag == "Checkpoint")
-        {
-			startPos = collision.gameObject.transform;
-		}
-		else if (collision.gameObject.tag == "Metaball_liquid")
-		{
-			UpdateHP(hp - 0.03f);
-		}
-		else if (collision.gameObject.tag == "Cheese")
-		{
-			GameManager.instance.IncCheeseCounter();
-			Destroy(collision.gameObject);
-		}
-		else if (collision.gameObject.tag == "OtherRat")
-		{
-			GameManager.instance.IncRatSaveCounter();
-			Destroy(collision.gameObject);
-		}
-		else if (collision.gameObject.tag == "NextLevelPipe")
-        {
-			GameManager.instance.LoadNextLevel();
-        }
-	}
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-		// "Slippery" tagged regions are not meant to be traversed via wall
-		if (collision.gameObject.tag == "Slippery")
-		{
-			if (onWall) wallStamCost /= 2;
-		}
+		if (onWall) wallStamCost /= 2;
 	}
 
 	public void AddWaterDrop() {
