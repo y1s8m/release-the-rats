@@ -25,9 +25,7 @@
 
 		void Awake()
 		{
-			if(instance == null)
-				instance = this;
-
+			//if(instance == null) instance = this;
 		}
 
 		[Title("Water 2D", 20f, 20)]
@@ -345,10 +343,7 @@
                     
 
                 }
-               
                 alreadySpawned = true;
-
-             
            // }
         }
 
@@ -356,7 +351,6 @@
 		{
 			WaterMaterial.SetColor ("_Color", fill);
 			WaterMaterial.SetColor ("_StrokeColor", stroke);
-
 		}
 
 		private void Begin() {
@@ -365,10 +359,6 @@
 			WaterDropsObjects [0].transform.SetParent (_parent.transform);
 			WaterDropsObjects [0].transform.localScale = new Vector3 (size, size, 1f);
 			WaterDropsObjects [0].GetComponent<MetaballParticleClass>().Active = false;
-
-
-
-
 
             for (int i = 1; i < WaterDropsObjects.Length; i++) {
 				WaterDropsObjects[i] = Instantiate(WaterDropsObjects[0], gameObject.transform.position, new Quaternion(0,0,0,0)) as GameObject;
@@ -383,17 +373,13 @@
 
             AllBallsCount = WaterDropsObjects.Length;
 
-
 			microSpawns = new List<microSpawn>(5); // Up to 5 microspwawn
 
-
-            instance.Spawn();
+            Spawn();
 		}
 
 		public void RestartWaterSpawning() {
 			Begin();
 		}
-
 	}
-
 }

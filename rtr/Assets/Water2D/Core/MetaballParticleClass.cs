@@ -33,9 +33,7 @@ public class MetaballParticleClass : MonoBehaviour
 	}
 
 	void Update () {
-
 		if (Active == true) {
-
 			VelocityLimiter ();
 
 			if (LifeTime < 0)
@@ -47,16 +45,11 @@ public class MetaballParticleClass : MonoBehaviour
 			} else {
 				delta += Time.deltaTime;
 			}
-
-
 		}
-
 	}
 
 	void VelocityLimiter()
 	{
-		
-		
 		Vector2 _vel = rb.velocity;
 		if (_vel.y < -8f) {
 			_vel.y = -8f;
@@ -69,12 +62,10 @@ public class MetaballParticleClass : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
 			delta = LifeTime - 0.6f;
-			Debug.Log("ahh");
         }
 		else if (collision.gameObject.tag == "Ground")
 		{
 			delta = LifeTime - 0.4f;
-			Debug.Log("whyyy");
 		}
 	}
 }

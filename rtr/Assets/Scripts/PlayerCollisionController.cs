@@ -47,6 +47,7 @@ public class PlayerCollisionController : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "NextLevelPipe")
 		{
+			PlayerController.instance.LoadNextLevel();
 			GameManager.instance.LoadNextLevel();
 		}
 	}

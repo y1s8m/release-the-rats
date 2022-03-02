@@ -11,7 +11,7 @@ public class CameraMovement : MonoBehaviour
 
     public GameObject goal;
 
-    private bool cutSceneDone = false;
+    private bool cutScene = false;
 
     private Vector3 velocity = Vector3.zero;
 
@@ -22,24 +22,30 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        if (cutSceneDone) {
+        if (!cutScene) {
             Vector3 delta = new Vector3(playerTransform.position.x, playerTransform.position.y, -10) - cam.ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
             Vector3 destination = transform.position + delta;
-            if (destination.y < -8) destination = new Vector3(destination.x, -8, destination.z);
+            if (destination.y < -6) destination = new Vector3(destination.x, -6, destination.z);
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
         }
     }
 
     private IEnumerator DoCutscene() {
-        float xDist = (Mathf.Abs(goal.transform.position.x - playerTransform.position.x) / 10) - .25f;
-        float yDist = (Mathf.Abs(goal.transform.position.y - playerTransform.position.y) / 10) + .25f;
-        Debug.Log(yDist);
+        yield return new WaitForSeconds(3f);
+        cutScene = true;
+
+        float xDist = ((goal.transform.position.x - playerTransform.position.x) / repeats);
+        float yDist = ((goal.transform.position.y - playerTransform.position.y) / repeats);
+        Vector3 tempGoal = transform.position;
+
         for (int i = 0; i < repeats; i++) {
-            Vector3 goalPos = new Vector3(transform.position.x + xDist, transform.position.y + yDist, transform.position.z);
-            transform.position = Vector3.SmoothDamp(transform.position, goalPos, ref velocity, dampTime);
-            yield return new WaitForSeconds(.01f);
+            tempGoal.x += xDist;
+            tempGoal.y += yDist;
+            transform.position = Vector3.SmoothDamp(transform.position, tempGoal, ref velocity, dampTime);
+            yield return new WaitForSeconds(.001f);
         }
         yield return new WaitForSeconds(1f);
-        cutSceneDone = true;
+        cutScene = false;
+        PlayerController.instance.cutScene = false;
     }
 }

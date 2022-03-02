@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
 	private static PlayerController m_instance;
 
+	public bool cutScene = false;
+
 	// player movement variables
 	private float hp = 1f;
 	private float maxHP = 1f;
@@ -30,12 +32,14 @@ public class PlayerController : MonoBehaviour
 	private bool outOfStamina = false;
 
 	private float wallStamCost = 0.005f;
+	private float normalWallStamCost = 0.01f;
+	private float slipperyStamCost = 0.03f;
 	private float jumpStamCost = 0.4f;
 
 	private float speed = 50f;
 	private float origSpeed = 50f;
 	private float moveSmoothing = 0.05f;
-	private float jumpForce = 500f;
+	private float jumpForce = 300f;
 
 	private float horizontalMove = 0.0f;
 	private float verticalMove = 0.0f;
@@ -77,12 +81,15 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
 	{
+		transform.position = startPos.position;
 		playerRigidbody.gravityScale = gravityScale;
+
+		cutScene = true;
 	}
 
     private void Update()
     {
-		if (dead) return;
+		if (cutScene || dead) return;
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 		verticalMove = Input.GetAxisRaw("Vertical") * speed;
@@ -124,7 +131,7 @@ public class PlayerController : MonoBehaviour
 			damageTimer += Time.fixedDeltaTime;
 			if (damageTimer >= damageRate) {
 				damageTimer = 0f;
-				UpdateHP(hp - .02f);
+				UpdateHP(hp - .1f);
 			}
 		}
 	}
@@ -277,12 +284,12 @@ public class PlayerController : MonoBehaviour
 
 	public void EnterTriggerSlippery ()
 	{
-		if (onWall) wallStamCost *= 2;
+		wallStamCost = slipperyStamCost;
 	}
 
     public void ExitTriggerSlippery()
     {
-		if (onWall) wallStamCost /= 2;
+		wallStamCost = normalWallStamCost;
 	}
 
 	public void AddWaterDrop() {
@@ -292,4 +299,9 @@ public class PlayerController : MonoBehaviour
 	public void SubtractWaterDrop() {
 		numWaterDrops--;
 	}
+
+	public void LoadNextLevel()
+    {
+		cutScene = true;
+    }
 }
