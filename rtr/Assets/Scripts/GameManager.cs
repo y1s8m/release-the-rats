@@ -55,11 +55,7 @@ public class GameManager : MonoBehaviour
 
     public void Load(){
         if (PlayerPrefs.HasKey("level")){
-            SceneManager.LoadScene(PlayerPrefs.GetInt("level"));
             playerPos.position = new Vector3(PlayerPrefs.GetFloat("xpos"), PlayerPrefs.GetFloat("ypos"), 0);
-        }
-        else {
-            StartCoroutine(WaitLoadSceneCoroutine(2));
         }
     }
 
