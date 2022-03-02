@@ -7,6 +7,10 @@ using UnityEngine.UI;
 public class MainMenuController : MonoBehaviour
 {
     public GameObject SettingsPanel;
+    public GameObject ContBtn;
+    public GameObject NewGameBtn;
+    public GameObject SettingsBtn;
+    public GameObject ExitBtn;
     public Slider VolumeSlider;
     // Start is called before the first frame update
     void Start()
@@ -32,11 +36,20 @@ public class MainMenuController : MonoBehaviour
     public void OnMainMenuSettingsClick()
     {
         SettingsPanel.SetActive(true);
+        ContBtn.SetActive(false);
+        NewGameBtn.SetActive(false);
+        SettingsBtn.SetActive(false);
+        ExitBtn.SetActive(false);
+
     }
 
     public void OnMainMenuSettingsExitClick()
     {
         SettingsPanel.SetActive(false);
+        ContBtn.SetActive(true);
+        NewGameBtn.SetActive(true);
+        SettingsBtn.SetActive(true);
+        ExitBtn.SetActive(true);
     }
 
     public void OnMainMenuExitClick()
