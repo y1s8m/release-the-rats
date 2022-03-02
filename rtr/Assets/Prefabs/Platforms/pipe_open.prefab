@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1523912716331393239}
   m_Layer: 0
   m_Name: pipe_open
-  m_TagString: Untagged
+  m_TagString: NoWaterGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

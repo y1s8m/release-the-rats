@@ -69,10 +69,12 @@ public class MetaballParticleClass : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
 			delta = LifeTime - 0.6f;
+			Debug.Log("ahh");
         }
 		else if (collision.gameObject.tag == "Ground")
 		{
 			delta = LifeTime - 0.4f;
+			Debug.Log("whyyy");
 		}
 	}
 }

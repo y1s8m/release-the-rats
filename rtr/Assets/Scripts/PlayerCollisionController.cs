@@ -7,14 +7,14 @@ public class PlayerCollisionController : MonoBehaviour
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (PlayerController.instance.dead) return;
-		if (collision.gameObject.tag == "Ground") PlayerController.instance.EnterGroundCollision();
+		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "NoWaterGround") PlayerController.instance.EnterGroundCollision();
 	}
 
 	private void OnCollisionStay2D(Collision2D collision)
 	{
 		if (PlayerController.instance.dead) return;
 
-		if (collision.gameObject.tag == "Ground") PlayerController.instance.StayGroundCollision();
+		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "NoWaterGround") PlayerController.instance.StayGroundCollision();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
