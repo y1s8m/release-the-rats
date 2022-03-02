@@ -7,6 +7,7 @@ public class CameraMovement : MonoBehaviour
     public Camera cam;
     public Transform playerTransform;
     public float dampTime = 0.1f;
+    public int repeats = 275;
 
     public GameObject goal;
 
@@ -30,9 +31,10 @@ public class CameraMovement : MonoBehaviour
     }
 
     private IEnumerator DoCutscene() {
-        float xDist = (Mathf.Abs(goal.transform.position.x - playerTransform.position.x) / 10) - .5f;
-        float yDist = (Mathf.Abs(goal.transform.position.y - playerTransform.position.y) / 10) + .5f;
-        for (int i = 0; i < 275; i++) {
+        float xDist = (Mathf.Abs(goal.transform.position.x - playerTransform.position.x) / 10) - .25f;
+        float yDist = (Mathf.Abs(goal.transform.position.y - playerTransform.position.y) / 10) + .25f;
+        Debug.Log(yDist);
+        for (int i = 0; i < repeats; i++) {
             Vector3 goalPos = new Vector3(transform.position.x + xDist, transform.position.y + yDist, transform.position.z);
             transform.position = Vector3.SmoothDamp(transform.position, goalPos, ref velocity, dampTime);
             yield return new WaitForSeconds(.01f);
