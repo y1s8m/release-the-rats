@@ -23,7 +23,7 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         if (cutSceneDone) {
-            Vector3 delta = new Vector3(playerTransform.position.x, 0, -10) - cam.ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
+            Vector3 delta = new Vector3(playerTransform.position.x, playerTransform.position.y, -10) - cam.ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
             Vector3 destination = transform.position + delta;
             if (destination.x < 0) destination = new Vector3(0, destination.y, destination.z);
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
