@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    public Camera cam;
     public Transform playerTransform;
     public float dampTime = 0.1f;
+
+
     private Vector3 velocity = Vector3.zero;
-    private Camera cam;
 
     private void Start()
     {
-        cam = GetComponent<Camera>();
+        
     }
 
     private void Update()
