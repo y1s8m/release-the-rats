@@ -243,7 +243,7 @@ public class PlayerController : MonoBehaviour
 		transform.position = startPos.position;
     }
 
-    private IEnumerator Die()
+    public IEnumerator Die()
     {
 		dead = true;
 

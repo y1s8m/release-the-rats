@@ -7,6 +7,7 @@ TagManager:
   - Metaball_liquid
   - Ground
   - NoWaterGround
+  - DeadZone
   layers:
   - Default
   - TransparentFX
