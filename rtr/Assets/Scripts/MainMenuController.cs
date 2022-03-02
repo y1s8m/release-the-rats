@@ -12,6 +12,7 @@ public class MainMenuController : MonoBehaviour
     public GameObject SettingsBtn;
     public GameObject ExitBtn;
     public Slider VolumeSlider;
+    private GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +22,14 @@ public class MainMenuController : MonoBehaviour
 
     public void OnMainMenuContinueClick()
     {
-         PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
+        PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
         //load from last save
-        StartCoroutine(WaitLoadSceneCoroutine(0.3f, 1));
+        if(PlayerPrefs.HasKey("level")){
+             StartCoroutine(WaitLoadSceneCoroutine(0.3f, PlayerPrefs.GetInt("level")));
+        }
+        else{
+            StartCoroutine(WaitLoadSceneCoroutine(0.3f, 1));
+        }
     }
 
     public void OnMainMenuStartClick()
@@ -55,8 +61,6 @@ public class MainMenuController : MonoBehaviour
     public void OnMainMenuExitClick()
     {
         Application.Quit();
-
-        //autosave routine
     }
 
     IEnumerator WaitLoadSceneCoroutine(float waitTime, int sceneNum)
