@@ -35,6 +35,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void start(){
+        Load();
+        Save(startPos);
+    }
+
+    void update(){
+        if (playerPos.position == checkpointPos.position){
+            Save(checkpointPos);
+        }
+    }
+
     public void Save(Transform pos){
         //scene number, xsign, x100, x10, x1, xdp1, xdp2, ysign, y100, y10, y1, ydp1, ydp2
         PlayerPrefs.SetFloat("xpos", pos.position.x);
