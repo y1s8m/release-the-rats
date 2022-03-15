@@ -61,8 +61,6 @@ public class PlayerController : MonoBehaviour
 	public Transform startPos;
 
 	[SerializeField] private GameObject ratSprite;
-	[SerializeField] private PlayerStatBar hpBar;
-	[SerializeField] private PlayerStatBar staminaBar;
 
 	private float gravityScale = 1f;
 	private Rigidbody2D playerRigidbody;
@@ -148,7 +146,6 @@ public class PlayerController : MonoBehaviour
 
 			speed = origSpeed;
 		}
-		hpBar.SetSize(hp);
 	}
 
 	private void UpdateStamina(float c)
@@ -166,7 +163,6 @@ public class PlayerController : MonoBehaviour
 
 			speed = origSpeed;
 		}
-		staminaBar.SetSize(stamina);
     }
 
 

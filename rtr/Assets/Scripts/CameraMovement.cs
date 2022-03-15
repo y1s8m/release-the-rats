@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Camera cam;
     public Transform playerTransform;
     public float dampTime = 0.1f;
     public int repeats = 275;
@@ -23,7 +22,7 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         if (!cutScene) {
-            Vector3 delta = new Vector3(playerTransform.position.x, playerTransform.position.y, -10) - cam.ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
+            Vector3 delta = new Vector3(playerTransform.position.x, playerTransform.position.y, -10) - GetComponent<Camera>().ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
             Vector3 destination = transform.position + delta;
             if (destination.y < -6) destination = new Vector3(destination.x, -6, destination.z);
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
