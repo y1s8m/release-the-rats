@@ -5,35 +5,45 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class LightingSystem : MonoBehaviour
 {
-    public bool flicker = true;
-    public float differenceCutoff = .04f;
-    public float flickerRate = 2f;
-    public float t = .1f;
-
+    public float flickerLength = .5f;
+    public float flickerThreshold = .8f;
+    
     public Light2D light;
 
+    private bool flickering = false;
     private float timePassed = 0f;
-    private float waitTime;
     
     // Start is called before the first frame update
     void Start()
     {
-        waitTime = flickerRate;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Time Passed: " + timePassed.ToString() + " Wait Time: " + waitTime.ToString());
-        if (flicker && timePassed > waitTime) {
-            timePassed = 0f;
-            Flicker();
-            waitTime = Random.Range(flickerRate / 2, flickerRate);
+        // chance of flickering if not already flickering
+        if (!flickering) {
+            // determine chance
+            float chance = Random.Range(0f, 1f);
+            Debug.Log(chance);
+            if (chance > flickerThreshold) {
+                timePassed = 0f;
+                flickering = true;
+                light.enabled = false;
+            }
+        } else {
+            // determine if light should be back on
+            if (timePassed > flickerLength) {
+                flickering = false;
+                light.enabled = true;
+            } else {
+                timePassed += Time.deltaTime;
+            }
         }
-        timePassed += Time.deltaTime;
     }
 
     private void Flicker() {
-        light.intensity = Mathf.Lerp(light.intensity, Mathf.Clamp(Random.Range(light.intensity - differenceCutoff, light.intensity + differenceCutoff), .5f, 1f), t);
+        
     }
 }
