@@ -11,6 +11,7 @@ TagManager:
   - NextLevelPipe
   - Slippery
   - MazePipe
+  - Pipe
   layers:
   - Default
   - TransparentFX

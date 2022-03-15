@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 	private float verticalMove = 0.0f;
 
 	private Vector3 zeroVel = Vector3.zero;
+	private Vector3 normal = new Vector3(0, 1, 0);
 
 	private bool jumped = false;
 	private bool onGround = false;
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour
 		transform.position = startPos.position;
 		playerRigidbody.gravityScale = gravityScale;
 
-		cutScene = true;
+		//cutScene = true;
 	}
 
     private void Update()
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 		verticalMove = Input.GetAxisRaw("Vertical") * speed;
-
+		
 		if (Input.GetButtonDown("Jump") && !jumped)
 		{
 			jumped = true;
@@ -96,24 +97,6 @@ public class PlayerController : MonoBehaviour
 			//playerAnimator.SetBool("isOnGround", false);
 			//AudioManager.instance.PlayOneShot(jumpSound);
 		}
-		/*if (Input.GetKeyDown(KeyCode.Q) && !onPipe)
-        {
-			onPipe = true;
-
-			playerRigidbody.velocity = Vector2.zero;
-			playerRigidbody.gravityScale = 0f;
-
-			speed = origSpeed / 2;
-		}
-		if (Input.GetKeyDown(KeyCode.E) && onPipe)
-		{
-			onPipe = false;
-			canJump = false;
-
-			playerRigidbody.gravityScale = gravityScale;
-
-			speed = origSpeed;
-		}*/
 	}
 
     private void FixedUpdate()
@@ -151,17 +134,20 @@ public class PlayerController : MonoBehaviour
 		Vector3 targetVelocity;
 
 		if (onSlippery && !slipping) slipperyTimer += Time.deltaTime;
-		if (slipping || slipperyTimer > maxSlipperyTime) 
+		if (slipping && slipperyTimer < 0)
+        {
+			slipping = false;
+			slipperyTimer = 0;
+        }
+		if (slipping || slipperyTimer > maxSlipperyTime)
 		{
+			playerRigidbody.gravityScale = gravityScale;
 			slipping = true;
 			slipperyTimer -= Time.deltaTime;
 			return;
 		}
 
-		if (onGround) targetVelocity = new Vector2(horizMove * 10f, 0);
-		else targetVelocity = new Vector2(horizMove * 10f, playerRigidbody.velocity.y);
-
-		/*if (onPipe)
+		if (onPipe)
 		{
 			targetVelocity = new Vector2(horizMove * 10f, vertMove * 10f);
 
@@ -170,11 +156,11 @@ public class PlayerController : MonoBehaviour
 		} else
         {
 			targetVelocity = new Vector2(horizMove * 10f, playerRigidbody.velocity.y);
-		}*/
+		}
 
 		// And then smoothing it out and applying it to the character
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
-
+		//print(playerRigidbody.velocity);
 		// If the input is moving the player right and the player is facing left...
 		if (horizMove > 0 && !lookingRight)
 		{
@@ -191,13 +177,14 @@ public class PlayerController : MonoBehaviour
 		if (canJump && jump)
 		{
 			// Add a vertical force to the player.
-			jumped = false;
+			jumped = true;
 			onGround = false;
+			onPipe = false;
 			canJump = false;
 
 			playerRigidbody.gravityScale = gravityScale;
 
-			playerRigidbody.AddForce(new Vector2(0f, jumpForce));
+			playerRigidbody.AddForce(normal * jumpForce);
 		}
 	}
 
@@ -214,6 +201,9 @@ public class PlayerController : MonoBehaviour
     private void Reset()
 	{
 		dead = false;
+
+		this.normal = new Vector3(0, 1, 0);
+		transform.rotation = Quaternion.Euler(Vector3.zero);
 
 		// reset max stamina
 		UpdateHP(maxHP);
@@ -241,23 +231,72 @@ public class PlayerController : MonoBehaviour
     }
 
 	public void EnterGroundCollision()
-    {
+	{
+		if (!onPipe)
+		{
+			this.normal = new Vector3(0, 1, 0);
+			transform.rotation = Quaternion.Euler(Vector3.zero);
+		}
 		onGround = true;
 		canJump = true;
-		playerRigidbody.constraints = RigidbodyConstraints2D.None;
 	}
 	
 	public void StayGroundCollision()
-    {
+	{
 		// reset max stats
 		if (!touchingWater) UpdateHP(hp + 0.05f);
-		playerRigidbody.constraints = RigidbodyConstraints2D.None;
 	}
 
 	public void ExitGroundCollision()
 	{
 		onGround = false;
-		playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+	}
+
+	public void EnterPipeCollision(Vector3 contactPos, Vector3 normal)
+    {
+		playerRigidbody.constraints = RigidbodyConstraints2D.None;
+		this.normal = normal;
+		Vector3 slope = Vector3.Cross(normal, new Vector3(0, 0, 1));
+		float zRotAngle = Vector3.Angle(slope, transform.forward) % 90;
+
+		//if (normal.x < 0 && !lookingRight) zRotAngle *= -1;
+		/*if (normal.x > 0 && zRotAngle >= 90) zRotAngle = -zRotAngle;
+		else if (zRotAngle > 90 || zRotAngle < -90) zRotAngle = zRotAngle % 90;*/
+		/*if (normal.x < 0 && zRotAngle < 0) zRotAngle = zRotAngle % 90;
+		else if (normal.x > 0 && zRotAngle >= 90) zRotAngle = -zRotAngle;*/
+
+		if (lookingRight && normal == new Vector3(-1, 0, 0)) zRotAngle = 90;
+		if (!lookingRight && normal == new Vector3(1, 0, 0)) zRotAngle = -90;
+
+		transform.rotation = Quaternion.Euler(new Vector3(0, 0, zRotAngle));
+		transform.position = contactPos + normal * 0.8f; //verticalScale;
+
+		/*print(normal);
+		print(slope);
+		print(zRotAngle);*/
+
+		onPipe = true;
+		jumped = false;
+		canJump = true;
+
+		playerRigidbody.velocity = Vector2.zero;
+		playerRigidbody.gravityScale = 0f;
+
+		speed = origSpeed / 2;
+	}
+
+	public void StayPipeCollision()
+    {
+		if (!slipping) playerRigidbody.gravityScale = 0f;
+	}
+
+	public void ExitPipeCollision()
+    {
+		onPipe = false;
+
+		playerRigidbody.gravityScale = gravityScale;
+
+		speed = origSpeed;
 	}
 
 	public void EnterTriggerCheckpoint(Transform cp)
@@ -267,6 +306,7 @@ public class PlayerController : MonoBehaviour
 
 	public void EnterTriggerSlippery ()
 	{
+		print("???");
 		onSlippery = true;
 		speed = origSpeed * 0.7f;
 	}

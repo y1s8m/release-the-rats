@@ -17,7 +17,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(DoCutscene());
+        //StartCoroutine(DoCutscene());
 
         if (PlayerController.instance) notMaze = true;
         if (PlayerMazeController.instance) notMaze = false;
