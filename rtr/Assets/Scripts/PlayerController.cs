@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
 	public bool cutScene = false;
 
+	public bool isPaused;
+
 	// player movement variables
 	private float hp = 1f;
 	private float maxHP = 1f;
@@ -85,31 +87,35 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-		if (cutScene || dead) return;
+		if (!isPaused){
+			if (cutScene || dead) return;
 
-		horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
-		verticalMove = Input.GetAxisRaw("Vertical") * speed;
-		
-		if (Input.GetButtonDown("Jump") && !jumped)
-		{
-			jumped = true;
+			horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+			verticalMove = Input.GetAxisRaw("Vertical") * speed;
+			
+			if (Input.GetButtonDown("Jump") && !jumped)
+			{
+				jumped = true;
 
-			//playerAnimator.SetBool("isOnGround", false);
-			//AudioManager.instance.PlayOneShot(jumpSound);
+				//playerAnimator.SetBool("isOnGround", false);
+				//AudioManager.instance.PlayOneShot(jumpSound);
+			}
 		}
 	}
 
     private void FixedUpdate()
 	{
-		if (dead) return;
+		if (!isPaused){
+			if (dead) return;
 
-		Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime, jumped);
+			Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime, jumped);
 
-		if (numWaterDrops > 2) {
-			damageTimer += Time.fixedDeltaTime;
-			if (damageTimer >= damageRate) {
-				damageTimer = 0f;
-				UpdateHP(hp - .1f);
+			if (numWaterDrops > 2) {
+				damageTimer += Time.fixedDeltaTime;
+				if (damageTimer >= damageRate) {
+					damageTimer = 0f;
+					UpdateHP(hp - .1f);
+				}
 			}
 		}
 	}

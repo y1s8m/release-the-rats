@@ -6,6 +6,7 @@ public class pauseManager : MonoBehaviour
 {
     public GameObject pausePanel;
     public bool isPaused;
+    public PlayerController player;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,16 +15,21 @@ public class pauseManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        
         if (Input.GetKeyDown(KeyCode.Escape)){
             if(isPaused){
-                pausePanel.SetActive(true);
+                pausePanel.SetActive(false);
                 isPaused = false;
+                player.isPaused = false;
+                Time.timeScale = 1f;
 
             }
             else {
-                pausePanel.SetActive(false);
+                pausePanel.SetActive(true);
                 isPaused = true;
+                player.isPaused = true;
+                Time.timeScale = 0f;
             }
         }
     }
