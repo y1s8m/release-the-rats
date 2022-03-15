@@ -13,7 +13,7 @@ public class WaterDrop2D : MonoBehaviour
     {
         collider = GetComponent<CircleCollider2D>();
         WaterSystem2D.S.Add(this);
-        Destroy(gameObject, lifeTime);
+        Destroy(this.gameObject, lifeTime);
     }
 
     // Update is called once per frame
@@ -28,5 +28,11 @@ public class WaterDrop2D : MonoBehaviour
 
     private void OnDestroy() {
         WaterSystem2D.S.Remove(this);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.transform.tag == "DeadZone") {
+            Destroy(this.gameObject);
+        }
     }
 }

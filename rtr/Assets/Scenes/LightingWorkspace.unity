@@ -474,7 +474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6688666942519099451, guid: 078b04f4566967140aed3034fdc133eb, type: 3}
       propertyPath: timeBetweenDrops
-      value: 0.008
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6688666942519099453, guid: 078b04f4566967140aed3034fdc133eb, type: 3}
       propertyPath: m_Name
