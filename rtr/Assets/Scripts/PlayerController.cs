@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (dead) return;
 
-		Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime, false, jumped);
+		Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime, jumped);
 
 		if (numWaterDrops > 2) {
 			damageTimer += Time.fixedDeltaTime;
@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void Move(float horizMove, float vertMove, bool crouch, bool jump)
+	private void Move(float horizMove, float vertMove, bool jump)
 	{
 		// Move the character by finding the target velocity
 		Vector3 targetVelocity;

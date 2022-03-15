@@ -11,12 +11,16 @@ public class CameraMovement : MonoBehaviour
     public GameObject goal;
 
     private bool cutScene = false;
+    private bool notMaze = true;
 
     private Vector3 velocity = Vector3.zero;
 
     private void Start()
     {
         StartCoroutine(DoCutscene());
+
+        if (PlayerController.instance) notMaze = true;
+        if (PlayerMazeController.instance) notMaze = false;
     }
 
     private void Update()
@@ -24,7 +28,7 @@ public class CameraMovement : MonoBehaviour
         if (!cutScene) {
             Vector3 delta = new Vector3(playerTransform.position.x, playerTransform.position.y, -10) - GetComponent<Camera>().ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
             Vector3 destination = transform.position + delta;
-            if (destination.y < -6) destination = new Vector3(destination.x, -6, destination.z);
+            if (destination.y < -6 && notMaze) destination = new Vector3(destination.x, -6, destination.z);
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
         }
     }
@@ -45,6 +49,7 @@ public class CameraMovement : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         cutScene = false;
-        PlayerController.instance.cutScene = false;
+        if (notMaze) PlayerController.instance.cutScene = false;
+        else PlayerMazeController.instance.cutScene = false;
     }
 }
