@@ -24,7 +24,12 @@ public class PlayerCollisionController : MonoBehaviour
 		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "NoWaterGround") PlayerController.instance.StayGroundCollision();
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "NoWaterGround") PlayerController.instance.ExitGroundCollision();
+	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
 	{
 		// "Slippery" tagged regions are not meant to be traversed via wall
 		if (collision.gameObject.tag == "Slippery")
