@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,10 +26,13 @@ public class PlayerController : MonoBehaviour
 	public bool isPaused;
 
 	// player movement variables
-	private float hp = 1f;
+	[Range(0, 1)]
+	public float hp = 1f;
 	private float maxHP = 1f;
 	public bool dead = false;
 	private bool touchingWater = false;
+	public VolumeProfile volume;
+	private Vignette vignette;
 
 	private float speed = 50f;
 	private float origSpeed = 50f;
@@ -86,10 +91,14 @@ public class PlayerController : MonoBehaviour
 		playerRigidbody.gravityScale = gravityScale;
 
 		cutScene = true;
+
+		volume.TryGet(out vignette);
 	}
 
     private void Update()
     {
+		vignette.intensity.Override(1f - hp);
+
 		if (!isPaused){
 			if (cutScene || dead) return;
 
