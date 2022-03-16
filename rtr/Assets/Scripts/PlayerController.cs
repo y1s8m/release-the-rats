@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 		transform.position = startPos.position;
 		playerRigidbody.gravityScale = gravityScale;
 
-		//cutScene = true;
+		cutScene = true;
 	}
 
     private void Update()
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
 
 		// And then smoothing it out and applying it to the character
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
-		//print(playerRigidbody.velocity);
+		
 		// If the input is moving the player right and the player is facing left...
 		if (!grabbing && horizMove > 0 && !lookingRight)
 		{
@@ -268,7 +268,11 @@ public class PlayerController : MonoBehaviour
 	public void EnterPipeCollision(Vector3 contactPos, Vector3 normal)
     {
 		playerRigidbody.constraints = RigidbodyConstraints2D.None;
+
 		this.normal = normal;
+		
+		// take cross product of contact point's normal and XY plane's normal
+		// use Vector3.angle to calculate the angle from this slope to forward
 		Vector3 slope = Vector3.Cross(normal, new Vector3(0, 0, 1));
 		float zRotAngle = Vector3.Angle(slope, transform.forward) % 90;
 
@@ -281,12 +285,9 @@ public class PlayerController : MonoBehaviour
 		if (lookingRight && normal == new Vector3(-1, 0, 0)) zRotAngle = 90;
 		if (!lookingRight && normal == new Vector3(1, 0, 0)) zRotAngle = -90;
 
+		// set the rotation and position offset
 		transform.rotation = Quaternion.Euler(new Vector3(0, 0, zRotAngle));
 		transform.position = contactPos + normal * 0.8f; //verticalScale;
-
-		/*print(normal);
-		print(slope);
-		print(zRotAngle);*/
 
 		onPipe = true;
 		jumped = false;
