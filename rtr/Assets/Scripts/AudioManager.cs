@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public Slider VolumeSlider;
 
     public AudioClip pourSound;
+    public AudioClip[] waterSounds;
 
     private AudioSource audio;
 
@@ -64,11 +65,6 @@ public class AudioManager : MonoBehaviour
     private void Save()
     {
         PlayerPrefs.SetFloat("musicVolume", VolumeSlider.value);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void PlayPourSound() {
