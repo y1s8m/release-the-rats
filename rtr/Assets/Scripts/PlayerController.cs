@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
 	private float maxSlipperyTime = 2f;
 	private bool slipping = false;
 
+	// grabbing items
+	private bool grabbing = false;
+
 	// water-related variables
 	public float damageRate;
 
@@ -99,6 +102,10 @@ public class PlayerController : MonoBehaviour
 
 				//playerAnimator.SetBool("isOnGround", false);
 				//AudioManager.instance.PlayOneShot(jumpSound);
+			}
+
+			if (Input.GetKeyDown("q")) {
+				grabbing = !grabbing;
 			}
 		}
 	}
@@ -168,12 +175,12 @@ public class PlayerController : MonoBehaviour
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
 		//print(playerRigidbody.velocity);
 		// If the input is moving the player right and the player is facing left...
-		if (horizMove > 0 && !lookingRight)
+		if (!grabbing && horizMove > 0 && !lookingRight)
 		{
 			Flip();
 		}
 		// Otherwise if the input is moving the player left and the player is facing right...
-		else if (horizMove < 0 && lookingRight)
+		else if (!grabbing && horizMove < 0 && lookingRight)
 		{
 			Flip();
 		}
@@ -337,4 +344,8 @@ public class PlayerController : MonoBehaviour
     {
 		cutScene = true;
     }
+
+	public bool GetGrabbing() {
+		return grabbing;
+	}
 }
