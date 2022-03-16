@@ -12,6 +12,7 @@ TagManager:
   - Slippery
   - MazePipe
   - Pipe
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

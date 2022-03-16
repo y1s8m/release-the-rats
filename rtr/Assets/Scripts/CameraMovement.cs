@@ -17,7 +17,8 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(DoCutscene());
+        GetComponent<Camera>().backgroundColor = Color.black;
+        StartCoroutine(DoCutscene());
 
         if (PlayerController.instance) notMaze = true;
         if (PlayerMazeController.instance) notMaze = false;
