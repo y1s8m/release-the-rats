@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
 	public Transform startPos;
 
 	[SerializeField] private GameObject ratSprite;
+	public GameObject backCollision;
 
 	private float gravityScale = 5f;
 	private Rigidbody2D playerRigidbody;
@@ -218,6 +219,7 @@ public class PlayerController : MonoBehaviour
 
 		// Multiply the player's x local scale by -1.
 		ratSprite.transform.localScale = new Vector3(-ratSprite.transform.localScale.x, ratSprite.transform.localScale.y, ratSprite.transform.localScale.z);
+		backCollision.transform.localScale = new Vector3(-backCollision.transform.localScale.x, backCollision.transform.localScale.y, backCollision.transform.localScale.z);
 	}
 
     private void Reset()
@@ -357,5 +359,9 @@ public class PlayerController : MonoBehaviour
 
 	public bool GetGrabbing() {
 		return grabbing;
+	}
+
+	public void FlipToNorm() {
+		transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 	}
 }
