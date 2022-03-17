@@ -20,20 +20,17 @@ public class WaterRushing : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
+        PlayRush();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!playing) {
+        timePassed += Time.fixedDeltaTime;
+        if (timePassed >= sound.length - adjustment) {
+            playing = false;
             PlayRush();
-            playing = true;
             timePassed = 0f;
-        } else {
-            timePassed += Time.fixedDeltaTime;
-            if (timePassed >= sound.length - adjustment) {
-                playing = false;
-            }
         }
     }
 
