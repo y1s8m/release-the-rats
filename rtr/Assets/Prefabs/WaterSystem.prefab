@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6688666942519099451}
   - component: {fileID: 83125866197549882}
   - component: {fileID: 3977258237037511226}
+  - component: {fileID: 6318606421516614312}
   m_Layer: 0
   m_Name: WaterSystem
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numDrops: 100
-  timeBetweenDrops: 0.111
+  timeBetweenDrops: 0.1
   waterDropPrefab: {fileID: 2830064041645535290, guid: eef6315a20d00674881ae7ddc8f98637, type: 3}
 --- !u!114 &83125866197549882
 MonoBehaviour:
@@ -60,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b6111d16344ce41b2e7321f4a2459b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjustment: 0.05
+  adjustment: 0.4
   rush1: {fileID: 8300000, guid: 07a08a7031e2c324bb2f6679c519ecf4, type: 3}
   rush2: {fileID: 8300000, guid: 6d3e8440dde501e41bac7a9b80d89914, type: 3}
   rush3: {fileID: 8300000, guid: 4b67bf0fec255f641a6c1e49b08989df, type: 3}
@@ -75,9 +76,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.338
+  m_Pitch: 3
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -160,3 +161,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6318606421516614312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6688666942519099453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0116959db8bb49144b779f71a10e65a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

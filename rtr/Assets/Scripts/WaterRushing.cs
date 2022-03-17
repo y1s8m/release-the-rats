@@ -41,13 +41,10 @@ public class WaterRushing : MonoBehaviour
         float chance = Random.Range(0f, 1f);
         if (chance <= .33f) {
             sound = rush1;
-            Debug.Log("1");
         } else if (chance <= .66f) {
             sound = rush2;
-            Debug.Log("2");
         } else {
             sound = rush3;
-            Debug.Log("3");
         }
         audio.PlayOneShot(sound);
     }
