@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
 	private bool onPipe = false;
 	private bool canJump = false;
 	private bool lookingRight = true;
+	private bool piping = false;
 
 	// slippery variables
 	private bool onSlippery = false;
@@ -249,7 +250,7 @@ public class PlayerController : MonoBehaviour
 		playerRigidbody.velocity = Vector2.zero;
 		playerRigidbody.gravityScale = gravityScale;
 
-		yield return new WaitForSeconds(5f);
+		yield return new WaitForSeconds(1f);
 
 		Reset();
     }
