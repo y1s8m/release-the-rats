@@ -186,12 +186,12 @@ public class PlayerController : MonoBehaviour
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
 		
 		// If the input is moving the player right and the player is facing left...
-		if (!grabbing && horizMove > 0 && !lookingRight)
+		if (!grabbing && horizMove > 0 && lookingRight)
 		{
 			Flip();
 		}
 		// Otherwise if the input is moving the player left and the player is facing right...
-		else if (!grabbing && horizMove < 0 && lookingRight)
+		else if (!grabbing && horizMove < 0 && !lookingRight)
 		{
 			Flip();
 		}
@@ -219,7 +219,7 @@ public class PlayerController : MonoBehaviour
 		lookingRight = !lookingRight;
 
 		// Multiply the player's x local scale by -1.
-		ratSprite.transform.localScale = new Vector3(-ratSprite.transform.localScale.x, ratSprite.transform.localScale.y, ratSprite.transform.localScale.z);
+		transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 		backCollision.transform.localScale = new Vector3(-backCollision.transform.localScale.x, backCollision.transform.localScale.y, backCollision.transform.localScale.z);
 	}
 
