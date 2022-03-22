@@ -9,6 +9,8 @@ public class MoveableObject : MonoBehaviour
     private bool held = false;
 
     private Rigidbody2D rb;
+    private Vector3 ogPos;
+    private Quaternion ogRot;
     private Vector3 zeroVec = Vector3.zero;
 
     // Start is called before the first frame update
@@ -16,6 +18,8 @@ public class MoveableObject : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.mass = 100f;
+        ogPos = gameObject.transform.position;
+        ogRot = gameObject.transform.rotation;
     }
 
     // Update is called once per frame
@@ -67,7 +71,15 @@ public class MoveableObject : MonoBehaviour
     private void Hold() {
         if (rb != null) {
             Destroy(rb);
-            Debug.Log("gone!");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.tag == "DeadZone") {
+            Hold();
+            transform.position = ogPos;
+            transform.rotation = ogRot;
+            Reset();
         }
     }
 }

@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 	// audio clips
 	public AudioClip[] ratSteps;
 	public AudioClip sewerLand;
+	public AudioClip denied;
 	private AudioSource audio;
 	
 	private bool playingSound = false;
@@ -129,6 +130,8 @@ public class PlayerController : MonoBehaviour
 
 				//playerAnimator.SetBool("isOnGround", false);
 				//AudioManager.instance.PlayOneShot(jumpSound);
+			} else if (Input.GetButtonDown("Jump")) {
+				ratSprite.GetComponent<AudioSource>().PlayOneShot(denied);
 			}
 
 			if (Input.GetKeyDown("q")) {

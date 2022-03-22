@@ -576,6 +576,10 @@ PrefabInstance:
       value: MoveableObject (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 809107501}
@@ -796,6 +800,10 @@ PrefabInstance:
     - target: {fileID: 2992047603004942488, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_Name
       value: MoveableObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
+      propertyPath: home
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: player
@@ -1703,6 +1711,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6543402991760639920, guid: eef005e70779802468ec7d6f27ff11f3, type: 3}
+      propertyPath: denied
+      value: 
+      objectReference: {fileID: 8300000, guid: a66574f9b71378549a6871f23ffe570a, type: 3}
+    - target: {fileID: 6543402991760639920, guid: eef005e70779802468ec7d6f27ff11f3, type: 3}
       propertyPath: volume
       value: 
       objectReference: {fileID: 11400000, guid: 72e28005d99eb6347bc06baed8e05d3b, type: 2}
@@ -1893,6 +1905,10 @@ PrefabInstance:
     - target: {fileID: 2992047603004942488, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_Name
       value: MoveableObject (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
+      propertyPath: home
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: player
