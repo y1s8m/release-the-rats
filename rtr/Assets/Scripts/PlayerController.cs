@@ -235,6 +235,7 @@ public class PlayerController : MonoBehaviour
 
 		// And then smoothing it out and applying it to the character
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
+		playerAnimator.SetFloat("speed", Mathf.Abs(playerRigidbody.velocity.x) + Mathf.Abs(playerRigidbody.velocity.y));
 		
 		// If the input is moving the player right and the player is facing left...
 		if (!grabbing && horizMove > 0 && !lookingRight)
