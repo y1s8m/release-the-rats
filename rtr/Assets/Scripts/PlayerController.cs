@@ -273,7 +273,6 @@ public class PlayerController : MonoBehaviour
 
 		// Multiply the player's x local scale by -1.
 		transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-		//backCollision.transform.localScale = new Vector3(-backCollision.transform.localScale.x, backCollision.transform.localScale.y, backCollision.transform.localScale.z);
 	}
 
     private void Reset()
