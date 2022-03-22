@@ -26,17 +26,16 @@ public class PlayerController : MonoBehaviour
 	public bool isPaused;
 
 	// audio clips
-	public AudioClip ratStep1;
-	public AudioClip ratStep2;
-	public AudioClip ratStep3;
-	public AudioClip ratStep4;
-	public AudioClip ratStep5;
-	public AudioClip ratStep6;
-	public AudioClip ratStep7;
+	public AudioClip[] ratSteps;
 	public AudioClip sewerJump;
 	public AudioClip sewerLand;
-
 	private AudioSource audio;
+	
+	private bool playingSound = false;
+	private float stepTimePassed = 0F;
+	private int index = 0;
+	private int level = 1;
+	private int counter = 0;
 
 	// player movement variables
 	[Range(0, 1)]
@@ -111,7 +110,7 @@ public class PlayerController : MonoBehaviour
 		volume.TryGet(out vignette);
 	}
 
-    private void Update()
+    private async void Update()
     {
 		vignette.intensity.Override(1f - hp);
 
@@ -131,8 +130,36 @@ public class PlayerController : MonoBehaviour
 
 			if (Input.GetKeyDown("q")) {
 				grabbing = !grabbing;
-				Debug.Log(grabbing);
 			}
+		}
+
+		if (playingSound) {
+			stepTimePassed += Time.deltaTime;
+			if (counter % 2 == 0 && stepTimePassed >= ratSteps[index].length / 2f) playingSound = false;
+			else if (stepTimePassed >= ratSteps[index].length / 4f) playingSound = false;
+		}
+		
+		// footsteps
+		if (level == 1 && Mathf.Abs(horizontalMove) > .1f && !playingSound) {
+			int last = index;
+
+			for (int j = 0; j < 100; j++) {
+				float next = Random.Range(0f, 1f);
+				for (int i = 0; i < ratSteps.Length; i++) {
+					if (next < ((i + 1f) / ratSteps.Length)) {
+						index = i;
+						break;
+					}
+				}
+				if (next < ((index + 1f) / ratSteps.Length)) {
+					break;
+				}
+			}
+
+			stepTimePassed = 0f;
+			audio.PlayOneShot(ratSteps[index]);
+			playingSound = true;
+			counter++;
 		}
 	}
 

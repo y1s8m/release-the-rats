@@ -120,13 +120,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutScene: 0
   isPaused: 0
-  ratStep1: {fileID: 0}
-  ratStep2: {fileID: 0}
-  ratStep3: {fileID: 0}
-  ratStep4: {fileID: 0}
-  ratStep5: {fileID: 0}
-  ratStep6: {fileID: 0}
-  ratStep7: {fileID: 0}
+  ratSteps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   sewerJump: {fileID: 0}
   sewerLand: {fileID: 0}
   hp: 1
