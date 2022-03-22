@@ -121,13 +121,13 @@ MonoBehaviour:
   cutScene: 0
   isPaused: 0
   ratSteps:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: cbbfa07eba83c7d499b6569a54369b2c, type: 3}
+  - {fileID: 8300000, guid: e2344bb021999e7458389f2a092d47d8, type: 3}
+  - {fileID: 8300000, guid: 58d544cd86f2b314f854a9e357231579, type: 3}
+  - {fileID: 8300000, guid: ea0ba27652889a74daa72c33f9000a7a, type: 3}
+  - {fileID: 8300000, guid: 2ae939784bb601844965231a6ac77266, type: 3}
+  - {fileID: 8300000, guid: 9c4ed1cc8d885b842a4c64736e1e8c24, type: 3}
+  - {fileID: 8300000, guid: f0ff98a3f9c0a5c439d8e9f2c3823c32, type: 3}
   sewerJump: {fileID: 0}
   sewerLand: {fileID: 0}
   hp: 1
