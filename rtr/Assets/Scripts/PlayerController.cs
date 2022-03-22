@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
 	private bool trackAirTime = false;
 	public float bigJump = 1f;
 	public float stepAdjustment = 0f;
+	private bool reset = true;
 
 	private float speed = 50f;
 	private float origSpeed = 50f;
@@ -147,7 +148,7 @@ public class PlayerController : MonoBehaviour
 			}
 			
 			// footsteps
-			if (level == 1 && Mathf.Abs(horizontalMove) > .1f && !playingSound) {
+			if (level == 1 && (Mathf.Abs(horizontalMove) > .1f || Mathf.Abs(verticalMove) > .1f) && !playingSound && canJump) {
 				int last = index;
 
 				while (index == last) {
@@ -274,6 +275,7 @@ public class PlayerController : MonoBehaviour
     private void Reset()
 	{
 		dead = false;
+		reset = true;
 
 		this.normal = new Vector3(0, 1, 0);
 		transform.rotation = Quaternion.Euler(Vector3.zero);
@@ -297,17 +299,19 @@ public class PlayerController : MonoBehaviour
 
 		playerRigidbody.velocity = Vector2.zero;
 		playerRigidbody.gravityScale = gravityScale;
+		ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
 
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(.1f);
 
 		Reset();
     }
 
 	public void EnterGroundCollision()
 	{
-		if (!canJump && airTime > bigJump) {
+		if (!reset && !canJump && airTime > bigJump) {
 			ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
 		}
+		reset = false;
 		
 		if (!onPipe)
 		{

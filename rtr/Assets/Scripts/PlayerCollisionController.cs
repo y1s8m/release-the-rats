@@ -15,10 +15,6 @@ public class PlayerCollisionController : MonoBehaviour
 		{
 			PlayerController.instance.EnterPipeCollision(collision.GetContact(0).point, collision.GetContact(0).normal.normalized);
 		}
-		else if (collision.gameObject.tag == "DeadZone")
-		{
-			StartCoroutine(PlayerController.instance.Die());
-		}
 	}
 
 	private void OnCollisionStay2D(Collision2D collision)
@@ -46,6 +42,10 @@ public class PlayerCollisionController : MonoBehaviour
 		if (collision.gameObject.tag == "Slippery")
 		{
 			PlayerController.instance.EnterTriggerSlippery();
+		}
+		else if (collision.gameObject.tag == "DeadZone")
+		{
+			StartCoroutine(PlayerController.instance.Die());
 		}
 		else if (collision.gameObject.tag == "Checkpoint")
 		{
