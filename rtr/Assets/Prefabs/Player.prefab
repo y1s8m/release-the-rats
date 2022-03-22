@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 6543402992089022943}
   - component: {fileID: 7855652743212293472}
   - component: {fileID: 1027788325971037843}
+  - component: {fileID: 5824074705190817612}
   m_Layer: 0
   m_Name: RatSprite
   m_TagString: Player
@@ -305,3 +306,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.0662937, y: 3.17711}
   m_EdgeRadius: 0
+--- !u!58 &5824074705190817612
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6543402992089022939}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -5.051949, y: -0.37327337}
+  serializedVersion: 2
+  m_Radius: 0.36177245

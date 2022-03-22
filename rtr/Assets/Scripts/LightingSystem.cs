@@ -26,17 +26,16 @@ public class LightingSystem : MonoBehaviour
         if (!flickering) {
             // determine chance
             float chance = Random.Range(0f, 1f);
-            Debug.Log(chance);
             if (chance > flickerThreshold) {
                 timePassed = 0f;
                 flickering = true;
-                light.enabled = false;
+                light.intensity = .75f;
             }
         } else {
             // determine if light should be back on
             if (timePassed > flickerLength) {
                 flickering = false;
-                light.enabled = true;
+                light.intensity = 1f;
             } else {
                 timePassed += Time.deltaTime;
             }

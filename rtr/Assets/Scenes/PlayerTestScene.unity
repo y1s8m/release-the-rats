@@ -489,7 +489,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 10
+  m_PointLightOuterRadius: 100
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -1043,5 +1043,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 110615400}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7593789353281106291, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}

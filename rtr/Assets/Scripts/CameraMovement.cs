@@ -29,7 +29,7 @@ public class CameraMovement : MonoBehaviour
         if (!cutScene) {
             Vector3 delta = new Vector3(playerTransform.position.x, playerTransform.position.y, -10) - GetComponent<Camera>().ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
             Vector3 destination = transform.position + delta;
-            if (destination.y < -6 && notMaze) destination = new Vector3(destination.x, -6, destination.z);
+            //if (destination.y < -6 && notMaze) destination = new Vector3(destination.x, -6, destination.z); //needs to be modified on a level basis
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
         }
     }
