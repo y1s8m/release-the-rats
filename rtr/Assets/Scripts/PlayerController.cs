@@ -56,17 +56,16 @@ public class PlayerController : MonoBehaviour
 	private float jumpForce = 4000f;
 
 	private float horizontalMove = 0.0f;
-	private float verticalMove = 0.0f;
 
 	private Vector3 zeroVel = Vector3.zero;
 	private Vector3 normal = new Vector3(0, 1, 0);
 
 	private bool jumped = false;
 	private bool onGround = false;
-	private bool onPipe = false;
+	public bool onPipe = false;
 	private bool canJump = false;
 	private bool lookingRight = true;
-	private bool piping = false;
+	//private bool piping = false;
 
 	// slippery variables
 	private bool onSlippery = false;
@@ -108,6 +107,7 @@ public class PlayerController : MonoBehaviour
 	{
 		transform.position = startPos.position;
 		playerRigidbody.gravityScale = gravityScale;
+		playerRigidbody.constraints = RigidbodyConstraints2D.None;
 
 		cutScene = true;
 
@@ -122,7 +122,6 @@ public class PlayerController : MonoBehaviour
 			if (cutScene || dead) return;
 
 			horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
-			verticalMove = Input.GetAxisRaw("Vertical") * speed;
 			
 			if (Input.GetButtonDown("Jump") && !jumped)
 			{
@@ -148,7 +147,7 @@ public class PlayerController : MonoBehaviour
 			}
 			
 			// footsteps
-			if (level == 1 && (Mathf.Abs(horizontalMove) > .1f || Mathf.Abs(verticalMove) > .1f) && !playingSound && canJump) {
+			if (level == 1 && Mathf.Abs(horizontalMove) > .1f && !playingSound && canJump) {
 				int last = index;
 
 				while (index == last) {
@@ -174,7 +173,7 @@ public class PlayerController : MonoBehaviour
 		if (!isPaused){
 			if (dead) return;
 
-			Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime, jumped);
+			Move(horizontalMove * Time.fixedDeltaTime, jumped);
 
 			if (numWaterDrops > 2) {
 				damageTimer += Time.fixedDeltaTime;
@@ -200,7 +199,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void Move(float horizMove, float vertMove, bool jump)
+	private void Move(float horizMove, bool jump)
 	{
 		// Move the character by finding the target velocity
 		Vector3 targetVelocity;
@@ -221,7 +220,7 @@ public class PlayerController : MonoBehaviour
 
 		if (onPipe)
 		{
-			targetVelocity = new Vector2(horizMove * 10f, vertMove * 10f);
+			targetVelocity = new Vector2(0, (lookingRight ? 1f : -1f) * horizMove * 10f);
 
 			jumped = false;
 			canJump = true;
@@ -235,12 +234,12 @@ public class PlayerController : MonoBehaviour
 		playerAnimator.SetFloat("speed", Mathf.Abs(playerRigidbody.velocity.x) + Mathf.Abs(playerRigidbody.velocity.y));
 		
 		// If the input is moving the player right and the player is facing left...
-		if (!grabbing && horizMove > 0 && !lookingRight)
+		if (!grabbing && horizMove > 0 && !lookingRight && !onPipe)
 		{
 			Flip();
 		}
 		// Otherwise if the input is moving the player left and the player is facing right...
-		else if (!grabbing && horizMove < 0 && lookingRight)
+		else if (!grabbing && horizMove < 0 && lookingRight && !onPipe)
 		{
 			Flip();
 		}
@@ -336,11 +335,10 @@ public class PlayerController : MonoBehaviour
 
 	public void EnterPipeCollision(Vector3 contactPos, Vector3 normal)
     {
+		if (onPipe) return;
 		if (!canJump && airTime > bigJump) {
 			ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
 		}
-		
-		playerRigidbody.constraints = RigidbodyConstraints2D.None;
 
 		this.normal = normal;
 		
@@ -376,6 +374,7 @@ public class PlayerController : MonoBehaviour
 	public void StayPipeCollision()
     {
 		if (!slipping) playerRigidbody.gravityScale = 0f;
+		onPipe = true;
 	}
 
 	public void ExitPipeCollision()
