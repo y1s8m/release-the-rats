@@ -25,6 +25,19 @@ public class PlayerController : MonoBehaviour
 
 	public bool isPaused;
 
+	// audio clips
+	public AudioClip ratStep1;
+	public AudioClip ratStep2;
+	public AudioClip ratStep3;
+	public AudioClip ratStep4;
+	public AudioClip ratStep5;
+	public AudioClip ratStep6;
+	public AudioClip ratStep7;
+	public AudioClip sewerJump;
+	public AudioClip sewerLand;
+
+	private AudioSource audio;
+
 	// player movement variables
 	[Range(0, 1)]
 	public float hp = 1f;
@@ -85,6 +98,7 @@ public class PlayerController : MonoBehaviour
 
 		playerRigidbody = GetComponent<Rigidbody2D>();
 		playerAnimator = GetComponent<Animator>();
+		audio = GetComponent<AudioSource>();
 	}
 
     private void Start()
@@ -201,6 +215,7 @@ public class PlayerController : MonoBehaviour
 		if (!canJump) jumped = false;
 		if (canJump && jump)
 		{
+			audio.PlayOneShot(sewerJump);
 			// Add a vertical force to the player.
 			jumped = true;
 			onGround = false;
@@ -258,6 +273,10 @@ public class PlayerController : MonoBehaviour
 
 	public void EnterGroundCollision()
 	{
+		if (!canJump) {
+			audio.PlayOneShot(sewerLand);
+		}
+		
 		if (!onPipe)
 		{
 			this.normal = new Vector3(0, 1, 0);
@@ -280,6 +299,10 @@ public class PlayerController : MonoBehaviour
 
 	public void EnterPipeCollision(Vector3 contactPos, Vector3 normal)
     {
+		if (!canJump) {
+			audio.PlayOneShot(sewerLand);
+		}
+		
 		playerRigidbody.constraints = RigidbodyConstraints2D.None;
 
 		this.normal = normal;
