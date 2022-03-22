@@ -245,12 +245,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90381234}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
+  m_LocalScale: {x: 0.4884, y: 0.4884, z: 0.4884}
   m_Children: []
-  m_Father: {fileID: 809107501}
-  m_RootOrder: 2
+  m_Father: {fileID: 2082727363}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &132512306
 PrefabInstance:
@@ -340,7 +340,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 132512307}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 04a3bb575a5725245beb78e2a186471a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -608,7 +608,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 397996649}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 04a3bb575a5725245beb78e2a186471a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -830,7 +830,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 481213426}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 04a3bb575a5725245beb78e2a186471a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1143,7 +1143,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 512587336}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 04a3bb575a5725245beb78e2a186471a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1923,7 +1923,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 834933668}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 04a3bb575a5725245beb78e2a186471a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2961,7 +2961,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1842879464}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 04a3bb575a5725245beb78e2a186471a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -3127,6 +3127,11 @@ MonoBehaviour:
   dampTime: 0.1
   repeats: 275
   goal: {fileID: 1852344923}
+--- !u!4 &2082727363 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5527056689593812637, guid: 3eb9f87a0595e8b4a81935424a54aac2, type: 3}
+  m_PrefabInstance: {fileID: 603838730}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2113174339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3215,7 +3220,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 2113174340}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 04a3bb575a5725245beb78e2a186471a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -3524,7 +3529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7439059704593011915
 Transform:
   m_ObjectHideFlags: 0

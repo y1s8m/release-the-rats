@@ -15,6 +15,7 @@ public class MoveableObject : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.mass = 100f;
     }
 
     // Update is called once per frame
@@ -57,7 +58,10 @@ public class MoveableObject : MonoBehaviour
     }
 
     private void Reset() {
-        if (rb == null) rb = gameObject.AddComponent<Rigidbody2D>();
+        if (rb == null) {
+            rb = gameObject.AddComponent<Rigidbody2D>();
+            rb.mass = 100f;
+        }
     }
 
     private void Hold() {
