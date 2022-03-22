@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
 			horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 			
-			if (Input.GetButtonDown("Jump") && !jumped)
+			if (Input.GetButtonDown("Jump") && !jumped && !grabbing)
 			{
 				jumped = true;
 
