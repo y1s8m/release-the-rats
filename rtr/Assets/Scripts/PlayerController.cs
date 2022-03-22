@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour
 		lookingRight = !lookingRight;
 
 		// Multiply the player's x local scale by -1.
-		ratSprite.transform.localScale = new Vector3(-ratSprite.transform.localScale.x, ratSprite.transform.localScale.y, ratSprite.transform.localScale.z);
+		transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 		backCollision.transform.localScale = new Vector3(-backCollision.transform.localScale.x, backCollision.transform.localScale.y, backCollision.transform.localScale.z);
 	}
 
@@ -291,7 +291,7 @@ public class PlayerController : MonoBehaviour
 		canJump = false;
 
 		lookingRight = true;
-		ratSprite.transform.localScale = new Vector3(-1 * Mathf.Abs(ratSprite.transform.localScale.x), ratSprite.transform.localScale.y, ratSprite.transform.localScale.z);
+		transform.localScale = new Vector3(-1 * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
 		transform.position = startPos.position;
     }
