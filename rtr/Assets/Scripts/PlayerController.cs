@@ -27,12 +27,11 @@ public class PlayerController : MonoBehaviour
 
 	// audio clips
 	public AudioClip[] ratSteps;
-	public AudioClip sewerJump;
 	public AudioClip sewerLand;
 	private AudioSource audio;
 	
 	private bool playingSound = false;
-	private float stepTimePassed = 0F;
+	private float stepTimePassed = 0f;
 	private int index = 0;
 	private int level = 1;
 	private int counter = 0;
@@ -48,6 +47,7 @@ public class PlayerController : MonoBehaviour
 	private float airTime = 0f;
 	private bool trackAirTime = false;
 	public float bigJump = 1f;
+	public float stepAdjustment = 0f;
 
 	private float speed = 50f;
 	private float origSpeed = 50f;
@@ -136,13 +136,12 @@ public class PlayerController : MonoBehaviour
 			}
 			if (playingSound) {
 			stepTimePassed += Time.deltaTime;
-			if (counter % 2 == 0 && stepTimePassed >= ratSteps[index].length / 2f) playingSound = false;
-			else if (stepTimePassed >= ratSteps[index].length / 4f) playingSound = false;
+			if (counter % 2 == 0 && stepTimePassed >= (ratSteps[index].length + stepAdjustment)/ 2f) playingSound = false;
+			else if (stepTimePassed >= (ratSteps[index].length + stepAdjustment) / 4f) playingSound = false;
 			}
 
 			if (trackAirTime) {
 				airTime += Time.deltaTime;
-				Debug.Log(airTime);
 			} else {
 				airTime = 0f;
 			}
@@ -151,16 +150,13 @@ public class PlayerController : MonoBehaviour
 			if (level == 1 && Mathf.Abs(horizontalMove) > .1f && !playingSound) {
 				int last = index;
 
-				for (int j = 0; j < 100; j++) {
+				while (index == last) {
 					float next = Random.Range(0f, 1f);
 					for (int i = 0; i < ratSteps.Length; i++) {
 						if (next < ((i + 1f) / ratSteps.Length)) {
 							index = i;
 							break;
 						}
-					}
-					if (next < ((index + 1f) / ratSteps.Length)) {
-						break;
 					}
 				}
 
@@ -253,7 +249,6 @@ public class PlayerController : MonoBehaviour
 		if (canJump && jump)
 		{
 			trackAirTime = true;
-			audio.PlayOneShot(sewerJump);
 			// Add a vertical force to the player.
 			jumped = true;
 			onGround = false;
@@ -291,7 +286,7 @@ public class PlayerController : MonoBehaviour
 		canJump = false;
 
 		lookingRight = true;
-		transform.localScale = new Vector3(-1 * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+		transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
 		transform.position = startPos.position;
     }
@@ -311,7 +306,7 @@ public class PlayerController : MonoBehaviour
 	public void EnterGroundCollision()
 	{
 		if (!canJump && airTime > bigJump) {
-			audio.PlayOneShot(sewerLand);
+			ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
 		}
 		
 		if (!onPipe)
@@ -338,7 +333,7 @@ public class PlayerController : MonoBehaviour
 	public void EnterPipeCollision(Vector3 contactPos, Vector3 normal)
     {
 		if (!canJump && airTime > bigJump) {
-			audio.PlayOneShot(sewerLand);
+			ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
 		}
 		
 		playerRigidbody.constraints = RigidbodyConstraints2D.None;
