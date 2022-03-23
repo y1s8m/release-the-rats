@@ -41,23 +41,19 @@ public class CameraMovement : MonoBehaviour
         float xDist = ((goal.position.x - playerTransform.position.x) / repeats);
         float yDist = ((goal.position.y - playerTransform.position.y) / repeats);
         Vector3 tempGoal = transform.position;
-        
-        /*for (int i = 0; i < repeats; i++) {
-            tempGoal.x += xDist;
-            tempGoal.y += yDist;
-            transform.position = Vector3.SmoothDamp(transform.position, tempGoal, ref velocity, dampTime);
-            yield return new WaitForSeconds(0.01f);
-        }*/
+
+        float isRight = (transform.position.x < goal.position.x) ? 1f : -1f;
+        float isAbove = (transform.position.y < goal.position.y) ? 1f : -1f;
 
         // Note: this assumes that the goal is to the RIGHT and ABOVE the initial player transform
-        while (transform.position.x < goal.position.x && transform.position.y < goal.position.y)
+        while (transform.position.x < isRight * goal.position.x && transform.position.y < isAbove * goal.position.y)
         {
             transform.position = Vector3.SmoothDamp(transform.position, new Vector3(goal.position.x + 0.2f, goal.position.y + 0.2f, -10f), ref velocity, 1f);
             yield return null;
         }
         yield return new WaitForSeconds(1f);
 
-        while (transform.position.x > playerTransform.position.x && transform.position.y > playerTransform.position.y && cutScene)
+        while (transform.position.x > isRight * playerTransform.position.x && transform.position.y > isAbove * playerTransform.position.y && cutScene)
         {
             transform.position = Vector3.SmoothDamp(transform.position, new Vector3(playerTransform.position.x - 0.2f, playerTransform.position.y - 0.2f, -10f), ref velocity, 1f);
             yield return null;
