@@ -260,7 +260,9 @@ public class PlayerController : MonoBehaviour
 
 			playerRigidbody.gravityScale = gravityScale;
 
-			playerRigidbody.AddForce(normal * jumpForce);
+			playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, 0);
+			Vector3 jumpDir = (normal + new Vector3(0, 1, 0)) / 2f;
+			playerRigidbody.AddForce(jumpDir * jumpForce);
 		}
 	}
 
