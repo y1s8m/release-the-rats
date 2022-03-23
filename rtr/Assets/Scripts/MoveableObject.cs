@@ -9,6 +9,7 @@ public class MoveableObject : MonoBehaviour
     private bool held = false;
 
     private Rigidbody2D rb;
+    private Transform home;
     private Vector3 ogPos;
     private Quaternion ogRot;
     private Vector3 zeroVec = Vector3.zero;
@@ -20,6 +21,7 @@ public class MoveableObject : MonoBehaviour
         rb.mass = 100f;
         ogPos = gameObject.transform.position;
         ogRot = gameObject.transform.rotation;
+        home = gameObject.transform.parent;
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class MoveableObject : MonoBehaviour
     {
         if (held) {
             if (!PlayerController.instance.GetGrabbing()) {
-                this.gameObject.transform.parent = null;
+                this.gameObject.transform.parent = home;
                 held = false;
                 Reset();
             } else {
