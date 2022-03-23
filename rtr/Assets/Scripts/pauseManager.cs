@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class pauseManager : MonoBehaviour
 {
+    
     public GameObject pausePanel;
     public bool isPaused;
     public PlayerController player;
