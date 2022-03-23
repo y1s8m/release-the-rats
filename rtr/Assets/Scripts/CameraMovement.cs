@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -62,5 +63,7 @@ public class CameraMovement : MonoBehaviour
         cutScene = false;
         if (notMaze) PlayerController.instance.cutScene = false;
         else PlayerMazeController.instance.cutScene = false;
+        if ((SceneManager.GetActiveScene().buildIndex == 1) && (notMaze)) InstructionsManager.instance.instrPanel.SetActive(true);
+        if ((SceneManager.GetActiveScene().buildIndex == 3) && (notMaze)) InstructionsManager.instance.instrPanel.SetActive(true);
     }
 }
