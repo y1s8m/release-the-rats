@@ -59,7 +59,7 @@ public class PlayerMazeMovement : MonoBehaviour
     void OnTriggerEnter2D (Collider2D col){
         if (col.gameObject.tag == "move"){
             rb.velocity = Vector3.zero;
-        }
+        } else if (col.gameObject.tag == "NextLevelPipe") GameManager.instance.LoadNextLevel();
     }
 
     public void SetUp(bool v) {
