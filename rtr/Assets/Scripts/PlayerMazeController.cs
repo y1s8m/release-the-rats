@@ -43,8 +43,7 @@ public class PlayerMazeController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        playerRigidbody = GetComponent<Rigidbody2D>();
-        playerAnimator = GetComponent<Animator>();
+       
     }
 
     private void Start()
