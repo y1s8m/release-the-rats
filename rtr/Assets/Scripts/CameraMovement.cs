@@ -64,5 +64,6 @@ public class CameraMovement : MonoBehaviour
         if (notMaze) PlayerController.instance.cutScene = false;
         else PlayerMazeController.instance.cutScene = false;
         if ((SceneManager.GetActiveScene().buildIndex == 1) && (notMaze)) InstructionsManager.instance.instrPanel.SetActive(true);
+        if ((SceneManager.GetActiveScene().buildIndex == 3) && (notMaze)) InstructionsManager.instance.instrPanel.SetActive(true);
     }
 }
