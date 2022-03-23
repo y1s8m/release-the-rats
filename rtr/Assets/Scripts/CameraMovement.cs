@@ -6,9 +6,9 @@ public class CameraMovement : MonoBehaviour
 {
     public Transform playerTransform;
     public float dampTime = 0.1f;
-    public int repeats = 275;
+    public float repeats = 275;
 
-    public GameObject goal;
+    public Transform goal;
 
     private bool cutScene = false;
     private bool notMaze = true;
@@ -38,17 +38,31 @@ public class CameraMovement : MonoBehaviour
         yield return new WaitForSeconds(3f);
         cutScene = true;
 
-        float xDist = ((goal.transform.position.x - playerTransform.position.x) / repeats);
-        float yDist = ((goal.transform.position.y - playerTransform.position.y) / repeats);
+        float xDist = ((goal.position.x - playerTransform.position.x) / repeats);
+        float yDist = ((goal.position.y - playerTransform.position.y) / repeats);
         Vector3 tempGoal = transform.position;
-
-        for (int i = 0; i < repeats; i++) {
+        
+        /*for (int i = 0; i < repeats; i++) {
             tempGoal.x += xDist;
             tempGoal.y += yDist;
             transform.position = Vector3.SmoothDamp(transform.position, tempGoal, ref velocity, dampTime);
-            yield return new WaitForSeconds(.001f);
+            yield return new WaitForSeconds(0.01f);
+        }*/
+
+        // Note: this assumes that the goal is to the RIGHT and ABOVE the initial player transform
+        while (transform.position.x < goal.position.x && transform.position.y < goal.position.y)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(goal.position.x + 0.2f, goal.position.y + 0.2f, -10f), ref velocity, 1f);
+            yield return null;
         }
         yield return new WaitForSeconds(1f);
+
+        while (transform.position.x > playerTransform.position.x && transform.position.y > playerTransform.position.y && cutScene)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(playerTransform.position.x - 0.2f, playerTransform.position.y - 0.2f, -10f), ref velocity, 1f);
+            yield return null;
+        }
+
         cutScene = false;
         if (notMaze) PlayerController.instance.cutScene = false;
         else PlayerMazeController.instance.cutScene = false;

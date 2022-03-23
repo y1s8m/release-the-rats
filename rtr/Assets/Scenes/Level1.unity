@@ -2657,7 +2657,11 @@ PrefabInstance:
     - target: {fileID: 1324736241403763346, guid: 3eb9f87a0595e8b4a81935424a54aac2, type: 3}
       propertyPath: goal
       value: 
-      objectReference: {fileID: 697763648}
+      objectReference: {fileID: 697763649}
+    - target: {fileID: 1324736241403763346, guid: 3eb9f87a0595e8b4a81935424a54aac2, type: 3}
+      propertyPath: dampTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1324736241403763346, guid: 3eb9f87a0595e8b4a81935424a54aac2, type: 3}
       propertyPath: playerTransform
       value: 
