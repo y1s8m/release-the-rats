@@ -30,7 +30,7 @@ public class RandomPipes : MonoBehaviour
 
     private void Creak() {
         timePassed = 0f;
-        waitTime = Random.Range(0f, 7f) * 100f;
+        waitTime = Random.Range(20f, 30f);
         int last = index;
         while (index == last) {
             float next = Random.Range(0f, 1f);
