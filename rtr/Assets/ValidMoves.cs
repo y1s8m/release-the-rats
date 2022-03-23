@@ -22,10 +22,6 @@ public class ValidMoves : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(validUp);
-        Debug.Log(validDown);
-        Debug.Log(validLeft);
-        Debug.Log(validRight);
     }
 
     public void SetValidUp(bool valid){
@@ -61,5 +57,14 @@ public class ValidMoves : MonoBehaviour
         down.GetComponent<IsValidDir>().Go();
         left.GetComponent<IsValidDir>().Go();
         right.GetComponent<IsValidDir>().Go();
+        StartCoroutine(Label());
+    }
+
+    private IEnumerator Label() {
+        yield return new WaitForSeconds(1f);
+        PlayerMazeMovement.S.SetUp(validUp);
+        PlayerMazeMovement.S.SetDown(validDown);
+        PlayerMazeMovement.S.SetRight(validRight);
+        PlayerMazeMovement.S.SetLeft(validLeft);
     }
 }

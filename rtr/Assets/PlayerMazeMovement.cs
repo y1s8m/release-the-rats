@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMazeMovement : MonoBehaviour
 {
+    public static PlayerMazeMovement S;
+
     private Rigidbody2D rb;
     private Animator playerAnimator;
     string inputMove;
@@ -14,6 +16,15 @@ public class PlayerMazeMovement : MonoBehaviour
     bool validRight = true;
 
     bool deciding = false;
+    
+    void Awake() {
+        if (PlayerMazeMovement.S) {
+            Destroy(this.gameObject);
+        } else {
+            S = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,11 +59,20 @@ public class PlayerMazeMovement : MonoBehaviour
     void OnTriggerEnter2D (Collider2D col){
         if (col.gameObject.tag == "move"){
             rb.velocity = Vector3.zero;
-            validUp = col.gameObject.GetComponent<ValidMoves>().GetValidUp();
-            validDown = col.gameObject.GetComponent<ValidMoves>().GetValidDown();
-            validLeft = col.gameObject.GetComponent<ValidMoves>().GetValidLeft();
-            validRight = col.gameObject.GetComponent<ValidMoves>().GetValidRight();
-            deciding = true;
         }
+    }
+
+    public void SetUp(bool v) {
+        validUp = v;
+    }
+    public void SetDown(bool v) {
+        validDown = v;
+    }
+    public void SetLeft(bool v) {
+        validLeft = v;
+    }
+    public void SetRight(bool v) {
+        validRight = v;
+        deciding = true;
     }
 }
