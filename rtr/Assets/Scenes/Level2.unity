@@ -2001,6 +2001,18 @@ PrefabInstance:
       value: LightingSystem (7)
       objectReference: {fileID: 0}
     - target: {fileID: 7439059704524268161, guid: 6cd36b0b60a29ac438293d0eba7304a9, type: 3}
+      propertyPath: m_Color.b
+      value: 0.22352941
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439059704524268161, guid: 6cd36b0b60a29ac438293d0eba7304a9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439059704524268161, guid: 6cd36b0b60a29ac438293d0eba7304a9, type: 3}
+      propertyPath: m_Color.r
+      value: 0.34901962
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439059704524268161, guid: 6cd36b0b60a29ac438293d0eba7304a9, type: 3}
       propertyPath: m_PointLightOuterRadius
       value: 4
       objectReference: {fileID: 0}
