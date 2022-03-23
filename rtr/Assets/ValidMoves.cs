@@ -61,7 +61,7 @@ public class ValidMoves : MonoBehaviour
     }
 
     private IEnumerator Label() {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.2f);
         PlayerMazeMovement.S.SetUp(validUp);
         PlayerMazeMovement.S.SetDown(validDown);
         PlayerMazeMovement.S.SetRight(validRight);

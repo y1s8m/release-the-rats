@@ -37,20 +37,24 @@ public class PlayerMazeMovement : MonoBehaviour
     void Update()
     {
         if (deciding){
-            if (validUp && (Input.GetKeyDown(KeyCode.UpArrow))){
+            if (validUp && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))){
                 rb.velocity = new Vector3(0f * Time.deltaTime,1000f * Time.deltaTime);
+                this.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
                 deciding = false;
             }
-            if (validDown && (Input.GetKeyDown(KeyCode.DownArrow))){
+            if (validDown && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))){
                 rb.velocity = new Vector3(0f * Time.deltaTime,-1000f * Time.deltaTime);
+                this.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
                 deciding = false;
             }
-            if ((validRight && Input.GetKeyDown(KeyCode.RightArrow))){
+            if (validRight && (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))){
                 rb.velocity = new Vector3(1000f * Time.deltaTime,0f * Time.deltaTime);
+                this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 deciding = false;
             }
-            if ((validLeft && Input.GetKeyDown(KeyCode.LeftArrow))){
+            if (validLeft && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))){
                 rb.velocity = new Vector3(-1000f * Time.deltaTime,0f * Time.deltaTime);
+                this.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
                 deciding = false;
             }
         }
