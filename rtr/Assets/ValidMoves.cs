@@ -22,7 +22,10 @@ public class ValidMoves : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(validUp);
+        Debug.Log(validDown);
+        Debug.Log(validLeft);
+        Debug.Log(validRight);
     }
 
     public void SetValidUp(bool valid){
@@ -51,5 +54,12 @@ public class ValidMoves : MonoBehaviour
     }
     public bool GetValidRight(){
         return validRight;
+    }
+
+    private void OnTriggerEnter2D() {
+        up.GetComponent<IsValidDir>().Go();
+        down.GetComponent<IsValidDir>().Go();
+        left.GetComponent<IsValidDir>().Go();
+        right.GetComponent<IsValidDir>().Go();
     }
 }
