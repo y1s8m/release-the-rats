@@ -3062,11 +3062,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6543402991760639926, guid: f9afeee44353469488d00c3d63216f3c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -38.65
+      value: -37.8
       objectReference: {fileID: 0}
     - target: {fileID: 6543402991760639926, guid: f9afeee44353469488d00c3d63216f3c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.07
+      value: -2.9
       objectReference: {fileID: 0}
     - target: {fileID: 6543402991760639926, guid: f9afeee44353469488d00c3d63216f3c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5169,7 +5169,7 @@ GameObject:
   - component: {fileID: 1348299330}
   - component: {fileID: 1348299332}
   m_Layer: 0
-  m_Name: kitchen audio
+  m_Name: goal audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5185,9 +5185,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 87a23af262001d44b9dea1490ebc761a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.076
+  m_Volume: 0.381
   m_Pitch: 1
   Loop: 1
   Mute: 0
