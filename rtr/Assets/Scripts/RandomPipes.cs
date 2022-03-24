@@ -5,9 +5,6 @@ using UnityEngine;
 public class RandomPipes : MonoBehaviour
 {
     public AudioClip[] creaks;
-
-    private float timePassed = 0f;
-    private float waitTime;
     private int index = -1;
 
     private AudioSource audio;
@@ -24,24 +21,26 @@ public class RandomPipes : MonoBehaviour
 
     }
 
-    private void Creak() {
-        int last = index;
-        while (index == last) {
-            float next = Random.Range(0f, 1f);
-            for (int i = 0; i < creaks.Length; i++) {
-                if (next < ((i + 1f) / creaks.Length)) {
-                    index = i;
-                    break;
+    public void Creak() {
+        float chance = Random.Range(0f, 1f);
+        if (chance > .999f)  {
+            int last = index;
+            while (index == last) {
+                float next = Random.Range(0f, 1f);
+                for (int i = 0; i < creaks.Length; i++) {
+                    if (next < ((i + 1f) / creaks.Length)) {
+                        index = i;
+                        break;
+                    }
                 }
             }
+            audio.PlayOneShot(creaks[index]);
         }
-        audio.PlayOneShot(creaks[index]);
     }
 
     private void OnCollisionStay2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") {
-            float chance = Random.Range(0f, 1f);
-            if (chance > .99f) Creak();
+            Creak();
         }
     }
 }
