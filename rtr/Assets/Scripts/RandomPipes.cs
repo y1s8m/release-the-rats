@@ -16,21 +16,15 @@ public class RandomPipes : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
-        Creak();
     }
 
     // Update is called once per frame
     void Update()
     {
-        timePassed += Time.deltaTime;
-        if (timePassed > waitTime) {
-            Creak();
-        }
+
     }
 
     private void Creak() {
-        timePassed = 0f;
-        waitTime = Random.Range(20f, 30f);
         int last = index;
         while (index == last) {
             float next = Random.Range(0f, 1f);
@@ -42,5 +36,12 @@ public class RandomPipes : MonoBehaviour
             }
         }
         audio.PlayOneShot(creaks[index]);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Player") {
+            float chance = Random.Range(0f, 1f);
+            if (chance > .99f) Creak();
+        }
     }
 }

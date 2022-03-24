@@ -31,11 +31,9 @@ public class PlayerController : MonoBehaviour
 	public AudioClip denied;
 	private AudioSource audio;
 	
-	private bool playingSound = false;
 	private float stepTimePassed = 0f;
 	private int index = 0;
 	private int level = 1;
-	private int counter = 0;
 
 	// player movement variables
 	[Range(0, 1)]
@@ -137,36 +135,11 @@ public class PlayerController : MonoBehaviour
 			if (Input.GetKeyDown("q")) {
 				grabbing = !grabbing;
 			}
-			if (playingSound) {
-			stepTimePassed += Time.deltaTime;
-			if (counter % 2 == 0 && stepTimePassed >= (ratSteps[index].length + stepAdjustment)/ 2f) playingSound = false;
-			else if (stepTimePassed >= (ratSteps[index].length + stepAdjustment) / 4f) playingSound = false;
-			}
 
 			if (trackAirTime) {
 				airTime += Time.deltaTime;
 			} else {
 				airTime = 0f;
-			}
-			
-			// footsteps
-			if (level == 1 && Mathf.Abs(horizontalMove) > .1f && !playingSound && canJump) {
-				int last = index;
-
-				while (index == last) {
-					float next = Random.Range(0f, 1f);
-					for (int i = 0; i < ratSteps.Length; i++) {
-						if (next < ((i + 1f) / ratSteps.Length)) {
-							index = i;
-							break;
-						}
-					}
-				}
-
-				stepTimePassed = 0f;
-				audio.PlayOneShot(ratSteps[index]);
-				playingSound = true;
-				counter++;
 			}
 		}
 	}
@@ -314,7 +287,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!reset && !canJump && airTime > bigJump) {
 			ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
-		}
+		} else if (!reset && !canJump) LandStep();
 		reset = false;
 		
 		if (!onPipe)
@@ -430,5 +403,37 @@ public class PlayerController : MonoBehaviour
 
 	public void FlipToNorm() {
 		transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+	}
+
+	public void PlayFootstep() {
+		// footsteps
+		if (level == 1 && Mathf.Abs(horizontalMove) > .1f && canJump) {
+			int last = index;
+
+			while (index == last) {
+				float next = Random.Range(0f, 1f);
+				for (int i = 0; i < ratSteps.Length; i++) {
+					if (next < ((i + 1f) / ratSteps.Length)) {
+						index = i;
+						break;
+					}
+				}
+			}
+			audio.PlayOneShot(ratSteps[index]);
+		}
+	}
+
+	private void LandStep() {
+		int last = index;
+		while (index == last) {
+			float next = Random.Range(0f, 1f);
+			for (int i = 0; i < ratSteps.Length; i++) {
+				if (next < ((i + 1f) / ratSteps.Length)) {
+					index = i;
+					break;
+				}
+			}
+			audio.PlayOneShot(ratSteps[index]);
+		}
 	}
 }
