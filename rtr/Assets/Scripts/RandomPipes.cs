@@ -23,7 +23,8 @@ public class RandomPipes : MonoBehaviour
 
     public void Creak() {
         float chance = Random.Range(0f, 1f);
-        if (chance > .999f)  {
+        Debug.Log(chance);
+        if (chance > .997f)  {
             int last = index;
             while (index == last) {
                 float next = Random.Range(0f, 1f);
