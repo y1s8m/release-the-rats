@@ -19,6 +19,8 @@ public class MoveableObject : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.mass = 100f;
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         ogPos = gameObject.transform.position;
         ogRot = gameObject.transform.rotation;
         home = gameObject.transform.parent;
@@ -67,6 +69,8 @@ public class MoveableObject : MonoBehaviour
         if (rb == null) {
             rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 100f;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 
