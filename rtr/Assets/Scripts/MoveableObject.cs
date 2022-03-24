@@ -41,31 +41,7 @@ public class MoveableObject : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Player" && PlayerController.instance.GetGrabbing()) {
-            // grab object
-            this.gameObject.transform.parent = player;
-            held = true;
-            Hold();
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Player" && PlayerController.instance.GetGrabbing()) {
-            // grab object
-            this.gameObject.transform.parent = player;
-            held = true;
-            Hold();
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Player") {
-            Reset();
-        }
-    }
-
-    private void Reset() {
+    public void Reset() {
         if (rb == null) {
             rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 100f;
@@ -74,7 +50,9 @@ public class MoveableObject : MonoBehaviour
         }
     }
 
-    private void Hold() {
+    public void Hold() {
+        this.gameObject.transform.parent = player;
+        held = true;
         if (rb != null) {
             Destroy(rb);
         }

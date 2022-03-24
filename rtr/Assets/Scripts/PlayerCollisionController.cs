@@ -7,7 +7,7 @@ public class PlayerCollisionController : MonoBehaviour
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (PlayerController.instance.dead) return;
-		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "NoWaterGround")
+		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "MoveableObject" || collision.gameObject.tag == "NoWaterGround")
 		{
 			PlayerController.instance.EnterGroundCollision();
 		}

@@ -17,6 +17,7 @@ TagManager:
   - MoveableObject
   - move
   - wall
+  - Grab
   layers:
   - Default
   - TransparentFX
