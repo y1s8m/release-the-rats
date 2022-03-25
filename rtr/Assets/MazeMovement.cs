@@ -57,6 +57,7 @@ public class MazeMovement : MonoBehaviour
     void Update()
     {
         if ((!cutScene) && (transform.position == startPos.position)) {
+
             playerRigidbody.velocity = new Vector3(-1000f * Time.deltaTime,0f * Time.deltaTime);
         }
         else{
