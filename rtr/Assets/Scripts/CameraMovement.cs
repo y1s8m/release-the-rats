@@ -22,7 +22,7 @@ public class CameraMovement : MonoBehaviour
         StartCoroutine(DoCutscene());
 
         if (PlayerController.instance) notMaze = true;
-        if (PlayerMazeController.instance) notMaze = false;
+        if (MazeMovement.instance) notMaze = false;
     }
 
     private void Update()
@@ -62,7 +62,7 @@ public class CameraMovement : MonoBehaviour
 
         cutScene = false;
         if (notMaze) PlayerController.instance.cutScene = false;
-        else PlayerMazeController.instance.cutScene = false;
+        else MazeMovement.instance.cutScene = false;
         if ((SceneManager.GetActiveScene().buildIndex == 1) && (notMaze)) InstructionsManager.instance.instrPanel.SetActive(true);
         if ((SceneManager.GetActiveScene().buildIndex == 3) && (notMaze)) InstructionsManager.instance.instrPanel.SetActive(true);
     }

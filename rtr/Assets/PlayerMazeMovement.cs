@@ -8,7 +8,6 @@ public class PlayerMazeMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator playerAnimator;
-    string inputMove;
 
     bool validUp = true;
     bool validDown = true;

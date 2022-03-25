@@ -31,6 +31,7 @@ public class IsValidDir : MonoBehaviour
     void OnTriggerEnter2D (Collider2D col){
         if (col.gameObject.tag == "wall"){
             valid = false;
+            this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
         if (name == "Up" ){
             this.gameObject.transform.parent.GetComponent<ValidMoves>().SetValidUp(valid);

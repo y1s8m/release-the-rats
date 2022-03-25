@@ -9,6 +9,8 @@ public class ValidMoves : MonoBehaviour
     public GameObject right;
     public GameObject left;
 
+    public GameObject player;
+
     bool validUp = true;
     bool validDown = true;
     bool validLeft = true;
@@ -16,7 +18,7 @@ public class ValidMoves : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
+        
     }
 
     // Update is called once per frame
@@ -62,9 +64,9 @@ public class ValidMoves : MonoBehaviour
 
     private IEnumerator Label() {
         yield return new WaitForSeconds(.2f);
-        PlayerMazeMovement.S.SetUp(validUp);
-        PlayerMazeMovement.S.SetDown(validDown);
-        PlayerMazeMovement.S.SetRight(validRight);
-        PlayerMazeMovement.S.SetLeft(validLeft);
+        player.GetComponent<MazeMovement>().SetUp(validUp);
+        player.GetComponent<MazeMovement>().SetDown(validDown);
+        player.GetComponent<MazeMovement>().SetRight(validRight);
+        player.GetComponent<MazeMovement>().SetLeft(validLeft);
     }
 }
