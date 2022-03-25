@@ -88,6 +88,7 @@ public class MazeMovement : MonoBehaviour
     void OnTriggerEnter2D (Collider2D col){
         if (col.gameObject.tag == "move"){
             playerRigidbody.velocity = Vector3.zero;
+            transform.position = col.gameObject.transform.position;
         } else if (col.gameObject.tag == "NextLevelPipe") GameManager.instance.LoadNextLevel();
     }
 
