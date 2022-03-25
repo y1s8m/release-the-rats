@@ -27,6 +27,7 @@ public class MazeCurve : MonoBehaviour
             }
             else {
                 //start curve animation
+                col.gameObject.transform.position = this.gameObject.transform.parent.gameObject.transform.position;
             }
         }
     }

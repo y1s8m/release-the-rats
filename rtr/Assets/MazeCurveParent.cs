@@ -25,7 +25,7 @@ public class MazeCurveParent : MonoBehaviour
                 //move player 
             }
             else {
-                //start curve animation
+                col.gameObject.transform.position =  this.gameObject.transform.GetChild(0).gameObject.transform.position;
             }
         }
     }
