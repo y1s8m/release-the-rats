@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class AmbienceManager : MonoBehaviour
 {
     public AudioClip sewerClip;
+    public AudioClip kitchenClip;
     
     private AudioSource audio;
 
@@ -14,9 +15,8 @@ public class AmbienceManager : MonoBehaviour
     {
         audio = GetComponent<AudioSource>();
 
-        if (SceneManager.GetActiveScene().buildIndex == 1) {
-            audio.clip = sewerClip;
-        }
+        if (SceneManager.GetActiveScene().buildIndex == 1) audio.clip = sewerClip;
+        else if (SceneManager.GetActiveScene().buildIndex == 3) audio.clip = kitchenClip;
 
         audio.loop = true;
         audio.Play();

@@ -141,3 +141,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sewerClip: {fileID: 8300000, guid: 99b67a5f8e383b443a0df81394cdb6d8, type: 3}
+  kitchenClip: {fileID: 8300000, guid: e0f62f89006c63e48aa96018e6b54558, type: 3}
