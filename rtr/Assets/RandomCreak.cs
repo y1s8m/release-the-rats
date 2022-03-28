@@ -22,7 +22,7 @@ public class RandomCreak : MonoBehaviour
 
     public void Creak() {
         float chance = Random.Range(0f, 1f);
-        if (chance > .997f)  {
+        if (chance > .998f)  {
             audio.PlayOneShot(creakSound);
         }
     }

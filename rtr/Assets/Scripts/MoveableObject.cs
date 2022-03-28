@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class MoveableObject : MonoBehaviour
 {
+    public float adjust = .1f;
+
     public Transform player;
+    public AudioClip draggingSound;
 
     private bool held = false;
+    private float timePlay = 0f;
 
+    private AudioSource audio;
     private Rigidbody2D rb;
     private Transform home;
     private Vector3 ogPos;
@@ -18,6 +23,7 @@ public class MoveableObject : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audio = GetComponent<AudioSource>();
         rb.mass = 100f;
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -38,6 +44,10 @@ public class MoveableObject : MonoBehaviour
                 this.gameObject.transform.parent = player;
                 Hold();
             }
+            Debug.Log(Mathf.Abs(player.gameObject.GetComponent<Rigidbody2D>().velocity.x));
+            timePlay += Time.deltaTime;
+            if ((Mathf.Abs(player.gameObject.GetComponent<Rigidbody2D>().velocity.x) > .1f && Mathf.Abs(draggingSound.length - timePlay) < adjust)) audio.PlayOneShot(draggingSound);
+            if (Mathf.Abs(draggingSound.length - timePlay) < adjust) timePlay = 0f;
         }
     }
 

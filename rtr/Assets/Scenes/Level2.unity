@@ -1149,6 +1149,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 809107501}
+    - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
+      propertyPath: draggingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 28b19530dfb64f141bfce39cc7e9161e, type: 3}
     - target: {fileID: 2992047603004942490, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 2.5953126
@@ -3017,7 +3021,6 @@ GameObject:
   - component: {fileID: 944983520}
   - component: {fileID: 944983519}
   - component: {fileID: 944983523}
-  - component: {fileID: 944983517}
   - component: {fileID: 944983516}
   m_Layer: 0
   m_Name: PlatformColliders
@@ -3174,19 +3177,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &944983517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944983513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b0d15c0887841448b8352cbf2754505, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creakSound: {fileID: 8300000, guid: b4e1ea8e129f0a14d838159202e61dbe, type: 3}
 --- !u!4 &944983518
 Transform:
   m_ObjectHideFlags: 0
