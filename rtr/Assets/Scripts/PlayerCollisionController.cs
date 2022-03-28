@@ -9,7 +9,6 @@ public class PlayerCollisionController : MonoBehaviour
 		if (PlayerController.instance.dead) return;
 		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "MoveableObject" || collision.gameObject.tag == "NoWaterGround")
 		{
-			Debug.Log("out of my skin");
 			PlayerController.instance.EnterGroundBodyCollision();
 		}
 		else if (collision.gameObject.tag == "Pipe")
@@ -30,11 +29,7 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "NoWaterGround") {
-			Debug.Log("freaking out");
-			PlayerController.instance.ExitGroundCollision();
-		}
-		else if (collision.gameObject.tag == "Pipe")
+        if (collision.gameObject.tag == "Pipe")
 			PlayerController.instance.ExitPipeCollision();
 	}
 

@@ -17,10 +17,14 @@ public class PlayerJumpCollision : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        Debug.Log("mood swings");
         if (collision.gameObject.tag == "Ground") {
-            Debug.Log("just us two");
             PlayerController.instance.EnterGroundFeetCollision();
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Ground") {
+            PlayerController.instance.ExitGroundCollision();
         }
     }
 }

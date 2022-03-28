@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
 	public float bigJump = 1f;
 	private bool reset = true;
 
+	private int numGroundObjects = 0;
+
 	private float speed = 50f;
 	private float origSpeed = 50f;
 	private float moveSmoothing = 0.05f;
@@ -64,13 +66,6 @@ public class PlayerController : MonoBehaviour
 	public bool onPipe = false;
 	public bool canJump = false;
 	private bool lookingRight = true;
-	//private bool piping = false;
-
-	// slippery variables
-	private bool onSlippery = false;
-	private float slipperyTimer = 0f;
-	private float maxSlipperyTime = 2f;
-	private bool slipping = false;
 
 	// grabbing items
 	private bool grabbing = false;
@@ -274,6 +269,7 @@ public class PlayerController : MonoBehaviour
 
 	public void EnterGroundFeetCollision() {
 		EnterGroundCollision();
+		numGroundObjects++;
 		onGround = true;
 		canJump = true;
 	}
@@ -298,9 +294,11 @@ public class PlayerController : MonoBehaviour
 
 	public void ExitGroundCollision()
 	{
-		Debug.Log("super average");
-		onGround = false;
-		canJump = false;
+		numGroundObjects--;
+		if (numGroundObjects <= 0) {
+			onGround = false;
+			canJump = false;
+		}
 	}
 
 	public void EnterPipeCollision(Vector3 contactPos, Vector3 normal)
