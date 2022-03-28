@@ -55,16 +55,6 @@ public class PlayerCollisionController : MonoBehaviour
 		{
 			PlayerController.instance.EnterTriggerCheckpoint(collision.gameObject.transform);
 		}
-		else if (collision.gameObject.tag == "Cheese")
-		{
-			GameManager.instance.IncCheeseCounter();
-			Destroy(collision.gameObject);
-		}
-		else if (collision.gameObject.tag == "OtherRat")
-		{
-			GameManager.instance.IncRatSaveCounter();
-			Destroy(collision.gameObject);
-		}
 		else if (collision.gameObject.tag == "NextLevelPipe")
 		{
 			PlayerController.instance.LoadNextLevel();

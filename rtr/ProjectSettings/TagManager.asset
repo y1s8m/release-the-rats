@@ -19,6 +19,7 @@ TagManager:
   - wall
   - Grab
   - Projectile
+  - DeleteProjectile
   layers:
   - Default
   - TransparentFX

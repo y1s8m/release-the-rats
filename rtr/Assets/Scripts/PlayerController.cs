@@ -295,7 +295,7 @@ public class PlayerController : MonoBehaviour
 
 	public void ProjectileHit()
     {
-		// Die();
+		Die();
     }
 
 	public void EnterGroundCollision()

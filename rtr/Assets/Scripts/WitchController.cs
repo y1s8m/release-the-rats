@@ -93,7 +93,6 @@ public class WitchController : MonoBehaviour
 
 	public void CreateProjectile()
     {
-		Debug.Log("?");
 		GameObject proj = Instantiate(projectilePrefab, projectilePos.position, Quaternion.identity);
 
 		Vector3 target = (player.position - projectilePos.position).normalized;

@@ -20,8 +20,9 @@ public class UIManager : MonoBehaviour
 
     private static UIManager m_instance;
 
-    public Text cheeseCounter;
-    public Text ratSaveCounter;
+    public GameObject deadPanel;
+    private Image img;
+    private bool maxOpac = false;
 
     private void Awake()
     {
@@ -31,13 +32,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateCheeseCounter(int c)
+    public void Die()
     {
-        cheeseCounter.text = c.ToString();
-    }
+        deadPanel.SetActive(true);
+        if (!maxOpac)
+        {
+            img.color = new Color(img.color.r, img.color.g, img.color.b, img.color.a + 0.01f);
 
-    public void UpdateRatSaveCounter(int c)
-    {
-        ratSaveCounter.text = c.ToString();
+            if (img.color.a >= 1.0f) maxOpac = true;
+        }
     }
 }

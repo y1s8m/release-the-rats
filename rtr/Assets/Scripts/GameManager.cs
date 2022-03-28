@@ -24,9 +24,6 @@ public class GameManager : MonoBehaviour
 
     public static GameManager m_instance;
 
-    private int cheeseCounter = 0;
-    private int ratSaveCounter = 0;
-
     private void Awake()
     {
         if (instance != this)
@@ -57,18 +54,6 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("level")){
             playerPos.position = new Vector3(PlayerPrefs.GetFloat("xpos"), PlayerPrefs.GetFloat("ypos"), 0);
         }
-    }
-
-    public void IncCheeseCounter()
-    {
-        cheeseCounter++;
-        UIManager.instance.UpdateCheeseCounter(cheeseCounter);
-    }
-
-    public void IncRatSaveCounter()
-    {
-        ratSaveCounter++;
-        UIManager.instance.UpdateRatSaveCounter(ratSaveCounter);
     }
 
     public void LoadNextLevel()
