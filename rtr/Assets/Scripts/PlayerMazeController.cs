@@ -42,8 +42,6 @@ public class PlayerMazeController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-       
     }
 
     private void Start()

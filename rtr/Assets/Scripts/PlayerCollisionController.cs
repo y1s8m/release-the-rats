@@ -15,6 +15,10 @@ public class PlayerCollisionController : MonoBehaviour
 		{
 			PlayerController.instance.EnterPipeCollision(collision.GetContact(0).point, collision.GetContact(0).normal.normalized);
 		}
+		else if (collision.gameObject.tag == "Projectile")
+        {
+			PlayerController.instance.ProjectileHit();
+        }
 	}
 
 	private void OnCollisionStay2D(Collision2D collision)

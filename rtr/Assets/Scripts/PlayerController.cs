@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
 	{
 		if (!isPaused){
-			if (dead) return;
+			if (cutScene || dead) return;
 
 			Move(horizontalMove * Time.fixedDeltaTime, jumped);
 
@@ -293,6 +293,11 @@ public class PlayerController : MonoBehaviour
 		Reset();
     }
 
+	public void ProjectileHit()
+    {
+		// Die();
+    }
+
 	public void EnterGroundCollision()
 	{
 		if (!reset && !canJump && airTime > bigJump) {
@@ -379,7 +384,6 @@ public class PlayerController : MonoBehaviour
 
 	public void EnterTriggerSlippery ()
 	{
-		print("???");
 		onSlippery = true;
 		speed = origSpeed * 0.7f;
 	}

@@ -13,6 +13,7 @@ public class CameraMovement : MonoBehaviour
 
     private bool cutScene = false;
     private bool notMaze = true;
+    private bool witchExist = false;
 
     private Vector3 velocity = Vector3.zero;
 
@@ -23,12 +24,13 @@ public class CameraMovement : MonoBehaviour
 
         if (PlayerController.instance) notMaze = true;
         if (MazeMovement.instance) notMaze = false;
+        if (WitchController.instance) witchExist = true;
     }
 
     private void Update()
     {
         if (!cutScene) {
-            Vector3 delta = new Vector3(playerTransform.position.x, playerTransform.position.y, -10) - GetComponent<Camera>().ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
+            Vector3 delta = new Vector3(playerTransform.position.x, playerTransform.position.y, transform.position.z) - GetComponent<Camera>().ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
             Vector3 destination = transform.position + delta;
             //if (destination.y < -6 && notMaze) destination = new Vector3(destination.x, -6, destination.z); //needs to be modified on a level basis
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
@@ -43,26 +45,25 @@ public class CameraMovement : MonoBehaviour
         float yDist = ((goal.position.y - playerTransform.position.y) / repeats);
         Vector3 tempGoal = transform.position;
 
-        float isRight = (transform.position.x < goal.position.x) ? 1f : -1f;
-        float isAbove = (transform.position.y < goal.position.y) ? 1f : -1f;
-
-        // Note: this assumes that the goal is to the RIGHT and ABOVE the initial player transform
-        while (transform.position.x < isRight * goal.position.x && transform.position.y < isAbove * goal.position.y)
+        while (Mathf.Abs(goal.position.x - transform.position.x) > 0.2f || Mathf.Abs(goal.position.y - transform.position.y) > 0.2f)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(goal.position.x + 0.2f, goal.position.y + 0.2f, -10f), ref velocity, 1f);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(goal.position.x, goal.position.y, transform.position.z), ref velocity, 1f);
             yield return null;
         }
         yield return new WaitForSeconds(1f);
 
-        while (transform.position.x > isRight * playerTransform.position.x && transform.position.y > isAbove * playerTransform.position.y && cutScene)
+        while ((Mathf.Abs(playerTransform.position.x - transform.position.x) > 0.2f || Mathf.Abs(playerTransform.position.y - transform.position.y) > 0.2f) && cutScene)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(playerTransform.position.x - 0.2f, playerTransform.position.y - 0.2f, -10f), ref velocity, 1f);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(playerTransform.position.x, playerTransform.position.y, transform.position.z), ref velocity, 1f);
             yield return null;
         }
 
         cutScene = false;
         if (notMaze) PlayerController.instance.cutScene = false;
         else MazeMovement.instance.cutScene = false;
+
+        if (witchExist) WitchController.instance.cutScene = false;
+
         if ((SceneManager.GetActiveScene().buildIndex == 1) && (notMaze)) InstructionsManager.instance.instrPanel.SetActive(true);
         if ((SceneManager.GetActiveScene().buildIndex == 3) && (notMaze)) InstructionsManager.instance.instrPanel.SetActive(true);
     }

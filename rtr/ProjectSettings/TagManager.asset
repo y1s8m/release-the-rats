@@ -18,6 +18,7 @@ TagManager:
   - move
   - wall
   - Grab
+  - Projectile
   layers:
   - Default
   - TransparentFX
