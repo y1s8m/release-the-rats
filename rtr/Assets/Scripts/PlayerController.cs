@@ -315,12 +315,6 @@ public class PlayerController : MonoBehaviour
 		Vector3 slope = Vector3.Cross(normal, new Vector3(0, 0, 1));
 		float zRotAngle = Vector3.Angle(slope, transform.forward) % 90;
 
-		//if (normal.x < 0 && !lookingRight) zRotAngle *= -1;
-		/*if (normal.x > 0 && zRotAngle >= 90) zRotAngle = -zRotAngle;
-		else if (zRotAngle > 90 || zRotAngle < -90) zRotAngle = zRotAngle % 90;*/
-		/*if (normal.x < 0 && zRotAngle < 0) zRotAngle = zRotAngle % 90;
-		else if (normal.x > 0 && zRotAngle >= 90) zRotAngle = -zRotAngle;*/
-
 		if (lookingRight && normal == new Vector3(-1, 0, 0)) zRotAngle = 90;
 		if (!lookingRight && normal == new Vector3(1, 0, 0)) zRotAngle = -90;
 
