@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
 	private int index = 0;
 	private int level = 1;
 
+	// animation
+	private bool running = false;
+
 	// player movement variables
 	[Range(0, 1)]
 	public float hp = 1f;
@@ -44,7 +47,6 @@ public class PlayerController : MonoBehaviour
 	public VolumeProfile volume;
 	private Vignette vignette;
 	private float airTime = 0f;
-	private bool trackAirTime = false;
 	public float bigJump = 1f;
 	public float stepAdjustment = 0f;
 	private bool reset = true;
@@ -120,6 +122,9 @@ public class PlayerController : MonoBehaviour
 		if (!isPaused){
 			if (cutScene || dead) return;
 
+			if (running) ratSprite.GetComponent<SpriteRenderer>().flipX = false;
+			else ratSprite.GetComponent<SpriteRenderer>().flipX = true;
+
 			horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 			
 			if (Input.GetButtonDown("Jump") && !jumped && !grabbing)
@@ -136,7 +141,7 @@ public class PlayerController : MonoBehaviour
 				grabbing = !grabbing;
 			}
 
-			if (trackAirTime) {
+			if (!onGround) {
 				airTime += Time.deltaTime;
 			} else {
 				airTime = 0f;
@@ -207,7 +212,13 @@ public class PlayerController : MonoBehaviour
 
 		// And then smoothing it out and applying it to the character
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
-		playerAnimator.SetFloat("speed", Mathf.Abs(playerRigidbody.velocity.x) + Mathf.Abs(playerRigidbody.velocity.y));
+		float diff = Mathf.Abs(playerRigidbody.velocity.x) + Mathf.Abs(playerRigidbody.velocity.y);
+		running = diff > .1f;
+		if (!grabbing) playerAnimator.SetFloat("speed", diff);
+		else {
+			if (lookingRight) playerAnimator.SetFloat("speed", playerRigidbody.velocity.x);
+			else playerAnimator.SetFloat("speed", -playerRigidbody.velocity.x);
+		}
 		
 		// If the input is moving the player right and the player is facing left...
 		if (!grabbing && horizMove > 0 && !lookingRight && !onPipe)
@@ -224,7 +235,6 @@ public class PlayerController : MonoBehaviour
 		if (!canJump) jumped = false;
 		if (canJump && jump)
 		{
-			trackAirTime = true;
 			// Add a vertical force to the player.
 			jumped = true;
 			onGround = false;
@@ -297,7 +307,6 @@ public class PlayerController : MonoBehaviour
 		}
 		onGround = true;
 		canJump = true;
-		trackAirTime = false;
 	}
 	
 	public void StayGroundCollision()
@@ -341,7 +350,6 @@ public class PlayerController : MonoBehaviour
 		onPipe = true;
 		jumped = false;
 		canJump = true;
-		trackAirTime = false;
 
 		playerRigidbody.velocity = Vector2.zero;
 		playerRigidbody.gravityScale = 0f;
@@ -407,7 +415,7 @@ public class PlayerController : MonoBehaviour
 
 	public void PlayFootstep() {
 		// footsteps
-		if (level == 1 && Mathf.Abs(horizontalMove) > .1f && canJump) {
+		if (level == 1 && Mathf.Abs(horizontalMove) > .1f && onGround) {
 			int last = index;
 
 			while (index == last) {

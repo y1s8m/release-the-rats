@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2992047603004942490}
   - component: {fileID: 2992047603004942489}
   - component: {fileID: -4059321838300734830}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MoveableObject
   m_TagString: MoveableObject
   m_Icon: {fileID: 0}
