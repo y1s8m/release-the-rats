@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 	private float speed = 50f;
 	private float origSpeed = 50f;
 	private float moveSmoothing = 0.05f;
-	private float jumpForce = 4000f;
+	public float jumpForce = 4000f;
 
 	private float horizontalMove = 0.0f;
 
@@ -267,7 +267,7 @@ public class PlayerController : MonoBehaviour
 		this.normal = new Vector3(0, 1, 0);
 		transform.rotation = Quaternion.Euler(Vector3.zero);
 
-		// reset max stamina
+		// reset max HP
 		UpdateHP(maxHP);
 
 		onGround = false;
@@ -323,6 +323,7 @@ public class PlayerController : MonoBehaviour
 	public void ExitGroundCollision()
 	{
 		onGround = false;
+		canJump = false;
 	}
 
 	public void EnterPipeCollision(Vector3 contactPos, Vector3 normal)

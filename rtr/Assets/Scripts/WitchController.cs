@@ -22,6 +22,7 @@ public class WitchController : MonoBehaviour
 	public bool cutScene = false;
 
 	public bool isPaused;
+	private bool temp;
 
 	public Transform player;
 	public Transform projectilePos;
@@ -58,6 +59,7 @@ public class WitchController : MonoBehaviour
 		if (!isPaused)
 		{
 			if (cutScene) return;
+			//Debug.Log(temp);
 		}
 	}
 
@@ -77,7 +79,7 @@ public class WitchController : MonoBehaviour
             {
 				ShootProjectile();
 
-				nextProjTime = Random.Range(2f, 5f);
+				nextProjTime = Random.Range(4f, 8f);
 				currProjTime = 0;
             }
 		}
@@ -85,10 +87,20 @@ public class WitchController : MonoBehaviour
 
 	private void ShootProjectile()
     {
+		witchAnimator.SetTrigger("attack");
+		temp = true;
+	}
+
+	public void CreateProjectile()
+    {
+		Debug.Log("?");
 		GameObject proj = Instantiate(projectilePrefab, projectilePos.position, Quaternion.identity);
 
 		Vector3 target = (player.position - projectilePos.position).normalized;
 		proj.GetComponent<Rigidbody2D>().velocity = target * projectileSpeed;
 		proj.GetComponent<Transform>().rotation = Quaternion.Euler(new Vector3(0, 0, Vector3.Angle(Vector2.up, target)));
+
+		witchAnimator.ResetTrigger("attack");
+		temp = false;
 	}
 }

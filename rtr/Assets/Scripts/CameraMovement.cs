@@ -32,7 +32,6 @@ public class CameraMovement : MonoBehaviour
         if (!cutScene) {
             Vector3 delta = new Vector3(playerTransform.position.x, playerTransform.position.y, transform.position.z) - GetComponent<Camera>().ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
             Vector3 destination = transform.position + delta;
-            //if (destination.y < -6 && notMaze) destination = new Vector3(destination.x, -6, destination.z); //needs to be modified on a level basis
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
         }
     }
@@ -41,20 +40,25 @@ public class CameraMovement : MonoBehaviour
         yield return new WaitForSeconds(3f);
         cutScene = true;
 
+        float origZ = transform.position.z;
+
         float xDist = ((goal.position.x - playerTransform.position.x) / repeats);
         float yDist = ((goal.position.y - playerTransform.position.y) / repeats);
+        float zDist = ((goal.position.z - playerTransform.position.z) / repeats);
         Vector3 tempGoal = transform.position;
 
-        while (Mathf.Abs(goal.position.x - transform.position.x) > 0.2f || Mathf.Abs(goal.position.y - transform.position.y) > 0.2f)
+        while (Mathf.Abs(goal.position.x - transform.position.x) > 0.2f || Mathf.Abs(goal.position.y - transform.position.y) > 0.2f
+                                                                        || Mathf.Abs(goal.position.z - transform.position.z) > 0.2f)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(goal.position.x, goal.position.y, transform.position.z), ref velocity, 1f);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(goal.position.x, goal.position.y, goal.position.z), ref velocity, 1f);
             yield return null;
         }
         yield return new WaitForSeconds(1f);
 
-        while ((Mathf.Abs(playerTransform.position.x - transform.position.x) > 0.2f || Mathf.Abs(playerTransform.position.y - transform.position.y) > 0.2f) && cutScene)
+        while ((Mathf.Abs(playerTransform.position.x - transform.position.x) > 0.2f || Mathf.Abs(playerTransform.position.y - transform.position.y) > 0.2f
+                                                                                    || Mathf.Abs(goal.position.z - transform.position.z) > 0.2f) && cutScene)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(playerTransform.position.x, playerTransform.position.y, transform.position.z), ref velocity, 1f);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(playerTransform.position.x, playerTransform.position.y, origZ), ref velocity, 1f);
             yield return null;
         }
 
