@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545750298440267498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.41, y: 2.24, z: 0}
+  m_LocalPosition: {x: -2.91, y: 3.75, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2516994409293147438}
@@ -129,8 +129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutScene: 0
   isPaused: 0
+  player: {fileID: 0}
   projectilePos: {fileID: 7124703603997168387}
   projectilePrefab: {fileID: 2611218602305841333, guid: bdfab8e8b4a975242a577d5054807abc, type: 3}
+  projectileSpeed: 3
 --- !u!95 &2516994409293147436
 Animator:
   serializedVersion: 3
