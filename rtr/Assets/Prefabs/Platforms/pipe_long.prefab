@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7167360692036301920}
   - component: {fileID: 8893051825609499759}
   - component: {fileID: 6549664763410868879}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: PipeCollider
   m_TagString: Pipe
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 3767357600294118651}
   - component: {fileID: -8039735570431738776}
   - component: {fileID: 786793409314543929}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: pipe_long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 2867924460985847465}
   - component: {fileID: 719409938678237786}
   - component: {fileID: 3620424739170304004}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: TopCollider
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 6059689311588171986}
   - component: {fileID: 7230099221961624466}
   - component: {fileID: 5214085695495392442}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BottomCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

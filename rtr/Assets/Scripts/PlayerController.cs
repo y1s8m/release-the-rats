@@ -334,13 +334,16 @@ public class PlayerController : MonoBehaviour
 
 	public void StayPipeCollision()
     {
+		Debug.Log("huh");
 		playerRigidbody.gravityScale = 0f;
 		onPipe = true;
+		canJump = true;
 	}
 
 	public void ExitPipeCollision()
     {
 		onPipe = false;
+		canJump = false;
 
 		playerRigidbody.gravityScale = gravityScale;
 
