@@ -56,6 +56,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void LoadThisLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void LoadNextLevel()
     {
         StartCoroutine(WaitLoadSceneCoroutine(2));

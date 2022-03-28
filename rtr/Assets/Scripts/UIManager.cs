@@ -21,7 +21,8 @@ public class UIManager : MonoBehaviour
     private static UIManager m_instance;
 
     public GameObject deadPanel;
-    private Image img;
+    private Image deadPanelImg;
+    private bool dead = false;
     private bool maxOpac = false;
 
     private void Awake()
@@ -30,16 +31,33 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (deadPanel) deadPanelImg = deadPanel.GetComponent<Image>();
+        if (deadPanel) deadPanel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (dead && !maxOpac)
+        {
+            deadPanelImg.color = new Color(deadPanelImg.color.r, deadPanelImg.color.g, deadPanelImg.color.b, deadPanelImg.color.a + 0.01f);
+
+            if (deadPanelImg.color.a >= 1.0f) maxOpac = true;
+        }
     }
 
     public void Die()
     {
+        deadPanelImg.color = new Color(deadPanelImg.color.r, deadPanelImg.color.g, deadPanelImg.color.b, 0);
         deadPanel.SetActive(true);
-        if (!maxOpac)
-        {
-            img.color = new Color(img.color.r, img.color.g, img.color.b, img.color.a + 0.01f);
 
-            if (img.color.a >= 1.0f) maxOpac = true;
-        }
+        dead = true;
+        maxOpac = false;
+    }
+
+    public void DisableDeadPanel()
+    {
+        dead = false;
+        deadPanel.SetActive(false);
     }
 }

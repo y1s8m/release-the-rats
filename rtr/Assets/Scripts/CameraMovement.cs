@@ -12,6 +12,7 @@ public class CameraMovement : MonoBehaviour
     public Transform goal;
 
     private bool cutScene = false;
+    private bool afterCutScene = false;
     private bool notMaze = true;
     private bool witchExist = false;
 
@@ -29,6 +30,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
+        if (afterCutScene && SceneManager.GetActiveScene().buildIndex == 5) return;
         if (!cutScene) {
             Vector3 delta = new Vector3(playerTransform.position.x, playerTransform.position.y, transform.position.z) - GetComponent<Camera>().ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
             Vector3 destination = transform.position + delta;
@@ -56,15 +58,19 @@ public class CameraMovement : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
 
-        while ((Mathf.Abs(playerTransform.position.x - transform.position.x) > 0.2f || Mathf.Abs(playerTransform.position.y - transform.position.y) > 0.2f
-                                                                                    || Mathf.Abs(origZ - transform.position.z) > 0.2f) && cutScene)
+        if (SceneManager.GetActiveScene().buildIndex != 5)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, 
-                                new Vector3(playerTransform.position.x, playerTransform.position.y, origZ), ref velocity, 1f);
-            yield return null;
+            while ((Mathf.Abs(playerTransform.position.x - transform.position.x) > 0.2f || Mathf.Abs(playerTransform.position.y - transform.position.y) > 0.2f
+                                                                                        || Mathf.Abs(origZ - transform.position.z) > 0.2f) && cutScene)
+            {
+                transform.position = Vector3.SmoothDamp(transform.position,
+                                    new Vector3(playerTransform.position.x, playerTransform.position.y, origZ), ref velocity, 1f);
+                yield return null;
+            }
         }
 
         cutScene = false;
+        afterCutScene = true;
         if (notMaze) PlayerController.instance.cutScene = false;
         else MazeMovement.instance.cutScene = false;
 

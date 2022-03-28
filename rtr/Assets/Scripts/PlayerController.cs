@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -278,6 +279,7 @@ public class PlayerController : MonoBehaviour
 		transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
 		transform.position = startPos.position;
+		playerRigidbody.velocity = Vector2.zero;
     }
 
     public IEnumerator Die()
@@ -287,15 +289,24 @@ public class PlayerController : MonoBehaviour
 		playerRigidbody.velocity = Vector2.zero;
 		playerRigidbody.gravityScale = gravityScale;
 		ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
+		UIManager.instance.Die();
 
-		yield return new WaitForSeconds(.1f);
+		yield return new WaitForSeconds(2f);
 
-		Reset();
+		if (SceneManager.GetActiveScene().buildIndex == 1)
+		{
+			UIManager.instance.DisableDeadPanel();
+			Reset();
+        } else
+        {
+			GameManager.instance.LoadThisLevel();
+		}
+
     }
 
 	public void ProjectileHit()
     {
-		Die();
+		StartCoroutine(Die());
     }
 
 	public void EnterGroundCollision()

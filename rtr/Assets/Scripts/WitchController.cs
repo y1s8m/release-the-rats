@@ -97,7 +97,7 @@ public class WitchController : MonoBehaviour
 
 		Vector3 target = (player.position - projectilePos.position).normalized;
 		proj.GetComponent<Rigidbody2D>().velocity = target * projectileSpeed;
-		proj.GetComponent<Transform>().rotation = Quaternion.Euler(new Vector3(0, 0, Vector3.Angle(Vector2.up, target)));
+		proj.transform.up = player.position - proj.transform.position;
 
 		witchAnimator.ResetTrigger("attack");
 		temp = false;
