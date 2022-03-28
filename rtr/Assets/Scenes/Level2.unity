@@ -2389,6 +2389,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7953955976190196790, guid: eef005e70779802468ec7d6f27ff11f3, type: 3}
+      propertyPath: m_Volume
+      value: 0.276
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436890738231818846, guid: eef005e70779802468ec7d6f27ff11f3, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3592955880369394465, guid: eef005e70779802468ec7d6f27ff11f3, type: 3}
       propertyPath: m_TagString
       value: Player

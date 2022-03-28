@@ -44,7 +44,8 @@ public class MoveableObject : MonoBehaviour
                 this.gameObject.transform.parent = player;
                 Hold();
             }
-            Debug.Log(Mathf.Abs(player.gameObject.GetComponent<Rigidbody2D>().velocity.x));
+            
+            // dragging sound logic
             timePlay += Time.deltaTime;
             if ((Mathf.Abs(player.gameObject.GetComponent<Rigidbody2D>().velocity.x) > .1f && Mathf.Abs(draggingSound.length - timePlay) < adjust)) audio.PlayOneShot(draggingSound);
             if (Mathf.Abs(draggingSound.length - timePlay) < adjust) timePlay = 0f;

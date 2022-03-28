@@ -178,18 +178,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2ae939784bb601844965231a6ac77266, type: 3}
   - {fileID: 8300000, guid: 9c4ed1cc8d885b842a4c64736e1e8c24, type: 3}
   - {fileID: 8300000, guid: f0ff98a3f9c0a5c439d8e9f2c3823c32, type: 3}
-  sewerLand: {fileID: 0}
-  denied: {fileID: 0}
+  sewerLand: {fileID: 8300000, guid: a073f2e6d3462a7419d5337a2b9822f0, type: 3}
+  denied: {fileID: 8300000, guid: a66574f9b71378549a6871f23ffe570a, type: 3}
   hp: 1
   dead: 0
-  volume: {fileID: 0}
+  volume: {fileID: 11400000, guid: 72e28005d99eb6347bc06baed8e05d3b, type: 2}
   bigJump: 1
-  stepAdjustment: 0.25
+  jumpForce: 4000
   onPipe: 0
-  damageRate: 0
   startPos: {fileID: 0}
   ratSprite: {fileID: 6543402992089022939}
-  backCollision: {fileID: 0}
+  backCollision: {fileID: 3592955880369394465}
 --- !u!50 &6543402991760639921
 Rigidbody2D:
   serializedVersion: 4

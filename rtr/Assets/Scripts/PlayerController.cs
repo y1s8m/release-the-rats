@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
 	public AudioClip denied;
 	private AudioSource audio;
 	
-	private float stepTimePassed = 0f;
 	private int index = 0;
 	private int level = 1;
 
@@ -44,12 +43,10 @@ public class PlayerController : MonoBehaviour
 	public float hp = 1f;
 	private float maxHP = 1f;
 	public bool dead = false;
-	private bool touchingWater = false;
 	public VolumeProfile volume;
 	private Vignette vignette;
 	private float airTime = 0f;
 	public float bigJump = 1f;
-	public float stepAdjustment = 0f;
 	private bool reset = true;
 
 	private float speed = 50f;
@@ -65,7 +62,7 @@ public class PlayerController : MonoBehaviour
 	private bool jumped = false;
 	private bool onGround = false;
 	public bool onPipe = false;
-	private bool canJump = false;
+	public bool canJump = false;
 	private bool lookingRight = true;
 	//private bool piping = false;
 
@@ -77,12 +74,6 @@ public class PlayerController : MonoBehaviour
 
 	// grabbing items
 	private bool grabbing = false;
-
-	// water-related variables
-	public float damageRate;
-
-	private float damageTimer = 0f;
-	private int numWaterDrops = 0;
 
 	public Transform startPos;
 
@@ -128,25 +119,13 @@ public class PlayerController : MonoBehaviour
 
 			horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 			
-			if (Input.GetButtonDown("Jump") && !jumped && !grabbing)
-			{
-				jumped = true;
+			if (Input.GetButtonDown("Jump") && !jumped && !grabbing) jumped = true;
+			else if (Input.GetButtonDown("Jump")) ratSprite.GetComponent<AudioSource>().PlayOneShot(denied);
 
-				//playerAnimator.SetBool("isOnGround", false);
-				//AudioManager.instance.PlayOneShot(jumpSound);
-			} else if (Input.GetButtonDown("Jump")) {
-				ratSprite.GetComponent<AudioSource>().PlayOneShot(denied);
-			}
+			if (Input.GetKeyDown("q")) grabbing = !grabbing;
 
-			if (Input.GetKeyDown("q")) {
-				grabbing = !grabbing;
-			}
-
-			if (!onGround) {
-				airTime += Time.deltaTime;
-			} else {
-				airTime = 0f;
-			}
+			if (!onGround) airTime += Time.deltaTime;
+			else airTime = 0f;
 		}
 	}
 
@@ -154,16 +133,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!isPaused){
 			if (cutScene || dead) return;
-
 			Move(horizontalMove * Time.fixedDeltaTime, jumped);
-
-			if (numWaterDrops > 2) {
-				damageTimer += Time.fixedDeltaTime;
-				if (damageTimer >= damageRate) {
-					damageTimer = 0f;
-					UpdateHP(hp - .1f);
-				}
-			}
 		}
 	}
 
@@ -185,20 +155,6 @@ public class PlayerController : MonoBehaviour
 	{
 		// Move the character by finding the target velocity
 		Vector3 targetVelocity;
-
-		if (onSlippery && !slipping) slipperyTimer += Time.deltaTime;
-		if (slipping && slipperyTimer < 0)
-        {
-			slipping = false;
-			slipperyTimer = 0;
-        }
-		if (slipping || slipperyTimer > maxSlipperyTime)
-		{
-			playerRigidbody.gravityScale = gravityScale;
-			slipping = true;
-			slipperyTimer -= Time.deltaTime;
-			return;
-		}
 
 		if (onPipe)
 		{
@@ -248,6 +204,10 @@ public class PlayerController : MonoBehaviour
 			Vector3 jumpDir = (normal + new Vector3(0, 1, 0)) / 2f;
 			playerRigidbody.AddForce(jumpDir * jumpForce);
 		}
+
+		if (grabbing) {
+			transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+		}
 	}
 
 
@@ -277,7 +237,6 @@ public class PlayerController : MonoBehaviour
 
 		lookingRight = true;
 		transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-
 		transform.position = startPos.position;
 		playerRigidbody.velocity = Vector2.zero;
     }
@@ -309,7 +268,17 @@ public class PlayerController : MonoBehaviour
 		StartCoroutine(Die());
     }
 
-	public void EnterGroundCollision()
+	public void EnterGroundBodyCollision() {
+		EnterGroundCollision();
+	}
+
+	public void EnterGroundFeetCollision() {
+		EnterGroundCollision();
+		onGround = true;
+		canJump = true;
+	}
+
+	private void EnterGroundCollision()
 	{
 		if (!reset && !canJump && airTime > bigJump) {
 			ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
@@ -321,18 +290,15 @@ public class PlayerController : MonoBehaviour
 			this.normal = new Vector3(0, 1, 0);
 			transform.rotation = Quaternion.Euler(Vector3.zero);
 		}
-		onGround = true;
-		canJump = true;
 	}
-	
-	public void StayGroundCollision()
-	{
-		// reset max stats
-		if (!touchingWater) UpdateHP(hp + 0.05f);
+
+	public void StayGroundCollision() {
+		canJump = true;
 	}
 
 	public void ExitGroundCollision()
 	{
+		Debug.Log("super average");
 		onGround = false;
 		canJump = false;
 	}
@@ -376,7 +342,7 @@ public class PlayerController : MonoBehaviour
 
 	public void StayPipeCollision()
     {
-		if (!slipping) playerRigidbody.gravityScale = 0f;
+		playerRigidbody.gravityScale = 0f;
 		onPipe = true;
 	}
 
@@ -392,28 +358,6 @@ public class PlayerController : MonoBehaviour
 	public void EnterTriggerCheckpoint(Transform cp)
     {
 		startPos = cp;
-	}
-
-	public void EnterTriggerSlippery ()
-	{
-		onSlippery = true;
-		speed = origSpeed * 0.7f;
-	}
-
-    public void ExitTriggerSlippery()
-	{
-		onSlippery = false;
-		slipping = false;
-		slipperyTimer = 0f;
-		speed = origSpeed;
-	}
-
-	public void AddWaterDrop() {
-		numWaterDrops++;
-	}
-
-	public void SubtractWaterDrop() {
-		numWaterDrops--;
 	}
 
 	public void LoadNextLevel()

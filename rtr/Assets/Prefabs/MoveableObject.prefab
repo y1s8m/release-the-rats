@@ -124,8 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772c2a938c7ea974b8eec5b6e4156571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  adjust: 0.1
   player: {fileID: 0}
-  draggingSound: {fileID: 0}
+  draggingSound: {fileID: 8300000, guid: 28b19530dfb64f141bfce39cc7e9161e, type: 3}
 --- !u!50 &-4059321838300734830
 Rigidbody2D:
   serializedVersion: 4

@@ -9,7 +9,8 @@ public class PlayerCollisionController : MonoBehaviour
 		if (PlayerController.instance.dead) return;
 		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "MoveableObject" || collision.gameObject.tag == "NoWaterGround")
 		{
-			PlayerController.instance.EnterGroundCollision();
+			Debug.Log("out of my skin");
+			PlayerController.instance.EnterGroundBodyCollision();
 		}
 		else if (collision.gameObject.tag == "Pipe")
 		{
@@ -20,10 +21,8 @@ public class PlayerCollisionController : MonoBehaviour
 	private void OnCollisionStay2D(Collision2D collision)
 	{
 		if (PlayerController.instance.dead) return;
-
-		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "NoWaterGround") 
-			PlayerController.instance.StayGroundCollision();
-		else if (collision.gameObject.tag == "Pipe")
+		
+		if (collision.gameObject.tag == "Pipe")
 		{
 			PlayerController.instance.StayPipeCollision();
 		}
@@ -31,19 +30,17 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "NoWaterGround") PlayerController.instance.ExitGroundCollision();
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "NoWaterGround") {
+			Debug.Log("freaking out");
+			PlayerController.instance.ExitGroundCollision();
+		}
 		else if (collision.gameObject.tag == "Pipe")
 			PlayerController.instance.ExitPipeCollision();
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
 	{
-		// "Slippery" tagged regions are not meant to be traversed via wall
-		if (collision.gameObject.tag == "Slippery")
-		{
-			PlayerController.instance.EnterTriggerSlippery();
-		}
-		else if (collision.gameObject.tag == "DeadZone")
+		if (collision.gameObject.tag == "DeadZone")
 		{
 			StartCoroutine(PlayerController.instance.Die());
 		}
@@ -55,15 +52,6 @@ public class PlayerCollisionController : MonoBehaviour
 		{
 			PlayerController.instance.LoadNextLevel();
 			GameManager.instance.LoadNextLevel();
-		}
-	}
-
-	private void OnTriggerExit2D(Collider2D collision)
-	{
-		// "Slippery" tagged regions are not meant to be traversed via wall
-		if (collision.gameObject.tag == "Slippery")
-		{
-			PlayerController.instance.ExitTriggerSlippery();
 		}
 	}
 }
