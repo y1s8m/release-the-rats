@@ -37,7 +37,7 @@ public class CameraMovement : MonoBehaviour
     }
 
     private IEnumerator DoCutscene() {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         cutScene = true;
 
         float origZ = transform.position.z;
@@ -50,15 +50,17 @@ public class CameraMovement : MonoBehaviour
         while (Mathf.Abs(goal.position.x - transform.position.x) > 0.2f || Mathf.Abs(goal.position.y - transform.position.y) > 0.2f
                                                                         || Mathf.Abs(goal.position.z - transform.position.z) > 0.2f)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(goal.position.x, goal.position.y, goal.position.z), ref velocity, 1f);
+            transform.position = Vector3.SmoothDamp(transform.position, 
+                                new Vector3(goal.position.x, goal.position.y, goal.position.z), ref velocity, 1f);
             yield return null;
         }
         yield return new WaitForSeconds(1f);
 
         while ((Mathf.Abs(playerTransform.position.x - transform.position.x) > 0.2f || Mathf.Abs(playerTransform.position.y - transform.position.y) > 0.2f
-                                                                                    || Mathf.Abs(goal.position.z - transform.position.z) > 0.2f) && cutScene)
+                                                                                    || Mathf.Abs(origZ - transform.position.z) > 0.2f) && cutScene)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(playerTransform.position.x, playerTransform.position.y, origZ), ref velocity, 1f);
+            transform.position = Vector3.SmoothDamp(transform.position, 
+                                new Vector3(playerTransform.position.x, playerTransform.position.y, origZ), ref velocity, 1f);
             yield return null;
         }
 
