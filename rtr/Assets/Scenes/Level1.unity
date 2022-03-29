@@ -3015,6 +3015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_v2
       objectReference: {fileID: 0}
+    - target: {fileID: 3160269216222578426, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3160269216222578427, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
       propertyPath: startPos
       value: 
