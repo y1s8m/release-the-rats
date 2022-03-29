@@ -307,7 +307,7 @@ MonoBehaviour:
   canJump: 0
   startPos: {fileID: 0}
   ratSprite: {fileID: 3160269215963955344}
-  backCollision: {fileID: 0}
+  grabbyBoi: {fileID: 7126245757413800725}
 --- !u!50 &3160269216222578426
 Rigidbody2D:
   serializedVersion: 4

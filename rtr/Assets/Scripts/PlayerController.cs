@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
 	// grabbing items
 	private bool grabbing = false;
 	private bool canMove = false;
+	private bool touchingMoveable = false;
 
 	public Transform startPos;
 
@@ -109,8 +110,6 @@ public class PlayerController : MonoBehaviour
 		if (!isPaused){
 			if (cutScene || dead) return;
 
-			Debug.Log(numGroundObjects);
-
 			if (running) ratSprite.GetComponent<SpriteRenderer>().flipX = false;
 			else ratSprite.GetComponent<SpriteRenderer>().flipX = true;
 
@@ -120,7 +119,10 @@ public class PlayerController : MonoBehaviour
 			else if (Input.GetButtonDown("Jump")) ratSprite.GetComponent<AudioSource>().PlayOneShot(denied);
 
 			if (Input.GetKeyDown("q")) grabbing = !grabbing;
-			if (!onGround) grabbing = false;
+			if (touchingMoveable) {
+				Debug.Log("touching moveable");
+				grabbing = false;
+			}
 
 			if (!onGround) airTime += Time.deltaTime;
 			else airTime = 0f;
@@ -304,6 +306,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	public void EnterMoveableObjectCollision() {
+		Debug.Log("moveable object collision");
 		grabbing = false;
 		numGroundObjects++;
 		canJump = true;
@@ -410,5 +413,13 @@ public class PlayerController : MonoBehaviour
 			}
 			audio.PlayOneShot(ratSteps[index]);
 		}
+	}
+
+	public void HoldMoveable() {
+		touchingMoveable = true;
+	}
+
+	public void ReleaseMoveable() {
+		touchingMoveable = false;
 	}
 }

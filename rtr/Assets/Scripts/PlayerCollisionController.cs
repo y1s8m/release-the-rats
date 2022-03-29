@@ -11,6 +11,7 @@ public class PlayerCollisionController : MonoBehaviour
 		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "MoveableObject" || collision.gameObject.tag == "NoWaterGround")
 		{
 			PlayerController.instance.EnterGroundBodyCollision();
+			if (collision.gameObject.tag == "MoveableObejct") PlayerController.instance.HoldMoveable();
 		}
 		else if (collision.gameObject.tag == "Pipe") {
             PlayerController.instance.EnterPipeCollision(collision.GetContact(0).point, collision.GetContact(0).normal.normalized);
@@ -34,7 +35,7 @@ public class PlayerCollisionController : MonoBehaviour
 	private void OnCollisionExit2D(Collision2D collision) {
 		if (collision.gameObject.tag == "Pipe") {
 			PlayerController.instance.ExitPipeCollision();
-        }
+        } else if (collision.gameObject.tag == "MoveableObject") PlayerController.instance.ReleaseMoveable();
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)

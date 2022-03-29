@@ -10,6 +10,7 @@ public class MoveableObject : MonoBehaviour
     public AudioClip draggingSound;
 
     private bool held = false;
+    private bool wentToCorrect = false;
     private float timePlay = 0f;
 
     private AudioSource audio;
@@ -43,6 +44,7 @@ public class MoveableObject : MonoBehaviour
             } else {
                 this.gameObject.transform.parent = player;
                 Hold();
+                if (!wentToCorrect) GoToCorrectPosition();
             }
             
             // dragging sound logic
@@ -58,11 +60,13 @@ public class MoveableObject : MonoBehaviour
             rb.mass = 100f;
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            wentToCorrect = false;
         }
     }
 
     public void Hold() {
         this.gameObject.transform.parent = player;
+        GoToCorrectPosition();
         held = true;
         if (rb != null) {
             Destroy(rb);
@@ -81,5 +85,10 @@ public class MoveableObject : MonoBehaviour
             transform.rotation = ogRot;
             Reset();
         }
+    }
+
+    private void GoToCorrectPosition() {
+        wentToCorrect = true;
+        //transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + .1f, transform.localPosition.z);
     }
 }
