@@ -48,7 +48,6 @@ public class WitchController : MonoBehaviour
 		}
 
 		witchAnimator = GetComponent<Animator>();
-		//audio = GetComponent<AudioSource>();
 	}
 
 	// Start is called before the first frame update
