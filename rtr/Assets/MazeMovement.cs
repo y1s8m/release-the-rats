@@ -36,6 +36,8 @@ public class MazeMovement : MonoBehaviour
 
     public bool cutScene = false;
 
+    public bool isChild;
+
     private void Awake()
     {
         if (instance != this)
@@ -91,6 +93,26 @@ public class MazeMovement : MonoBehaviour
             playerRigidbody.velocity = Vector3.zero;
             //transform.position = col.gameObject.transform.position;
         } else if (col.gameObject.tag == "NextLevelPipe") GameManager.instance.LoadNextLevel();
+        else if (col.gameObject.tag == "CurveTrigger"){
+            playerRigidbody.velocity = Vector3.zero;
+            if (isChild){
+                if(col.gameObject.GetComponent<MazeCurve>().pcollided){
+                    //fix direction
+                }
+                else{
+                    playerAnimator.SetBool("D2UTurn", true);
+                }
+            }
+            else{
+                if(col.gameObject.GetComponent<MazeCurveParent>().chcollided){
+                    //fix direction
+                }
+                else{
+                    playerAnimator.SetBool("D2UTurn", true);
+                }
+            }
+        }
+
     }
 
     public void SetUp(bool v) {
