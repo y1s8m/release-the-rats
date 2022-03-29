@@ -8,7 +8,7 @@ public class PlayerCollisionController : MonoBehaviour
 	{
 		if (PlayerController.instance.dead) return;
 
-		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "MoveableObject" || collision.gameObject.tag == "NoWaterGround")
+		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "MoveableObject")
 		{
 			PlayerController.instance.EnterGroundBodyCollision();
 			if (collision.gameObject.tag == "MoveableObejct") PlayerController.instance.HoldMoveable();

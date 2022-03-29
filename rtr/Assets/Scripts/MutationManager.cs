@@ -20,7 +20,7 @@ public class MutationManager : MonoBehaviour
     public static MutationManager m_instance;
 
     public GameObject[] potions;
-    public Rigidbody2D mandrakeRB;
+    public GameManager mandrake;
     public SpriteRenderer mandrakeSR;
     public Sprite mandrakeHighlight;
 
@@ -53,6 +53,7 @@ public class MutationManager : MonoBehaviour
     public void DropMandrake()
     {
         if (potionCount != 0) return;
+        Rigidbody2D mandrakeRB = mandrake.gameObject.AddComponent<Rigidbody2D>();
         mandrakeRB.gravityScale = 3f;
         mandrakeRB.constraints = RigidbodyConstraints2D.None;
     }
