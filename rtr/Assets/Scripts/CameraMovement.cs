@@ -31,12 +31,14 @@ public class CameraMovement : MonoBehaviour
     private bool notMaze = true;
     private bool witchExist = false;
 
+    public bool movieNotExists = false;
+
     private Vector3 velocity = Vector3.zero;
 
     private void Start()
     {
         GetComponent<Camera>().backgroundColor = Color.black;
-        //StartCoroutine(DoCutscene());
+        if (movieNotExists) StartCoroutine(DoCutscene());
 
         if (PlayerController.instance) notMaze = true;
         if (MazeMovement.instance) notMaze = false;
