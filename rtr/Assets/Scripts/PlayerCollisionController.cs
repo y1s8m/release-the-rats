@@ -7,6 +7,7 @@ public class PlayerCollisionController : MonoBehaviour
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (PlayerController.instance.dead) return;
+
 		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "MoveableObject" || collision.gameObject.tag == "NoWaterGround")
 		{
 			PlayerController.instance.EnterGroundBodyCollision();
@@ -14,6 +15,10 @@ public class PlayerCollisionController : MonoBehaviour
 		else if (collision.gameObject.tag == "Pipe") {
             PlayerController.instance.EnterPipeCollision(collision.GetContact(0).point, collision.GetContact(0).normal.normalized);
         }
+		else if (collision.gameObject.tag == "MandrakeJumpTrig")
+        {
+			if (MutationManager.instance) MutationManager.instance.DropMandrake();
+		}
 	}
 
 	private void OnCollisionStay2D(Collision2D collision)
@@ -47,5 +52,10 @@ public class PlayerCollisionController : MonoBehaviour
 			PlayerController.instance.LoadNextLevel();
 			GameManager.instance.LoadNextLevel();
 		}
+		else if (collision.gameObject.tag == "Cauldron")
+        {
+			// should play animatic
+			GameManager.instance.LoadNextLevel();
+        }
 	}
 }

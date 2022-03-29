@@ -327,7 +327,7 @@ PrefabInstance:
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 809107501}
+      objectReference: {fileID: 1055838005}
     - target: {fileID: 2992047603004942490, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 2.5953126
@@ -869,7 +869,7 @@ PrefabInstance:
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 809107501}
+      objectReference: {fileID: 1055838005}
     - target: {fileID: 2992047603004942490, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 2.5953126
@@ -1103,7 +1103,7 @@ PrefabInstance:
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 809107501}
+      objectReference: {fileID: 1055838005}
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: draggingSound
       value: 
@@ -1153,87 +1153,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.7945313, y: -0.5703125}
-      - {x: -0.7867188, y: -0.559375}
-      - {x: -0.7867188, y: -0.546875}
-      - {x: -0.77734375, y: -0.53281254}
-      - {x: -0.76640624, y: -0.5109375}
-      - {x: -0.7710938, y: -0.484375}
-      - {x: -0.7710938, y: -0.471875}
-      - {x: -0.7554688, y: -0.475}
-      - {x: -0.74140626, y: -0.45625}
-      - {x: -0.7164063, y: -0.42656252}
-      - {x: -0.71171874, y: -0.41875002}
-      - {x: -0.71484375, y: -0.4046875}
-      - {x: -0.7164063, y: -0.375}
-      - {x: -0.7210938, y: -0.3703125}
-      - {x: -0.7289063, y: -0.3671875}
-      - {x: -0.74609375, y: -0.3453125}
-      - {x: -0.75078124, y: -0.32500002}
-      - {x: -0.75703126, y: -0.3125}
-      - {x: -0.76484376, y: -0.303125}
-      - {x: -0.78828126, y: -0.2765625}
-      - {x: -0.77421874, y: -0.290625}
-      - {x: -0.75703126, y: -0.3109375}
-      - {x: -0.7523438, y: -0.3203125}
-      - {x: -0.74296874, y: -0.35}
-      - {x: -0.7289063, y: -0.36406252}
-      - {x: -0.71484375, y: -0.3671875}
-      - {x: -0.71015626, y: -0.3625}
-      - {x: -0.69453126, y: -0.33281252}
-      - {x: -0.68046874, y: -0.2984375}
-      - {x: -0.67578125, y: -0.284375}
-      - {x: -0.66328126, y: -0.253125}
-      - {x: -0.6539063, y: -0.22500001}
-      - {x: -0.6539063, y: -0.21718751}
-      - {x: -0.6507813, y: -0.215625}
-      - {x: -0.6585938, y: -0.2578125}
-      - {x: -0.67265624, y: -0.3046875}
-      - {x: -0.6929688, y: -0.35}
-      - {x: -0.7054688, y: -0.38125}
-      - {x: -0.6976563, y: -0.40312502}
-      - {x: -0.6976563, y: -0.4140625}
-      - {x: -0.6898438, y: -0.4296875}
-      - {x: -0.6929688, y: -0.4515625}
-      - {x: -0.7054688, y: -0.46875}
-      - {x: -0.7242188, y: -0.5046875}
-      - {x: -0.72734374, y: -0.5515625}
-      - {x: -0.73046875, y: -0.565625}
-      - {x: -0.7210938, y: -0.5703125}
-      - {x: -0.7132813, y: -0.5703125}
-      - {x: -0.7132813, y: -0.56875}
-      - {x: 0.63984376, y: -0.56875}
-      - {x: 0.63984376, y: -0.5703125}
-      - {x: 0.64765626, y: -0.5703125}
-      - {x: 0.65703124, y: -0.565625}
-      - {x: 0.64765626, y: -0.54062504}
-      - {x: 0.6304688, y: -0.49375}
-      - {x: 0.62421876, y: -0.4796875}
-      - {x: 0.62421876, y: -0.459375}
-      - {x: 0.6304688, y: -0.4671875}
-      - {x: 0.67109376, y: -0.48125002}
-      - {x: 0.6742188, y: -0.46875}
-      - {x: 0.6585938, y: -0.44218752}
-      - {x: 0.6382813, y: -0.421875}
-      - {x: 0.6273438, y: -0.4125}
-      - {x: 0.6148438, y: -0.4015625}
-      - {x: 0.6117188, y: -0.37968752}
-      - {x: 0.61328125, y: -0.390625}
-      - {x: 0.62421876, y: -0.4046875}
-      - {x: 0.6539063, y: -0.428125}
-      - {x: 0.67578125, y: -0.44218752}
-      - {x: 0.68046874, y: -0.45000002}
-      - {x: 0.69453126, y: -0.490625}
-      - {x: 0.7085938, y: -0.50156254}
-      - {x: 0.7398438, y: -0.521875}
-      - {x: 0.75703126, y: -0.5375}
-      - {x: 0.77265626, y: -0.56875}
-      - {x: 0.77734375, y: -0.5703125}
-      - {x: 0.78515625, y: -0.5703125}
-      - {x: 0.78515625, y: -0.56875}
-      - {x: 1.2632812, y: -0.56875}
-      - {x: 1.2648438, y: -0.5703125}
-      - {x: 1.2710937, y: -0.5703125}
+    - - {x: 1.2710937, y: -0.5703125}
       - {x: 1.2757813, y: -0.5671875}
       - {x: 1.2757813, y: -0.534375}
       - {x: 1.2710937, y: -0.5140625}
@@ -1339,24 +1259,7 @@ PolygonCollider2D:
       - {x: -1.2710937, y: -0.5703125}
       - {x: -1.2648438, y: -0.5703125}
       - {x: -1.2632812, y: -0.56875}
-      - {x: -0.80546874, y: -0.56875}
-      - {x: -0.80390626, y: -0.5703125}
     - - {x: -0.6507813, y: -0.1453125}
-      - {x: -0.62578124, y: -0.0875}
-      - {x: -0.62578124, y: -0.0828125}
-      - {x: -0.6226563, y: -0.081250004}
-      - {x: -0.61640626, y: -0.06875}
-      - {x: -0.61328125, y: -0.0640625}
-      - {x: -0.61328125, y: -0.0625}
-      - {x: -0.61640626, y: -0.065625004}
-      - {x: -0.6226563, y: -0.078125}
-      - {x: -0.6226563, y: -0.081250004}
-      - {x: -0.62578124, y: -0.084375}
-      - {x: -0.62578124, y: -0.0859375}
-      - {x: -0.63359374, y: -0.09375}
-      - {x: -0.6460938, y: -0.1109375}
-      - {x: -0.66796875, y: -0.16250001}
-      - {x: -0.66015625, y: -0.159375}
 --- !u!4 &481213428 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2992047603004942484, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
@@ -1582,7 +1485,7 @@ PrefabInstance:
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 809107501}
+      objectReference: {fileID: 1055838005}
     - target: {fileID: 2992047603004942490, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 2.5953126
@@ -2364,11 +2267,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eef005e70779802468ec7d6f27ff11f3, type: 3}
---- !u!4 &809107501 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6543402991760639926, guid: eef005e70779802468ec7d6f27ff11f3, type: 3}
-  m_PrefabInstance: {fileID: 809107500}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &810637196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2588,7 +2486,7 @@ PrefabInstance:
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 809107501}
+      objectReference: {fileID: 1055838005}
     - target: {fileID: 2992047603004942490, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 2.5953126
@@ -4025,7 +3923,7 @@ PrefabInstance:
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 809107501}
+      objectReference: {fileID: 1055838005}
     - target: {fileID: 2992047603004942490, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 2.5953126
@@ -4493,7 +4391,7 @@ PrefabInstance:
     - target: {fileID: 2992047603004942489, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 809107501}
+      objectReference: {fileID: 1055838005}
     - target: {fileID: 2992047603004942490, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 2.5953126

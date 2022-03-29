@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
 
     private static UIManager m_instance;
 
+    public GameObject[] jumpTexts;
+
     public GameObject deadPanel;
     private Image deadPanelImg;
     private bool dead = false;
@@ -34,6 +36,10 @@ public class UIManager : MonoBehaviour
 
         if (deadPanel) deadPanelImg = deadPanel.GetComponent<Image>();
         if (deadPanel) deadPanel.SetActive(false);
+
+        foreach (GameObject go in jumpTexts) {
+            go.SetActive(false);
+        }
     }
 
     private void Update()
@@ -48,16 +54,35 @@ public class UIManager : MonoBehaviour
 
     public void Die()
     {
-        deadPanelImg.color = new Color(deadPanelImg.color.r, deadPanelImg.color.g, deadPanelImg.color.b, 0);
-        deadPanel.SetActive(true);
+        if (dead) return;
 
         dead = true;
         maxOpac = false;
+
+        deadPanelImg.color = new Color(deadPanelImg.color.r, deadPanelImg.color.g, deadPanelImg.color.b, 0);
+        JumpTextOff();
+        deadPanel.SetActive(true);
     }
 
     public void DisableDeadPanel()
     {
         dead = false;
         deadPanel.SetActive(false);
+    }
+
+    public void JumpTextOn()
+    {
+        foreach (GameObject go in jumpTexts)
+        {
+            go.SetActive(true);
+        }
+    }
+
+    public void JumpTextOff()
+    {
+        foreach (GameObject go in jumpTexts)
+        {
+            go.SetActive(false);
+        }
     }
 }

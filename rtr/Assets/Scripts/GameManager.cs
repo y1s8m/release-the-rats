@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        StartCoroutine(WaitLoadSceneCoroutine(2));
+        StartCoroutine(WaitLoadSceneCoroutine(1));
     }
 
     IEnumerator WaitLoadSceneCoroutine(float waitTime)

@@ -70,7 +70,12 @@ public class MoveableObject : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "DeadZone") {
+        if (collision.gameObject.tag == "Cauldron")
+        {
+            MutationManager.instance.PotionCountDec();
+            Destroy(this.gameObject);
+        } 
+        else if (collision.gameObject.tag == "DeadZone") {
             Hold();
             transform.position = ogPos;
             transform.rotation = ogRot;
