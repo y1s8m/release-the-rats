@@ -282,6 +282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerMaze
       objectReference: {fileID: 0}
+    - target: {fileID: 6543402991760639925, guid: f9afeee44353469488d00c3d63216f3c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 68cf49ed9a7eca34798c682f9e8934d0, type: 2}
     - target: {fileID: 6543402991760639926, guid: f9afeee44353469488d00c3d63216f3c, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -403,6 +407,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &45909775
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -852,6 +858,7 @@ MonoBehaviour:
   ratSprite: {fileID: 2039514299}
   startPos: {fileID: 1939852609}
   cutScene: 0
+  isChild: 0
 --- !u!4 &118193739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6543402991760639926, guid: f9afeee44353469488d00c3d63216f3c, type: 3}
@@ -870,7 +877,7 @@ GameObject:
   - component: {fileID: 120052604}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -902,6 +909,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &120052605
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1108,6 +1117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &129234932
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1321,6 +1332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &168150950
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1914,6 +1927,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &242298133
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1975,6 +1990,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &245929022
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2118,6 +2135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &250449971
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2262,6 +2281,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &275921740
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2323,6 +2344,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &288147351
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2620,6 +2643,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &303294956
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2754,6 +2779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &316645008
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2898,6 +2925,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &372653812
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3267,6 +3296,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &433305641
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4033,6 +4064,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &575905662
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4307,6 +4340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &593396569
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5067,6 +5102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &681055487
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5734,6 +5771,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &835972234
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5868,6 +5907,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &858269829
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6074,6 +6115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &886508928
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6136,6 +6179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &892718831
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6279,6 +6324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &915715433
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7703,7 +7750,7 @@ GameObject:
   - component: {fileID: 1217916782}
   m_Layer: 0
   m_Name: Curve Trigger
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7736,6 +7783,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &1217916783
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8844,6 +8893,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &1447801258
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9060,6 +9111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &1455030743
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9357,6 +9410,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &1519474547
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9418,6 +9473,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &1523800789
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10011,6 +10068,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &1605133078
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10072,6 +10131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &1638141009
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10277,6 +10338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &1661354976
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10785,6 +10848,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &1694343747
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11001,6 +11066,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &1721728945
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11062,6 +11129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &1739057404
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11205,6 +11274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &1773270280
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11786,6 +11857,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &1865159522
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -12688,6 +12761,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &1981859524
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13077,6 +13152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  pcollided: 0
+  isChild: 1
 --- !u!58 &2005227565
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13360,6 +13437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &2067186307
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13727,6 +13806,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  chcollided: 0
+  isChild: 0
 --- !u!58 &2102985567
 CircleCollider2D:
   m_ObjectHideFlags: 0

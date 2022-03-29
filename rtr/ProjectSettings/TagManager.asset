@@ -22,6 +22,7 @@ TagManager:
   - DeleteProjectile
   - Cauldron
   - MandrakeJumpTrig
+  - CurveTrigger
   layers:
   - Default
   - TransparentFX

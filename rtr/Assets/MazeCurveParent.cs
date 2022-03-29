@@ -21,7 +21,7 @@ public class MazeCurveParent : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col){
         if (col.gameObject.tag == "Player"){
             collided = true;
-            col.gameObject.GetComponent<MazeMovement>().isChild = false;
+            col.gameObject.transform.parent.GetComponent<MazeMovement>().isChild = false;
             if (this.gameObject.transform.GetChild(0).gameObject.GetComponent<MazeCurve>().collided){
                 collided = false;
                 this.gameObject.transform.GetChild(0).gameObject.GetComponent<MazeCurve>().collided = false;
