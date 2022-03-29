@@ -89,6 +89,5 @@ public class MoveableObject : MonoBehaviour
 
     private void GoToCorrectPosition() {
         wentToCorrect = true;
-        //transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + .1f, transform.localPosition.z);
     }
 }
