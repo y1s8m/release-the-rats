@@ -56,7 +56,11 @@ public class PlayerCollisionController : MonoBehaviour
 		else if (collision.gameObject.tag == "Cauldron")
         {
 			// should play animatic
-			GameManager.instance.LoadNextLevel();
+			if (MutationManager.instance.potionCount == 0)
+			{
+				PlayerController.instance.FallInCauldron();
+				GameManager.instance.LoadNextLevel();
+			}
         }
 	}
 }

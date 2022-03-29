@@ -15,12 +15,6 @@ public class RandomPipes : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void Creak() {
         float chance = Random.Range(0f, 1f);
         if (chance > .997f)  {
@@ -40,5 +34,10 @@ public class RandomPipes : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") Creak();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Cauldron") Destroy(this.gameObject);
     }
 }

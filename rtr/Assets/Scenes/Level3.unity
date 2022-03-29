@@ -525,6 +525,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90bbf1b8d19d5ea49a54c1d6e734f497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &222466052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4886184077047186389, guid: 40f6648a571af904dbf75a6194a4fe90, type: 3}
+  m_PrefabInstance: {fileID: 4886184077356878761}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &246142780 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6299725843410931492, guid: c5cba65fad13cb64891ae64d549597f1, type: 3}
@@ -2395,6 +2400,7 @@ MonoBehaviour:
   mandrake: {fileID: 0}
   mandrakeSR: {fileID: 1663476106}
   mandrakeHighlight: {fileID: 21300000, guid: fe327cc5a515c3a4b8d4742fef6673f0, type: 3}
+  potionCount: 0
 --- !u!4 &1481604317
 Transform:
   m_ObjectHideFlags: 0
@@ -2744,7 +2750,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fe327cc5a515c3a4b8d4742fef6673f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 30006769872c0b34c830d855c5c169a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3134,6 +3140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 261091129278874601, guid: 1f50a4cbe0cdc40438a974b0f76458be, type: 3}
+      propertyPath: deadText
+      value: 
+      objectReference: {fileID: 222466052}
     - target: {fileID: 261091129278874601, guid: 1f50a4cbe0cdc40438a974b0f76458be, type: 3}
       propertyPath: deadPanel
       value: 
@@ -3837,6 +3847,7 @@ GameObject:
   - component: {fileID: 1514928716318692543}
   - component: {fileID: 1183636466201460515}
   - component: {fileID: 786793409598380658}
+  - component: {fileID: 7240637474156699492}
   m_Layer: 15
   m_Name: Mandrake
   m_TagString: Pipe
@@ -3844,6 +3855,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!50 &7240637474156699492
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7240637474156699491}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8023248324689249470
 GameObject:
   m_ObjectHideFlags: 0

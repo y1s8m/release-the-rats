@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject deadPanel;
     private Image deadPanelImg;
+    public GameObject deadText;
     private bool dead = false;
     private bool maxOpac = false;
 

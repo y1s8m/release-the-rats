@@ -25,7 +25,7 @@ public class MutationManager : MonoBehaviour
     public Sprite mandrakeHighlight;
 
     private bool jumpTextOn = false;
-    private int potionCount;
+    public int potionCount;
 
     // Start is called before the first frame update
     void Start()

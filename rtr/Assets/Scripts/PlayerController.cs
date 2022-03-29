@@ -267,6 +267,14 @@ public class PlayerController : MonoBehaviour
 		StartCoroutine(Die());
     }
 
+	public void FallInCauldron()
+    {
+		playerRigidbody.velocity = Vector2.zero;
+		playerRigidbody.gravityScale = 0;
+		UIManager.instance.deadText.SetActive(false);
+		UIManager.instance.Die();
+	}
+
 	public void EnterGroundBodyCollision() {
 		EnterGroundCollision();
 	}
