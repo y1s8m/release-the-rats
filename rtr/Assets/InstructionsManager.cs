@@ -19,10 +19,6 @@ public class InstructionsManager : MonoBehaviour
     public GameObject instrPanel;
     public bool cutscene = true;
     private static InstructionsManager m_instance;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void FixedUpdate()

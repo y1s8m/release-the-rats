@@ -5,6 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
+    public static CameraMovement instance
+    {
+        get
+        {
+            if (m_instance == null)
+            {
+                m_instance = FindObjectOfType<CameraMovement>();
+            }
+
+            return m_instance;
+        }
+    }
+
+    public static CameraMovement m_instance;
+
     public Transform playerTransform;
     public float dampTime = 0.1f;
     public float repeats = 275;
@@ -21,7 +36,7 @@ public class CameraMovement : MonoBehaviour
     private void Start()
     {
         GetComponent<Camera>().backgroundColor = Color.black;
-        StartCoroutine(DoCutscene());
+        //StartCoroutine(DoCutscene());
 
         if (PlayerController.instance) notMaze = true;
         if (MazeMovement.instance) notMaze = false;
@@ -36,6 +51,11 @@ public class CameraMovement : MonoBehaviour
             Vector3 destination = transform.position + delta;
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
         }
+    }
+
+    public void StartCutscene()
+    {
+        StartCoroutine(DoCutscene());
     }
 
     private IEnumerator DoCutscene() {

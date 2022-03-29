@@ -13,6 +13,15 @@ public class PlayRuntime : MonoBehaviour
         MyVideoPlayer = GetComponent<VideoPlayer>();
         // play video player
         MyVideoPlayer.Play();
-        Debug.Log(MyVideoPlayer.isPlaying);
+        StartCoroutine(disableVideo((float)MyVideoPlayer.length));
+    }
+
+    private IEnumerator disableVideo(float len)
+    {
+        yield return new WaitForSeconds(len);
+
+        UIManager.instance.BrighterAnim();
+        MyVideoPlayer.enabled = false;
+        if (CameraMovement.instance) CameraMovement.instance.StartCutscene();
     }
 }

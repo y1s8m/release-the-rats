@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
     public GameObject deadText;
     private bool dead = false;
     private bool maxOpac = false;
+    private bool brighterAnim = false;
+    private bool minOpac = false;
 
     private void Awake()
     {
@@ -51,6 +53,17 @@ public class UIManager : MonoBehaviour
 
             if (deadPanelImg.color.a >= 1.0f) maxOpac = true;
         }
+        if (brighterAnim && !minOpac)
+        {
+            deadPanelImg.color = new Color(deadPanelImg.color.r, deadPanelImg.color.g, deadPanelImg.color.b, deadPanelImg.color.a - 0.01f);
+
+            if (deadPanelImg.color.a <= 0f)
+            {
+                minOpac = true;
+                deadPanel.SetActive(false);
+                deadText.SetActive(true);
+            }
+        }
     }
 
     public void Die()
@@ -69,6 +82,15 @@ public class UIManager : MonoBehaviour
     {
         dead = false;
         deadPanel.SetActive(false);
+    }
+
+    public void BrighterAnim()
+    {
+        deadPanelImg.color = new Color(deadPanelImg.color.r, deadPanelImg.color.g, deadPanelImg.color.b, 1);
+        deadText.SetActive(false);
+        brighterAnim = true;
+        minOpac = false;
+        deadPanel.SetActive(true);
     }
 
     public void JumpTextOn()
