@@ -20,7 +20,8 @@ public class MutationManager : MonoBehaviour
     public static MutationManager m_instance;
 
     public GameObject[] potions;
-    public GameManager mandrake;
+    public GameObject mandrake;
+    public GameObject middlePipe;
     public SpriteRenderer mandrakeSR;
     public Sprite mandrakeHighlight;
 
@@ -56,5 +57,6 @@ public class MutationManager : MonoBehaviour
         Rigidbody2D mandrakeRB = mandrake.gameObject.AddComponent<Rigidbody2D>();
         mandrakeRB.gravityScale = 3f;
         mandrakeRB.constraints = RigidbodyConstraints2D.None;
+        middlePipe.tag = "Untagged";
     }
 }

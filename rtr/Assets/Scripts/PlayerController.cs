@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
 	private bool grabbing = false;
 	private bool canMove = false;
 	private bool touchingMoveable = false;
+	private bool scaleChanged = false;
 
 	public Transform startPos;
 
@@ -106,6 +107,11 @@ public class PlayerController : MonoBehaviour
     private async void Update()
     {
 		if (vignette) vignette.intensity.Override(1f - hp);
+
+		if (!scaleChanged && SceneManager.GetActiveScene().buildIndex == 5) {
+			transform.localScale = new Vector3(.8f, .8f, .8f);
+			scaleChanged = true;
+		}
 
 		if (!isPaused){
 			if (cutScene || dead) return;
@@ -429,5 +435,10 @@ public class PlayerController : MonoBehaviour
 
 	public void ReleaseMoveable() {
 		touchingMoveable = false;
+	}
+
+	public void SetJump() {
+		canJump = true;
+		onGround = true;
 	}
 }

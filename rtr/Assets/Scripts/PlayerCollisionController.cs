@@ -15,11 +15,9 @@ public class PlayerCollisionController : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "Pipe") {
             PlayerController.instance.EnterPipeCollision(collision.GetContact(0).point, collision.GetContact(0).normal.normalized);
+        } else if (collision.gameObject.tag == "MandrakeJumpTrig") {
+            PlayerController.instance.EnterGroundBodyCollision();
         }
-		else if (collision.gameObject.tag == "MandrakeJumpTrig")
-        {
-			if (MutationManager.instance) MutationManager.instance.DropMandrake();
-		}
 	}
 
 	private void OnCollisionStay2D(Collision2D collision)
