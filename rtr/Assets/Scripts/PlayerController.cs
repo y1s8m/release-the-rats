@@ -74,7 +74,6 @@ public class PlayerController : MonoBehaviour
 	public Transform startPos;
 
 	[SerializeField] private GameObject ratSprite;
-	public GameObject backCollision;
 
 	private float gravityScale = 5f;
 	private Rigidbody2D playerRigidbody;
@@ -105,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     private async void Update()
     {
-		vignette.intensity.Override(1f - hp);
+		if (vignette) vignette.intensity.Override(1f - hp);
 
 		if (!isPaused){
 			if (cutScene || dead) return;
@@ -257,7 +256,6 @@ public class PlayerController : MonoBehaviour
         {
 			GameManager.instance.LoadThisLevel();
 		}
-
     }
 
 	public void ProjectileHit()
