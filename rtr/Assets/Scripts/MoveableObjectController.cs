@@ -19,6 +19,8 @@ public class MoveableObjectController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "MoveableObject" && PlayerController.instance.GetGrabbing()) {
             collision.gameObject.GetComponent<MoveableObject>().Hold();
+        } else if (collision.gameObject.tag == "MoveableObject") {
+            PlayerController.instance.EnterGroundBodyCollision();
         } else if (collision.gameObject.tag == "Pipe") {
             PlayerController.instance.EnterPipeCollision(collision.GetContact(0).point, collision.GetContact(0).normal.normalized);
         }

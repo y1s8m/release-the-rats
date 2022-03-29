@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviour
 		playerRigidbody.velocity = Vector2.zero;
 		playerRigidbody.gravityScale = gravityScale;
 		ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
-		UIManager.instance.Die();
+		if (UIManager.instance) UIManager.instance.Die();
 
 		yield return new WaitForSeconds(2f);
 
