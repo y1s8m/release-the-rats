@@ -109,6 +109,8 @@ public class PlayerController : MonoBehaviour
 		if (!isPaused){
 			if (cutScene || dead) return;
 
+			Debug.Log(numGroundObjects);
+
 			if (running) ratSprite.GetComponent<SpriteRenderer>().flipX = false;
 			else ratSprite.GetComponent<SpriteRenderer>().flipX = true;
 
