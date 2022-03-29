@@ -126,11 +126,10 @@ public class PlayerController : MonoBehaviour
 
 			if (Input.GetKeyDown("q")) grabbing = !grabbing;
 			if (touchingMoveable) {
-				Debug.Log("touching moveable");
 				grabbing = false;
 			}
 
-			if (!onGround) airTime += Time.deltaTime;
+			if (!onGround && !onPipe) airTime += Time.deltaTime;
 			else airTime = 0f;
 		}
 	}
@@ -172,6 +171,8 @@ public class PlayerController : MonoBehaviour
         {
 			targetVelocity = new Vector2(horizMove * 10f, playerRigidbody.velocity.y);
 		}
+
+		if (onGround) targetVelocity = new Vector2(targetVelocity[0], 0f);
 
 		// And then smoothing it out and applying it to the character
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
@@ -336,6 +337,7 @@ public class PlayerController : MonoBehaviour
 		if (onPipe) return;
 		if (!canJump && airTime > bigJump) {
 			ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
+			airTime = 0f;
 		}
 
 		this.normal = normal;
@@ -399,7 +401,7 @@ public class PlayerController : MonoBehaviour
 
 	public void PlayFootstep() {
 		// footsteps
-		if (level == 1 && Mathf.Abs(horizontalMove) > .1f && onGround) {
+		if (level == 1 && Mathf.Abs(horizontalMove) > .1f && (onGround || onPipe)) {
 			int last = index;
 
 			while (index == last) {
