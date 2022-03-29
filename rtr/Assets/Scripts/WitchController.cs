@@ -22,17 +22,21 @@ public class WitchController : MonoBehaviour
 	public bool cutScene = false;
 
 	public bool isPaused;
-	private bool temp;
+	private bool shooting;
 
 	public Transform player;
 	public Transform projectilePos;
 	public GameObject projectilePrefab;
 	public float projectileSpeed;
 
-	/*private float nextMoveTime;
-	private float currMoveTime;*/
+	public float moveSpeed = 1f;
+
+	private float directChangeTime = 2f;
+	private float currDirectChangeTime;
+
 	private float nextProjTime;
 	private float currProjTime;
+	private Vector3 velocity = Vector3.zero;
 
 	private Animator witchAnimator;
 
@@ -59,7 +63,11 @@ public class WitchController : MonoBehaviour
 		if (!isPaused)
 		{
 			if (cutScene) return;
-			//Debug.Log(temp);
+
+			if (!shooting)
+            {
+				Move();
+            }
 		}
 	}
 
@@ -68,12 +76,8 @@ public class WitchController : MonoBehaviour
 		if (!isPaused)
 		{
 			if (cutScene) return;
-			/*currMoveTime += Time.deltaTime;
-			if (currMoveTime >= nextMoveTime)
-			{
-				currMoveTime = 0;
-            }*/
 
+			currDirectChangeTime += Time.deltaTime;
 			currProjTime += Time.deltaTime;
 			if (currProjTime >= nextProjTime)
             {
@@ -85,10 +89,22 @@ public class WitchController : MonoBehaviour
 		}
 	}
 
-	private void ShootProjectile()
+    private void Move()
     {
+		float left = (player.transform.position.x <= transform.position.x) ? -1f : 1f;
+		transform.position = Vector3.SmoothDamp(transform.position, transform.position +
+								new Vector3(left * moveSpeed, 0, 0), ref velocity, 1f);
+		if (currDirectChangeTime >= directChangeTime)
+		{
+			transform.localScale = new Vector3(-left * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+			currDirectChangeTime = 0;
+		}
+	}
+
+    private void ShootProjectile()
+	{
 		witchAnimator.SetTrigger("attack");
-		temp = true;
+		shooting = true;
 	}
 
 	public void CreateProjectile()
@@ -100,6 +116,6 @@ public class WitchController : MonoBehaviour
 		proj.transform.up = player.position - proj.transform.position;
 
 		witchAnimator.ResetTrigger("attack");
-		temp = false;
+		shooting = false;
 	}
 }
