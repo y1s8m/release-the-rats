@@ -21,7 +21,7 @@ public class pauseManager : MonoBehaviour
             if(isPaused){
                 pausePanel.SetActive(false);
                 isPaused = false;
-                player.isPaused = false;
+                if (player) player.isPaused = false;
                 if (WitchController.instance) WitchController.instance.isPaused = false;
                 Time.timeScale = 1f;
 
@@ -29,7 +29,7 @@ public class pauseManager : MonoBehaviour
             else {
                 pausePanel.SetActive(true);
                 isPaused = true;
-                player.isPaused = true;
+                if (player) player.isPaused = true;
                 if (WitchController.instance) WitchController.instance.isPaused = true;
                 Time.timeScale = 0f;
             }
