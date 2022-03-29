@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
 
 	// grabbing items
 	private bool grabbing = false;
+	private bool canMove = false;
 
 	public Transform startPos;
 
@@ -118,6 +119,7 @@ public class PlayerController : MonoBehaviour
 			else if (Input.GetButtonDown("Jump")) ratSprite.GetComponent<AudioSource>().PlayOneShot(denied);
 
 			if (Input.GetKeyDown("q")) grabbing = !grabbing;
+			if (!onGround) grabbing = false;
 
 			if (!onGround) airTime += Time.deltaTime;
 			else airTime = 0f;
@@ -301,6 +303,17 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void EnterMoveableObjectCollision() {
+		grabbing = false;
+		numGroundObjects++;
+		canJump = true;
+	}
+
+	public void ExitMoveableObjectCollision() {
+		numGroundObjects--;
+		canJump = false;
+	}
+
 	public void EnterPipeCollision(Vector3 contactPos, Vector3 normal)
     {
 		if (onPipe) return;
@@ -320,7 +333,7 @@ public class PlayerController : MonoBehaviour
 
 		// set the rotation and position offset
 		transform.rotation = Quaternion.Euler(new Vector3(0, 0, zRotAngle));
-		transform.position = contactPos + normal * 0.8f; //verticalScale;
+		transform.position = contactPos + normal * 0.6f; //verticalScale;
 
 		onPipe = true;
 		jumped = false;
@@ -334,7 +347,6 @@ public class PlayerController : MonoBehaviour
 
 	public void StayPipeCollision()
     {
-		Debug.Log("huh");
 		playerRigidbody.gravityScale = 0f;
 		onPipe = true;
 		canJump = true;
