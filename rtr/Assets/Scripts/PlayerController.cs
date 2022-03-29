@@ -178,12 +178,12 @@ public class PlayerController : MonoBehaviour
 		}
 		
 		// If the input is moving the player right and the player is facing left...
-		if (!grabbing && horizMove > 0 && !lookingRight && !onPipe)
+		if (horizMove > 0 && !lookingRight && !onPipe)
 		{
 			Flip();
 		}
 		// Otherwise if the input is moving the player left and the player is facing right...
-		else if (!grabbing && horizMove < 0 && lookingRight && !onPipe)
+		else if (horizMove < 0 && lookingRight && !onPipe)
 		{
 			Flip();
 		}

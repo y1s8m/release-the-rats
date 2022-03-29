@@ -24,7 +24,7 @@ public class MutatedRatController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetBool("Attacking", true);
-            witchAnim.SetTrigger("hit");
+            witchAnim.SetBool("playerPunching", true);
             witchHP--;
             if (witchHP <= 0)
             {
@@ -32,6 +32,8 @@ public class MutatedRatController : MonoBehaviour
                 witchAnim.SetBool("isDead", true);
                 StartCoroutine(GameOver());
             }
+        } else {
+            witchAnim.SetBool("playerPunching", false);
         }
     }
 
