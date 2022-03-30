@@ -127,12 +127,14 @@ public class MazeMovement : MonoBehaviour
                         if (target.x > transform.position.x) MoveInDirect(3);
                         if (target.x < transform.position.x) MoveInDirect(4);
                     }
+                    col.gameObject.GetComponent<MazeCurve>().collided = false;
+                    col.gameObject.transform.parent.GetComponent<MazeCurveParent>().collided = false;
                 }
                 else{
                     //collided with child first
                     target = col.gameObject.transform.parent.transform.position;
                     transform.up = target - transform.position;
-                    playerRigidbody.velocity = transform.up.normalized * speed * Time.deltaTime;
+                    playerRigidbody.velocity = transform.up * speed;
                     /*while (Mathf.Abs(transform.position.x - target.x) > 0.1f
                          && Mathf.Abs(transform.position.y - target.y) > 0.1f) {
                         transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.01f);
@@ -140,7 +142,7 @@ public class MazeMovement : MonoBehaviour
                 }
             }
             else{
-                col.gameObject.transform.GetComponent<MazeCurveParent>().collided = true;
+                col.gameObject.GetComponent<MazeCurveParent>().collided = true;
                 if (col.gameObject.transform.GetChild(0).GetComponent<MazeCurve>().collided){
                     //collided with child then parent
                     target = col.gameObject.GetComponent<MazeCurveParent>().nextNode.position;
@@ -152,12 +154,14 @@ public class MazeMovement : MonoBehaviour
                         if (target.x > transform.position.x) MoveInDirect(3);
                         if (target.x < transform.position.x) MoveInDirect(4);
                     }
+                    col.gameObject.GetComponent<MazeCurveParent>().collided = false;
+                    col.gameObject.transform.GetChild(0).GetComponent<MazeCurve>().collided = false;
                 }
                 else{
                     //collided with parent first
                     target = col.gameObject.transform.GetChild(0).gameObject.transform.position;
                     transform.up = target - transform.position;
-                    playerRigidbody.velocity = transform.up.normalized * speed * Time.deltaTime;
+                    playerRigidbody.velocity = transform.up * speed;
                     /*while (Mathf.Abs(transform.position.x - target.x) > 0.1f
                          && Mathf.Abs(transform.position.y - target.y) > 0.1f) {
                         transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.01f);

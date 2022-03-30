@@ -7,4 +7,7 @@ public class MazeCurveParent : MonoBehaviour
     public bool collided = false;
 
     public Transform nextNode;
+
+    public bool isChild = false;
+
 }
