@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitLoadSceneCoroutine(float waitTime)
     {
+        UIManager.instance.DarkerAnim();
+
         yield return new WaitForSeconds(waitTime);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
