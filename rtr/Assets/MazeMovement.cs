@@ -32,11 +32,15 @@ public class MazeMovement : MonoBehaviour
     bool validLeft = true;
     bool validRight = true;
 
-    bool deciding = false;
+    public bool deciding = false;
 
     public bool cutScene = false;
 
     public bool isChild;
+
+    public float speed = 500f;
+
+    private Vector3 vel = Vector3.zero;
 
     private void Awake()
     {
@@ -60,57 +64,107 @@ public class MazeMovement : MonoBehaviour
     {
         if ((!cutScene) && (transform.position == startPos.position)) {
 
-            playerRigidbody.velocity = new Vector3(-1000f * Time.deltaTime,0f * Time.deltaTime);
+            playerRigidbody.velocity = new Vector3(-speed,0f);
         }
         else{
             if (deciding){
                 if (validUp && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))){
-                    playerRigidbody.velocity = new Vector3(0f * Time.deltaTime,1000f * Time.deltaTime);
-                    this.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-                    deciding = false;
+                    MoveInDirect(1);
                 }
                 if (validDown && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))){
-                    playerRigidbody.velocity = new Vector3(0f * Time.deltaTime,-1000f * Time.deltaTime);
-                    this.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-                    deciding = false;
+                    MoveInDirect(2);
                 }
                 if (validRight && (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))){
-                    playerRigidbody.velocity = new Vector3(1000f * Time.deltaTime,0f * Time.deltaTime);
-                    this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    deciding = false;
+                    MoveInDirect(3);
                 }
                 if (validLeft && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))){
-                    playerRigidbody.velocity = new Vector3(-1000f * Time.deltaTime,0f * Time.deltaTime);
-                    this.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-                    deciding = false;
+                    MoveInDirect(4);
                 }
             }
+        }
+    }
+
+    private void MoveInDirect(int dir) {
+        if (dir == 1) {
+            playerRigidbody.velocity = new Vector3(0f, speed);
+            this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            deciding = false;
+        }
+        else if (dir == 2) {
+            playerRigidbody.velocity = new Vector3(0f, -speed);
+            this.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            deciding = false;
+        }
+        else if (dir == 3) {
+            playerRigidbody.velocity = new Vector3(speed, 0f);
+            this.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+            deciding = false;
+        }
+        else if (dir == 4) {
+            playerRigidbody.velocity = new Vector3(-speed, 0f);
+            this.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            deciding = false;
         }
     }
 
     void OnTriggerEnter2D (Collider2D col){
         if (col.gameObject.tag == "move"){
             playerRigidbody.velocity = Vector3.zero;
-            //transform.position = col.gameObject.transform.position;
         } else if (col.gameObject.tag == "NextLevelPipe") GameManager.instance.LoadNextLevel();
         else if (col.gameObject.tag == "CurveTrigger"){
             playerRigidbody.velocity = Vector3.zero;
-            if (isChild){
-                if(col.gameObject.GetComponent<MazeCurve>().pcollided){
-                    //fix direction
+            Vector3 target;
+            if(col.gameObject.GetComponent<MazeCurve>()){
+                col.gameObject.GetComponent<MazeCurve>().collided = true;
+                if (col.gameObject.transform.parent.GetComponent<MazeCurveParent>().collided){
+                    //collided with parent then child
+                    target = col.gameObject.GetComponent<MazeCurve>().nextNode.position;
+                    if (Mathf.Abs(target.y - transform.position.y) > Mathf.Abs(target.x - transform.position.x)) {
+                        if (target.y > transform.position.y) MoveInDirect(1);
+                        if (target.y < transform.position.y) MoveInDirect(2);
+                    }
+                    else {
+                        if (target.x > transform.position.x) MoveInDirect(3);
+                        if (target.x < transform.position.x) MoveInDirect(4);
+                    }
                 }
                 else{
-                    playerAnimator.SetBool("D2UTurn", true);
+                    //collided with child first
+                    target = col.gameObject.transform.parent.transform.position;
+                    transform.up = target - transform.position;
+                    playerRigidbody.velocity = transform.up.normalized * speed * Time.deltaTime;
+                    /*while (Mathf.Abs(transform.position.x - target.x) > 0.1f
+                         && Mathf.Abs(transform.position.y - target.y) > 0.1f) {
+                        transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.01f);
+                    }*/
                 }
             }
             else{
-                if(col.gameObject.GetComponent<MazeCurveParent>().chcollided){
-                    //fix direction
+                col.gameObject.transform.GetComponent<MazeCurveParent>().collided = true;
+                if (col.gameObject.transform.GetChild(0).GetComponent<MazeCurve>().collided){
+                    //collided with child then parent
+                    target = col.gameObject.GetComponent<MazeCurveParent>().nextNode.position;
+                    if (Mathf.Abs(target.y - transform.position.y) > Mathf.Abs(target.x - transform.position.x)) {
+                        if (target.y > transform.position.y) MoveInDirect(1);
+                        if (target.y < transform.position.y) MoveInDirect(2);
+                    }
+                    else {
+                        if (target.x > transform.position.x) MoveInDirect(3);
+                        if (target.x < transform.position.x) MoveInDirect(4);
+                    }
                 }
                 else{
-                    playerAnimator.SetBool("D2UTurn", true);
+                    //collided with parent first
+                    target = col.gameObject.transform.GetChild(0).gameObject.transform.position;
+                    transform.up = target - transform.position;
+                    playerRigidbody.velocity = transform.up.normalized * speed * Time.deltaTime;
+                    /*while (Mathf.Abs(transform.position.x - target.x) > 0.1f
+                         && Mathf.Abs(transform.position.y - target.y) > 0.1f) {
+                        transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.01f);
+                    }*/
                 }
             }
+            
         }
 
     }
