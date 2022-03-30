@@ -41,8 +41,6 @@ public class PlayerController : MonoBehaviour
 
 	// player movement variables
 	public bool dead = false;
-	public VolumeProfile volume;
-	private Vignette vignette;
 	private float airTime = 0f;
 	public float bigJump = 1f;
 	private bool reset = true;
@@ -67,7 +65,6 @@ public class PlayerController : MonoBehaviour
 
 	// grabbing items
 	private bool grabbing = false;
-	private bool canMove = false;
 	private bool touchingMoveable = false;
 	private bool scaleChanged = false;
 
@@ -98,8 +95,6 @@ public class PlayerController : MonoBehaviour
 		playerRigidbody.constraints = RigidbodyConstraints2D.None;
 
 		cutScene = true;
-
-		volume.TryGet(out vignette);
 	}
 
     private async void Update()

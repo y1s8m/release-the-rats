@@ -12,13 +12,10 @@ public class MoveableObject : MonoBehaviour
     public AudioSource secondAudio;
 
     private bool held = false;
-    private bool playing = false;
     private bool wentToCorrect = false;
 
-    private bool first = false;
     private bool firstPlaying = false;
     private float firstTime = 0f;
-    private bool second = false;
     private bool secondPlaying = false;
     private float secondTime = 0f;
 
@@ -26,7 +23,6 @@ public class MoveableObject : MonoBehaviour
     private Transform home;
     private Vector3 ogPos;
     private Quaternion ogRot;
-    private Vector3 zeroVec = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()

@@ -22,7 +22,6 @@ public class PlayerMazeController : MonoBehaviour
     public bool cutScene = false;
 
     private float speed = 50f;
-    private float origSpeed = 50f;
     private float moveSmoothing = 0.05f;
 
     private float horizontalMove = 0.0f;
