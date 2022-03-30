@@ -304,8 +304,7 @@ public class PlayerController : MonoBehaviour
     {
 		playerRigidbody.velocity = Vector2.zero;
 		playerRigidbody.gravityScale = 0;
-		UIManager.instance.deadText.SetActive(false);
-		UIManager.instance.Die();
+		UIManager.instance.DarkerAnim();
 	}
 
 	public void EnterGroundBodyCollision() {

@@ -93,6 +93,12 @@ public class UIManager : MonoBehaviour
         deadPanel.SetActive(true);
     }
 
+    public void DarkerAnim()
+    {
+        deadText.SetActive(false);
+        Die();
+    }
+
     public void JumpTextOn()
     {
         foreach (GameObject go in jumpTexts)
