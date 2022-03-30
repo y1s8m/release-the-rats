@@ -3418,6 +3418,10 @@ PrefabInstance:
       propertyPath: startPos
       value: 
       objectReference: {fileID: 1610305371}
+    - target: {fileID: 3160269216222578427, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
+      propertyPath: jumpForce
+      value: 4500
+      objectReference: {fileID: 0}
     - target: {fileID: 3160269216222578429, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
       propertyPath: m_RootOrder
       value: 6
