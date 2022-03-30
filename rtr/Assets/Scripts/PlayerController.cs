@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 	
 	private int index = 0;
 	private int level = 1;
+	private bool beatLevel3 = false;
 
 	// animation
 	private bool running = false;
@@ -249,6 +250,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Die()
     {
+		if (dead) yield return new WaitForSeconds(0);
 		dead = true;
 
 		playerRigidbody.velocity = Vector2.zero;
@@ -270,7 +272,7 @@ public class PlayerController : MonoBehaviour
 
 	public void ProjectileHit()
     {
-		StartCoroutine(Die());
+		if (!beatLevel3) StartCoroutine(Die());
     }
 
 	public void FallInCauldron()
@@ -452,5 +454,9 @@ public class PlayerController : MonoBehaviour
 	private IEnumerator StepFade(float length) {
 		yield return new WaitForSeconds(length);
 		numSteps--;
+	}
+
+	public void Level3End() {
+		beatLevel3 = true;
 	}
 }
