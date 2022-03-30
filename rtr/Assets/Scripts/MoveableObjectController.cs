@@ -23,6 +23,8 @@ public class MoveableObjectController : MonoBehaviour
             PlayerController.instance.EnterGroundBodyCollision();
         } else if (collision.gameObject.tag == "Pipe") {
             PlayerController.instance.EnterPipeCollision(collision.GetContact(0).point, collision.GetContact(0).normal.normalized);
+        } else if (collision.gameObject.tag == "Ground") {
+            PlayerController.instance.StandUpright();
         }
     }
 

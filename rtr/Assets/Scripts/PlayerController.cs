@@ -172,6 +172,15 @@ public class PlayerController : MonoBehaviour
 			targetVelocity = new Vector2(horizMove * 10f, playerRigidbody.velocity.y);
 		}
 
+		
+		if (numGroundObjects > 0) {
+			float angle = transform.rotation.z;
+			if (targetVelocity.x != 0) {
+				if (targetVelocity.x > 0) targetVelocity = new Vector2((Mathf.Cos(angle * targetVelocity.x) - Mathf.Sin(angle * targetVelocity.y)) * 10f, 0f);
+				else targetVelocity = new Vector2((Mathf.Cos(angle * targetVelocity.x) - Mathf.Sin(angle * targetVelocity.y)) * 10f * (-1f), 0f);
+			}
+		}
+
 		if (onGround) targetVelocity = new Vector2(targetVelocity[0], 0f);
 
 		// And then smoothing it out and applying it to the character
@@ -442,5 +451,9 @@ public class PlayerController : MonoBehaviour
 	public void SetJump() {
 		canJump = true;
 		onGround = true;
+	}
+
+	public void StandUpright() {
+		transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 	}
 }
