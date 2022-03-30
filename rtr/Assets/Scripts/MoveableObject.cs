@@ -80,6 +80,8 @@ public class MoveableObject : MonoBehaviour
     }
 
     public void Reset() {
+        this.gameObject.transform.parent = home;
+        held = false;
         if (rb == null) {
             rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 100f;
@@ -105,7 +107,7 @@ public class MoveableObject : MonoBehaviour
             MutationManager.instance.PotionCountDec();
             Destroy(this.gameObject);
         } 
-        else if (collision.gameObject.tag == "DeadZone") {
+        else if (collision.gameObject.tag == "DeadZone" || collision.gameObject.tag == "MoveReset") {
             Hold();
             transform.position = ogPos;
             transform.rotation = ogRot;
