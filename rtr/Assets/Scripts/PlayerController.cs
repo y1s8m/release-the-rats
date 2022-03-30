@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
 	// animation
 	private bool running = false;
+	private int numSteps = 0;
 
 	// player movement variables
 	[Range(0, 1)]
@@ -322,7 +323,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!reset && !canJump && airTime > bigJump) {
 			ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
-		} else if (!reset && !canJump) LandStep();
+		} else if (!reset && !canJump && !grabbing) LandStep();
 		reset = false;
 		
 		if (!onPipe && !grabbing)
@@ -439,6 +440,8 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 			audio.PlayOneShot(ratSteps[index]);
+			numSteps++;
+			StartCoroutine(StepFade(ratSteps[index].length));
 		}
 	}
 
@@ -453,6 +456,7 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 			audio.PlayOneShot(ratSteps[index]);
+			StartCoroutine(StepFade(ratSteps[index].length));
 		}
 	}
 
@@ -471,5 +475,10 @@ public class PlayerController : MonoBehaviour
 
 	public void StandUpright() {
 		transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+	}
+
+	private IEnumerator StepFade(float length) {
+		yield return new WaitForSeconds(length);
+		numSteps--;
 	}
 }
