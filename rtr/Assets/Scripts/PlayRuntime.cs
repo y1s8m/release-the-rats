@@ -20,8 +20,7 @@ public class PlayRuntime : MonoBehaviour
     {
         yield return new WaitForSeconds(len);
 
-        MyVideoPlayer.enabled = false;
-        InstructionsManager.instance.ShowInstructions();
+        MyVideoPlayer.enabled = false;s
         AmbienceManager.S.StartMusic();
         if (CameraMovement.instance) CameraMovement.instance.StartCutscene();
     }
