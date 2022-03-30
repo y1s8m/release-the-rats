@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 45909774}
   m_Layer: 0
   m_Name: Curve Trigger (6)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -412,7 +412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1523800787}
+  isChild: 0
 --- !u!58 &45909775
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -864,7 +865,7 @@ MonoBehaviour:
   deciding: 0
   cutScene: 0
   isChild: 0
-  speed: 500
+  speed: 10
 --- !u!4 &118193739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6543402991760639926, guid: f9afeee44353469488d00c3d63216f3c, type: 3}
@@ -915,6 +916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
+  isChild: 1
   nextNode: {fileID: 1935380708}
 --- !u!58 &120052605
 CircleCollider2D:
@@ -1089,7 +1091,7 @@ GameObject:
   - component: {fileID: 129234931}
   m_Layer: 0
   m_Name: Curve Trigger (16)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1122,7 +1124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 835972232}
+  isChild: 0
 --- !u!58 &129234932
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1303,7 +1306,7 @@ GameObject:
   - component: {fileID: 168150949}
   m_Layer: 0
   m_Name: Curve Trigger (14)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1336,7 +1339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1353059688}
+  isChild: 0
 --- !u!58 &168150950
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1897,7 +1901,7 @@ GameObject:
   - component: {fileID: 242298132}
   m_Layer: 0
   m_Name: Curve Trigger (1)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1930,7 +1934,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1682399028}
+  isChild: 0
 --- !u!58 &242298133
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1960,7 +1965,7 @@ GameObject:
   - component: {fileID: 245929021}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1992,7 +1997,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 2112973535}
 --- !u!58 &245929022
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2104,7 +2110,7 @@ GameObject:
   - component: {fileID: 250449970}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2136,7 +2142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 1721728943}
 --- !u!58 &250449971
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2248,7 +2255,7 @@ GameObject:
   - component: {fileID: 275921739}
   m_Layer: 0
   m_Name: Curve Trigger (2)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2281,7 +2288,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1582979814}
+  isChild: 0
 --- !u!58 &275921740
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2311,7 +2319,7 @@ GameObject:
   - component: {fileID: 288147350}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2343,7 +2351,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 1582979814}
 --- !u!58 &288147351
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2609,7 +2618,7 @@ GameObject:
   - component: {fileID: 303294955}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2641,7 +2650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 1024274170}
 --- !u!58 &303294956
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2743,7 +2753,7 @@ GameObject:
   - component: {fileID: 316645007}
   m_Layer: 0
   m_Name: Curve Trigger (13)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2776,7 +2786,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 167460218}
+  isChild: 0
 --- !u!58 &316645008
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2888,7 +2899,7 @@ GameObject:
   - component: {fileID: 372653811}
   m_Layer: 0
   m_Name: Curve Trigger (17)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2921,7 +2932,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1298678460}
+  isChild: 0
 --- !u!58 &372653812
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3259,7 +3271,7 @@ GameObject:
   - component: {fileID: 433305640}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3291,7 +3303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 1865159520}
 --- !u!58 &433305641
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4026,7 +4039,7 @@ GameObject:
   - component: {fileID: 575905661}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4058,7 +4071,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 116624040}
 --- !u!58 &575905662
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4301,7 +4315,7 @@ GameObject:
   - component: {fileID: 593396568}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4333,7 +4347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 585787318}
 --- !u!58 &593396569
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5061,7 +5076,7 @@ GameObject:
   - component: {fileID: 681055486}
   m_Layer: 0
   m_Name: Curve Trigger (7)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5094,7 +5109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1353059688}
+  isChild: 0
 --- !u!58 &681055487
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5730,7 +5746,7 @@ GameObject:
   - component: {fileID: 835972233}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5762,7 +5778,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 129234930}
 --- !u!58 &835972234
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5864,7 +5881,7 @@ GameObject:
   - component: {fileID: 858269828}
   m_Layer: 0
   m_Name: Curve Trigger (3)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5897,7 +5914,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1353059688}
+  isChild: 0
 --- !u!58 &858269829
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6071,7 +6089,7 @@ GameObject:
   - component: {fileID: 886508927}
   m_Layer: 0
   m_Name: Curve Trigger (12)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6104,7 +6122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1024274170}
+  isChild: 0
 --- !u!58 &886508928
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6134,7 +6153,7 @@ GameObject:
   - component: {fileID: 892718830}
   m_Layer: 0
   m_Name: Curve Trigger (5)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6167,7 +6186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1519474545}
+  isChild: 0
 --- !u!58 &892718831
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6279,7 +6299,7 @@ GameObject:
   - component: {fileID: 915715432}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6311,7 +6331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 104015808}
 --- !u!58 &915715433
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7774,6 +7795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collided: 0
   nextNode: {fileID: 1367163648}
+  isChild: 0
 --- !u!58 &1217916783
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8850,7 +8872,7 @@ GameObject:
   - component: {fileID: 1447801257}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8882,7 +8904,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 1981859522}
 --- !u!58 &1447801258
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9066,7 +9089,7 @@ GameObject:
   - component: {fileID: 1455030742}
   m_Layer: 0
   m_Name: Curve Trigger (18)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9099,7 +9122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1638141007}
+  isChild: 0
 --- !u!58 &1455030743
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9365,7 +9389,7 @@ GameObject:
   - component: {fileID: 1519474546}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9378,7 +9402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519474544}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.75, y: 4.39, z: 0}
+  m_LocalPosition: {x: -4.75, y: 3.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1455030741}
@@ -9397,7 +9421,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 892718829}
 --- !u!58 &1519474547
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9427,7 +9452,7 @@ GameObject:
   - component: {fileID: 1523800788}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9459,7 +9484,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 45909773}
 --- !u!58 &1523800789
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10020,7 +10046,7 @@ GameObject:
   - component: {fileID: 1605133077}
   m_Layer: 0
   m_Name: Curve Trigger (9)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10053,7 +10079,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 585787318}
+  isChild: 0
 --- !u!58 &1605133078
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10083,7 +10110,7 @@ GameObject:
   - component: {fileID: 1638141008}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10115,7 +10142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 1455030741}
 --- !u!58 &1638141009
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10289,7 +10317,7 @@ GameObject:
   - component: {fileID: 1661354975}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10302,7 +10330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661354973}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.75, y: 4.39, z: 0}
+  m_LocalPosition: {x: -9.7, y: 9.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 892718829}
@@ -10321,7 +10349,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 585787318}
 --- !u!58 &1661354976
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10798,7 +10827,7 @@ GameObject:
   - component: {fileID: 1694343746}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10830,7 +10859,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 2091208224}
 --- !u!58 &1694343747
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11014,7 +11044,7 @@ GameObject:
   - component: {fileID: 1721728944}
   m_Layer: 0
   m_Name: Curve Trigger (8)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11047,7 +11077,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 250449969}
+  isChild: 0
 --- !u!58 &1721728945
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11077,7 +11108,7 @@ GameObject:
   - component: {fileID: 1739057403}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11109,7 +11140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 167460218}
 --- !u!58 &1739057404
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11221,7 +11253,7 @@ GameObject:
   - component: {fileID: 1773270279}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11253,7 +11285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 1582979814}
 --- !u!58 &1773270280
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11802,7 +11835,7 @@ GameObject:
   - component: {fileID: 1865159521}
   m_Layer: 0
   m_Name: Curve Trigger (10)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11835,7 +11868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 433305639}
+  isChild: 0
 --- !u!58 &1865159522
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -18397,7 +18431,7 @@ GameObject:
   - component: {fileID: 1981859523}
   m_Layer: 0
   m_Name: Curve Trigger (11)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18430,7 +18464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 1447801256}
+  isChild: 0
 --- !u!58 &1981859524
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -18788,7 +18823,7 @@ GameObject:
   - component: {fileID: 2005227564}
   m_Layer: 0
   m_Name: Curve End
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18820,7 +18855,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  isChild: 1
+  nextNode: {fileID: 2091208224}
 --- !u!58 &2005227565
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -19071,7 +19107,7 @@ GameObject:
   - component: {fileID: 2067186306}
   m_Layer: 0
   m_Name: Curve Trigger (4)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19104,7 +19140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 167460218}
+  isChild: 0
 --- !u!58 &2067186307
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -19439,7 +19476,7 @@ GameObject:
   - component: {fileID: 2102985566}
   m_Layer: 0
   m_Name: Curve Trigger (15)
-  m_TagString: Untagged
+  m_TagString: CurveTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19472,7 +19509,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collided: 0
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 116624040}
+  isChild: 0
 --- !u!58 &2102985567
 CircleCollider2D:
   m_ObjectHideFlags: 0
