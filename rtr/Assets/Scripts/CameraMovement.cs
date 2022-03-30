@@ -60,7 +60,10 @@ public class CameraMovement : MonoBehaviour
         StartCoroutine(DoCutscene());
     }
 
-    private IEnumerator DoCutscene() {
+    private IEnumerator DoCutscene()
+    {
+        UIManager.instance.BrighterAnim();
+
         yield return new WaitForSeconds(1.5f);
         cutScene = true;
 

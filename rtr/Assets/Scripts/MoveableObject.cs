@@ -8,12 +8,20 @@ public class MoveableObject : MonoBehaviour
 
     public Transform player;
     public AudioClip draggingSound;
+    public AudioSource firstAudio;
+    public AudioSource secondAudio;
 
     private bool held = false;
+    private bool playing = false;
     private bool wentToCorrect = false;
-    private float timePlay = 0f;
 
-    private AudioSource audio;
+    private bool first = false;
+    private bool firstPlaying = false;
+    private float firstTime = 0f;
+    private bool second = false;
+    private bool secondPlaying = false;
+    private float secondTime = 0f;
+
     private Rigidbody2D rb;
     private Transform home;
     private Vector3 ogPos;
@@ -24,7 +32,6 @@ public class MoveableObject : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        audio = GetComponent<AudioSource>();
         rb.mass = 100f;
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -46,11 +53,33 @@ public class MoveableObject : MonoBehaviour
                 Hold();
                 if (!wentToCorrect) GoToCorrectPosition();
             }
-            
+
             // dragging sound logic
-            timePlay += Time.deltaTime;
-            if ((Mathf.Abs(player.gameObject.GetComponent<Rigidbody2D>().velocity.x) > .1f && Mathf.Abs(draggingSound.length - timePlay) < adjust)) audio.PlayOneShot(draggingSound);
-            if (Mathf.Abs(draggingSound.length - timePlay) < adjust) timePlay = 0f;
+            if (firstPlaying) firstTime += Time.deltaTime;
+            if (secondPlaying) secondTime += Time.deltaTime;
+            if (Mathf.Abs(player.gameObject.GetComponent<Rigidbody2D>().velocity.x) > .1f) {
+                if (!firstPlaying) {
+                    firstPlaying = true;
+                    firstAudio.Play();
+                } else if (firstTime > draggingSound.length - adjust && !secondPlaying) {
+                    secondPlaying = true;
+                    secondAudio.Play();
+                }
+            } else {
+                firstAudio.Stop();
+                secondAudio.Stop();
+            }
+            if (firstPlaying && adjust + firstTime >= draggingSound.length) {
+                firstPlaying = false;
+                firstTime = 0f;
+            }
+            if (secondPlaying && adjust + secondTime >= draggingSound.length) {
+                secondPlaying = false;
+                secondTime = 0f;
+            }
+        } else {
+            firstAudio.Stop();
+            secondAudio.Stop();
         }
     }
 

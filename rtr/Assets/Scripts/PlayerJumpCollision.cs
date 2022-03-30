@@ -11,7 +11,9 @@ public class PlayerJumpCollision : MonoBehaviour
             PlayerController.instance.EnterMoveableObjectCollision();
         } else if (collision.gameObject.tag == "MandrakeJumpTrig") {
             PlayerController.instance.EnterGroundFeetCollision();
-            if (MutationManager.instance) MutationManager.instance.DropMandrake();
+            if (MutationManager.instance) {
+                MutationManager.instance.DropMandrake();
+            }
         }
     }
 

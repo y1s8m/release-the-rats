@@ -54,6 +54,7 @@ public class MutationManager : MonoBehaviour
     public void DropMandrake()
     {
         if (potionCount != 0) return;
+        Debug.Log("uh");
         Rigidbody2D mandrakeRB = mandrake.gameObject.AddComponent<Rigidbody2D>();
         mandrakeRB.gravityScale = 3f;
         mandrakeRB.constraints = RigidbodyConstraints2D.None;

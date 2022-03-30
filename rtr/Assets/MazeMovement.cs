@@ -48,8 +48,6 @@ public class MazeMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-       
     }
     // Start is called before the first frame update
     void Start()
@@ -108,69 +106,77 @@ public class MazeMovement : MonoBehaviour
     }
 
     void OnTriggerEnter2D (Collider2D col){
-        if (col.gameObject.tag == "move"){
+        if (col.gameObject.tag == "move")
+        {
             playerRigidbody.velocity = Vector3.zero;
-        } else if (col.gameObject.tag == "NextLevelPipe") GameManager.instance.LoadNextLevel();
-        else if (col.gameObject.tag == "CurveTrigger"){
+        }
+        else if (col.gameObject.tag == "NextLevelPipe")
+        {
+            playerRigidbody.velocity = Vector2.zero;
+            UIManager.instance.DarkerAnim();
+            GameManager.instance.LoadNextLevel();
+        }
+        else if (col.gameObject.tag == "CurveTrigger")
+        {
             playerRigidbody.velocity = Vector3.zero;
             Vector3 target;
-            if(col.gameObject.GetComponent<MazeCurve>()){
+            if (col.gameObject.GetComponent<MazeCurve>())
+            {
                 col.gameObject.GetComponent<MazeCurve>().collided = true;
-                if (col.gameObject.transform.parent.GetComponent<MazeCurveParent>().collided){
+                if (col.gameObject.transform.parent.GetComponent<MazeCurveParent>().collided)
+                {
                     //collided with parent then child
                     target = col.gameObject.GetComponent<MazeCurve>().nextNode.position;
-                    if (Mathf.Abs(target.y - transform.position.y) > Mathf.Abs(target.x - transform.position.x)) {
+                    if (Mathf.Abs(target.y - transform.position.y) > Mathf.Abs(target.x - transform.position.x))
+                    {
                         if (target.y > transform.position.y) MoveInDirect(1);
                         if (target.y < transform.position.y) MoveInDirect(2);
                     }
-                    else {
+                    else
+                    {
                         if (target.x > transform.position.x) MoveInDirect(3);
                         if (target.x < transform.position.x) MoveInDirect(4);
                     }
                     col.gameObject.GetComponent<MazeCurve>().collided = false;
                     col.gameObject.transform.parent.GetComponent<MazeCurveParent>().collided = false;
                 }
-                else{
+                else
+                {
                     //collided with child first
                     target = col.gameObject.transform.parent.transform.position;
                     transform.up = target - transform.position;
                     playerRigidbody.velocity = transform.up * speed;
-                    /*while (Mathf.Abs(transform.position.x - target.x) > 0.1f
-                         && Mathf.Abs(transform.position.y - target.y) > 0.1f) {
-                        transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.01f);
-                    }*/
                 }
             }
-            else{
+            else
+            {
                 col.gameObject.GetComponent<MazeCurveParent>().collided = true;
-                if (col.gameObject.transform.GetChild(0).GetComponent<MazeCurve>().collided){
+                if (col.gameObject.transform.GetChild(0).GetComponent<MazeCurve>().collided)
+                {
                     //collided with child then parent
                     target = col.gameObject.GetComponent<MazeCurveParent>().nextNode.position;
-                    if (Mathf.Abs(target.y - transform.position.y) > Mathf.Abs(target.x - transform.position.x)) {
+                    if (Mathf.Abs(target.y - transform.position.y) > Mathf.Abs(target.x - transform.position.x))
+                    {
                         if (target.y > transform.position.y) MoveInDirect(1);
                         if (target.y < transform.position.y) MoveInDirect(2);
                     }
-                    else {
+                    else
+                    {
                         if (target.x > transform.position.x) MoveInDirect(3);
                         if (target.x < transform.position.x) MoveInDirect(4);
                     }
                     col.gameObject.GetComponent<MazeCurveParent>().collided = false;
                     col.gameObject.transform.GetChild(0).GetComponent<MazeCurve>().collided = false;
                 }
-                else{
+                else
+                {
                     //collided with parent first
                     target = col.gameObject.transform.GetChild(0).gameObject.transform.position;
                     transform.up = target - transform.position;
                     playerRigidbody.velocity = transform.up * speed;
-                    /*while (Mathf.Abs(transform.position.x - target.x) > 0.1f
-                         && Mathf.Abs(transform.position.y - target.y) > 0.1f) {
-                        transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.01f);
-                    }*/
                 }
             }
-            
         }
-
     }
 
     public void SetUp(bool v) {

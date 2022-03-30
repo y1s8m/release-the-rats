@@ -20,7 +20,6 @@ public class PlayRuntime : MonoBehaviour
     {
         yield return new WaitForSeconds(len);
 
-        UIManager.instance.BrighterAnim();
         MyVideoPlayer.enabled = false;
         if (CameraMovement.instance) CameraMovement.instance.StartCutscene();
     }

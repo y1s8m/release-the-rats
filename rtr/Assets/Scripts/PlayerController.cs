@@ -37,11 +37,9 @@ public class PlayerController : MonoBehaviour
 
 	// animation
 	private bool running = false;
+	private int numSteps = 0;
 
 	// player movement variables
-	[Range(0, 1)]
-	public float hp = 1f;
-	private float maxHP = 1f;
 	public bool dead = false;
 	public VolumeProfile volume;
 	private Vignette vignette;
@@ -106,8 +104,6 @@ public class PlayerController : MonoBehaviour
 
     private async void Update()
     {
-		if (vignette) vignette.intensity.Override(1f - hp);
-
 		if (!scaleChanged && SceneManager.GetActiveScene().buildIndex == 5) {
 			transform.localScale = new Vector3(.8f, .8f, .8f);
 			scaleChanged = true;
@@ -125,7 +121,7 @@ public class PlayerController : MonoBehaviour
 			else if (Input.GetButtonDown("Jump")) ratSprite.GetComponent<AudioSource>().PlayOneShot(denied);
 
 			if (Input.GetKeyDown("q")) grabbing = !grabbing;
-			if (touchingMoveable) {
+			if (touchingMoveable || SceneManager.GetActiveScene().buildIndex == 1) {
 				grabbing = false;
 			}
 
@@ -141,20 +137,6 @@ public class PlayerController : MonoBehaviour
 		if (!isPaused){
 			if (cutScene || dead) return;
 			Move(horizontalMove * Time.fixedDeltaTime, jumped);
-		}
-	}
-
-	private void UpdateHP(float c)
-	{
-		hp = c;
-		hp = Mathf.Clamp(hp, 0, 1);
-		if (hp == 0)
-		{
-			if (!dead) StartCoroutine(Die());
-
-			playerRigidbody.gravityScale = gravityScale;
-
-			speed = origSpeed;
 		}
 	}
 
@@ -175,7 +157,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		
-		if (numGroundObjects > 0) {
+		if (SceneManager.GetActiveScene().buildIndex != 5 && numGroundObjects > 0) {
 			float angle = transform.rotation.z;
 			if (targetVelocity.x != 0) {
 				if (targetVelocity.x > 0) targetVelocity = new Vector2((Mathf.Cos(angle * targetVelocity.x) - Mathf.Sin(angle * targetVelocity.y)) * 10f, 0f);
@@ -183,7 +165,7 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
-		if (onGround) targetVelocity = new Vector2(targetVelocity[0], 0f);
+		if (SceneManager.GetActiveScene().buildIndex != 5 && onGround) targetVelocity = new Vector2(targetVelocity[0], 0f);
 
 		// And then smoothing it out and applying it to the character
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
@@ -260,9 +242,6 @@ public class PlayerController : MonoBehaviour
 		this.normal = new Vector3(0, 1, 0);
 		transform.rotation = Quaternion.Euler(Vector3.zero);
 
-		// reset max HP
-		UpdateHP(maxHP);
-
 		onGround = false;
 		jumped = false;
 		canJump = false;
@@ -303,8 +282,7 @@ public class PlayerController : MonoBehaviour
     {
 		playerRigidbody.velocity = Vector2.zero;
 		playerRigidbody.gravityScale = 0;
-		UIManager.instance.deadText.SetActive(false);
-		UIManager.instance.Die();
+		UIManager.instance.DarkerAnim();
 	}
 
 	public void EnterGroundBodyCollision() {
@@ -322,7 +300,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!reset && !canJump && airTime > bigJump) {
 			ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
-		} else if (!reset && !canJump) LandStep();
+		} else if (!reset && !canJump && !grabbing) LandStep();
 		reset = false;
 		
 		if (!onPipe && !grabbing)
@@ -439,6 +417,8 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 			audio.PlayOneShot(ratSteps[index]);
+			numSteps++;
+			StartCoroutine(StepFade(ratSteps[index].length));
 		}
 	}
 
@@ -453,6 +433,7 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 			audio.PlayOneShot(ratSteps[index]);
+			StartCoroutine(StepFade(ratSteps[index].length));
 		}
 	}
 
@@ -471,5 +452,10 @@ public class PlayerController : MonoBehaviour
 
 	public void StandUpright() {
 		transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+	}
+
+	private IEnumerator StepFade(float length) {
+		yield return new WaitForSeconds(length);
+		numSteps--;
 	}
 }
