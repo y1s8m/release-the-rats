@@ -24,7 +24,11 @@ public class InstructionsManager : MonoBehaviour
     void FixedUpdate()
     {
         if(Input.anyKey){
-             instrPanel.SetActive(false);
+            instrPanel.SetActive(false);
         }
+    }
+
+    public void ShowInstructions() {
+        instrPanel.SetActive(true);
     }
 }
