@@ -18,7 +18,10 @@ public class ValidMoves : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        /*this.gameObject.transform.GetChild(0).transform.SetActive(false);
+        this.gameObject.transform.GetChild(1).transform.SetActive(false);
+        this.gameObject.transform.GetChild(2).transform.SetActive(false);
+        this.gameObject.transform.GetChild(3).SetActive(false);*/
     }
 
     // Update is called once per frame
@@ -55,6 +58,10 @@ public class ValidMoves : MonoBehaviour
     }
 
     private void OnTriggerEnter2D() {
+        /*this.gameObject.transform.GetChild(0).SetActive(true);
+        this.gameObject.transform.GetChild(1).SetActive(true);
+        this.gameObject.transform.GetChild(2).SetActive(true);
+        this.gameObject.transform.GetChild(3).SetActive(true);*/
         up.GetComponent<IsValidDir>().Go();
         down.GetComponent<IsValidDir>().Go();
         left.GetComponent<IsValidDir>().Go();
