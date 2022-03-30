@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class MutatedRatController : MonoBehaviour
 {
@@ -65,6 +66,10 @@ public class MutatedRatController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         UIManager.instance.BrighterAnim();
+
+        yield return new WaitForSeconds((float)endingVideo.GetComponent<VideoPlayer>().length);
+
+        GameManager.instance.LoadMainMenu();
     }
 
     public void PlayPunch() {

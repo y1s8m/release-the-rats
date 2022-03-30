@@ -40,9 +40,6 @@ public class PlayerController : MonoBehaviour
 	private int numSteps = 0;
 
 	// player movement variables
-	[Range(0, 1)]
-	public float hp = 1f;
-	private float maxHP = 1f;
 	public bool dead = false;
 	public VolumeProfile volume;
 	private Vignette vignette;
@@ -107,8 +104,6 @@ public class PlayerController : MonoBehaviour
 
     private async void Update()
     {
-		if (vignette) vignette.intensity.Override(1f - hp);
-
 		if (!scaleChanged && SceneManager.GetActiveScene().buildIndex == 5) {
 			transform.localScale = new Vector3(.8f, .8f, .8f);
 			scaleChanged = true;
@@ -142,20 +137,6 @@ public class PlayerController : MonoBehaviour
 		if (!isPaused){
 			if (cutScene || dead) return;
 			Move(horizontalMove * Time.fixedDeltaTime, jumped);
-		}
-	}
-
-	private void UpdateHP(float c)
-	{
-		hp = c;
-		hp = Mathf.Clamp(hp, 0, 1);
-		if (hp == 0)
-		{
-			if (!dead) StartCoroutine(Die());
-
-			playerRigidbody.gravityScale = gravityScale;
-
-			speed = origSpeed;
 		}
 	}
 
@@ -260,9 +241,6 @@ public class PlayerController : MonoBehaviour
 
 		this.normal = new Vector3(0, 1, 0);
 		transform.rotation = Quaternion.Euler(Vector3.zero);
-
-		// reset max HP
-		UpdateHP(maxHP);
 
 		onGround = false;
 		jumped = false;
