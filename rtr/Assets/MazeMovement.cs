@@ -115,6 +115,7 @@ public class MazeMovement : MonoBehaviour
             playerRigidbody.velocity = Vector3.zero;
             Vector3 target;
             if(col.gameObject.GetComponent<MazeCurve>()){
+                col.gameObject.GetComponent<MazeCurve>().collided = true;
                 if (col.gameObject.transform.parent.GetComponent<MazeCurveParent>().collided){
                     //collided with parent then child
                     target = col.gameObject.GetComponent<MazeCurve>().nextNode.position;
@@ -139,7 +140,8 @@ public class MazeMovement : MonoBehaviour
                 }
             }
             else{
-                if (col.gameObject.GetComponent<MazeCurveParent>().chcollided){
+                col.gameObject.transform.GetComponent<MazeCurveParent>().collided = true;
+                if (col.gameObject.transform.GetChild(0).GetComponent<MazeCurve>().collided){
                     //collided with child then parent
                     target = col.gameObject.GetComponent<MazeCurveParent>().nextNode.position;
                     if (Mathf.Abs(target.y - transform.position.y) > Mathf.Abs(target.x - transform.position.x)) {
