@@ -14,11 +14,14 @@ public class MutatedRatController : MonoBehaviour
     private AudioSource audio;
     private int index = -1;
 
+    public GameObject endingVideo;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
+        endingVideo.SetActive(false);
     }
 
     // Update is called once per frame
@@ -51,9 +54,17 @@ public class MutatedRatController : MonoBehaviour
     {
         gameOver = true;
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
 
-        // play ending animatic
+        UIManager.instance.DarkerAnim();
+
+        yield return new WaitForSeconds(1);
+
+        endingVideo.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        UIManager.instance.BrighterAnim();
     }
 
     public void PlayPunch() {
