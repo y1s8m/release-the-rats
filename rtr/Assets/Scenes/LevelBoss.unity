@@ -513,7 +513,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 45e17cb483e936c42ba2f3e81a3014a1, type: 3}
   audioHit: {fileID: 360814496}
   audioReceive: {fileID: 360814497}
-  hurtOne: {fileID: 8300000, guid: 1af4ae8b96349bf4e8de14dbd46b5252, type: 3}
+  hurtOne: {fileID: 8300000, guid: 7683a38537f5d6a4db83297e8bb04bf4, type: 3}
   hurtTwo: {fileID: 8300000, guid: 1af4ae8b96349bf4e8de14dbd46b5252, type: 3}
   death: {fileID: 8300000, guid: c601ce2f39fb85c4f9ce20233a97e6f9, type: 3}
   endingVideo: {fileID: 247071605}

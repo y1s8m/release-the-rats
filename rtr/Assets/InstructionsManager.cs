@@ -19,6 +19,7 @@ public class InstructionsManager : MonoBehaviour
     public GameObject instrPanel;
     public bool cutscene = true;
     private static InstructionsManager m_instance;
+    private bool alrShown = false;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -29,6 +30,8 @@ public class InstructionsManager : MonoBehaviour
     }
 
     public void ShowInstructions() {
+        if (alrShown) return;
         instrPanel.SetActive(true);
+        alrShown = true;
     }
 }

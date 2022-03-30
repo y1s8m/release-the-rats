@@ -109,6 +109,7 @@ public class MazeMovement : MonoBehaviour
         if (col.gameObject.tag == "move")
         {
             playerRigidbody.velocity = Vector3.zero;
+            transform.position = col.gameObject.transform.position;
         }
         else if (col.gameObject.tag == "NextLevelPipe")
         {

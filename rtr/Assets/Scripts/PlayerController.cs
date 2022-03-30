@@ -250,23 +250,26 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Die()
     {
-		if (dead) yield return new WaitForSeconds(0);
-		dead = true;
-
-		playerRigidbody.velocity = Vector2.zero;
-		playerRigidbody.gravityScale = gravityScale;
-		ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
-		if (UIManager.instance) UIManager.instance.Die();
-
-		yield return new WaitForSeconds(2f);
-
-		if (SceneManager.GetActiveScene().buildIndex == 1)
+		if (!dead)
 		{
-			UIManager.instance.DisableDeadPanel();
-			Reset();
-        } else
-        {
-			GameManager.instance.LoadThisLevel();
+			dead = true;
+
+			playerRigidbody.velocity = Vector2.zero;
+			playerRigidbody.gravityScale = gravityScale;
+			ratSprite.GetComponent<AudioSource>().PlayOneShot(sewerLand);
+			if (UIManager.instance) UIManager.instance.Die();
+
+			yield return new WaitForSeconds(2f);
+
+			if (SceneManager.GetActiveScene().buildIndex == 1)
+			{
+				UIManager.instance.DisableDeadPanel();
+				Reset();
+			}
+			else
+			{
+				GameManager.instance.LoadThisLevel();
+			}
 		}
     }
 

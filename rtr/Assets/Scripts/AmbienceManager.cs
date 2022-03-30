@@ -11,7 +11,7 @@ public class AmbienceManager : MonoBehaviour
     public AudioClip kitchenClip;
     public AudioClip potionClip;
     public AudioClip bossClip;
-    
+
     private AudioSource audio;
 
     private void Awake() {
@@ -33,13 +33,8 @@ public class AmbienceManager : MonoBehaviour
         else if (SceneManager.GetActiveScene().buildIndex == 6) audio.clip = bossClip;
 
         audio.loop = true;
-        if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 3) audio.Play();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 3
+            || SceneManager.GetActiveScene().buildIndex == 5) audio.Play();
     }
 
     public void StartMusic() {
