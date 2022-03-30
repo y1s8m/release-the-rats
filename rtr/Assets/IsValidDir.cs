@@ -9,7 +9,7 @@ public class IsValidDir : MonoBehaviour
     bool valid;
     bool going = false;
     float timePassed = 0f;
-
+    bool collided = false;
     Vector3 orgPos;
     
     // Start is called before the first frame update
@@ -17,6 +17,7 @@ public class IsValidDir : MonoBehaviour
     {
         valid = true;
         orgPos = transform.position;
+        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,6 +28,7 @@ public class IsValidDir : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0f, 0f, 0f);
             this.transform.position = orgPos;
         }
+        if (valid) this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
     void OnTriggerEnter2D (Collider2D col){
         if (col.gameObject.tag == "wall"){
