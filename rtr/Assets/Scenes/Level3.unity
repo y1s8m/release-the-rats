@@ -255,7 +255,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 685539396}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 14.509}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -391,6 +391,10 @@ PrefabInstance:
     - target: {fileID: 3160269216222578424, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
       propertyPath: m_Name
       value: Player_v2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3160269216222578426, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
+      propertyPath: m_GravityScale
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3160269216222578426, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
       propertyPath: m_CollisionDetection
@@ -1406,8 +1410,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 246142781}
-  - {fileID: 1197319295}
   - {fileID: 65100099}
+  - {fileID: 1197319295}
   - {fileID: 905154363}
   m_Father: {fileID: 0}
   m_RootOrder: 5

@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		
-		if (numGroundObjects > 0) {
+		if (SceneManager.GetActiveScene().buildIndex != 5 && numGroundObjects > 0) {
 			float angle = transform.rotation.z;
 			if (targetVelocity.x != 0) {
 				if (targetVelocity.x > 0) targetVelocity = new Vector2((Mathf.Cos(angle * targetVelocity.x) - Mathf.Sin(angle * targetVelocity.y)) * 10f, 0f);
@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
-		if (onGround) targetVelocity = new Vector2(targetVelocity[0], 0f);
+		if (SceneManager.GetActiveScene().buildIndex != 5 && onGround) targetVelocity = new Vector2(targetVelocity[0], 0f);
 
 		// And then smoothing it out and applying it to the character
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
