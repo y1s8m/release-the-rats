@@ -10,10 +10,15 @@ public class MutatedRatController : MonoBehaviour
 
     private bool gameOver = false;
 
+    public AudioClip[] punchSounds;
+    private AudioSource audio;
+    private int index = -1;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,5 +54,20 @@ public class MutatedRatController : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         // play ending animatic
+    }
+
+    public void PlayPunch() {
+        int last = index;
+
+        while (index == last) {
+            float next = Random.Range(0f, 1f);
+            for (int i = 0; i < punchSounds.Length; i++) {
+                if (next < ((i + 1f) / punchSounds.Length)) {
+                    index = i;
+                    break;
+                }
+            }
+        }
+        audio.PlayOneShot(punchSounds[index]);
     }
 }
