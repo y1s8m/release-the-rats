@@ -207,7 +207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7489894871298828050, guid: 5d3d79b78633a9a4cb1107fa690e4d80, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7489894871298828060, guid: 5d3d79b78633a9a4cb1107fa690e4d80, type: 3}
       propertyPath: m_RootOrder
@@ -2567,7 +2567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1324736241403763346, guid: 3eb9f87a0595e8b4a81935424a54aac2, type: 3}
       propertyPath: movieNotExists
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1324736241403763346, guid: 3eb9f87a0595e8b4a81935424a54aac2, type: 3}
       propertyPath: playerTransform
@@ -3116,7 +3116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3160269216222578429, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.14
+      value: -46.99
       objectReference: {fileID: 0}
     - target: {fileID: 3160269216222578429, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
       propertyPath: m_LocalPosition.y
