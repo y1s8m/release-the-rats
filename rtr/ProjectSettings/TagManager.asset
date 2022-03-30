@@ -23,6 +23,7 @@ TagManager:
   - Cauldron
   - MandrakeJumpTrig
   - CurveTrigger
+  - MoveReset
   layers:
   - Default
   - TransparentFX
@@ -40,8 +41,8 @@ TagManager:
   - Projectile
   - Feet
   - Pipe
-  - 
-  - 
+  - RespawnLayer
+  - MoveObjects
   - 
   - 
   - 
