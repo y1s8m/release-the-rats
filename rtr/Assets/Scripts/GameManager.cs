@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Transform startPos;
-    public Transform checkpointPos;
-    public Transform playerPos;
-
     public static GameManager instance
     {
         get
@@ -32,28 +28,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void start(){
-        Load();
-        Save(startPos);
-    }
-
-    void update(){
-        if (playerPos.position == checkpointPos.position){
-            Save(checkpointPos);
-        }
-    }
-
-    public void Save(Transform pos){
-        //scene number, xsign, x100, x10, x1, xdp1, xdp2, ysign, y100, y10, y1, ydp1, ydp2
-        PlayerPrefs.SetFloat("xpos", pos.position.x);
-        PlayerPrefs.SetFloat("ypos", pos.position.y);
-        PlayerPrefs.SetInt("level",SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void Load(){
-        if (PlayerPrefs.HasKey("level")){
-            playerPos.position = new Vector3(PlayerPrefs.GetFloat("xpos"), PlayerPrefs.GetFloat("ypos"), 0);
-        }
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void LoadThisLevel()
