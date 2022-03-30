@@ -21,6 +21,7 @@ public class PlayRuntime : MonoBehaviour
         yield return new WaitForSeconds(len);
 
         MyVideoPlayer.enabled = false;
+        AmbienceManager.S.StartMusic();
         if (CameraMovement.instance) CameraMovement.instance.StartCutscene();
     }
 }

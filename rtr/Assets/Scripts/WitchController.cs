@@ -19,6 +19,9 @@ public class WitchController : MonoBehaviour
 
 	private static WitchController m_instance;
 
+	public AudioClip projectileSound;
+	private AudioSource audio;
+
 	public bool cutScene = false;
 
 	public bool isPaused;
@@ -53,6 +56,7 @@ public class WitchController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		audio = GetComponent<AudioSource>();
 		cutScene = true;
 	}
 
@@ -104,6 +108,7 @@ public class WitchController : MonoBehaviour
 	{
 		witchAnimator.SetTrigger("attack");
 		shooting = true;
+		audio.PlayOneShot(projectileSound);
 	}
 
 	public void CreateProjectile()

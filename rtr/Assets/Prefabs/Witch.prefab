@@ -127,12 +127,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3a44a59b6acf5458133cbc71c3af2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileSound: {fileID: 8300000, guid: f3f025f12f8ab1b42b4d6f358cdb2861, type: 3}
   cutScene: 0
   isPaused: 0
   player: {fileID: 0}
   projectilePos: {fileID: 7124703603997168387}
   projectilePrefab: {fileID: 2611218602305841333, guid: bdfab8e8b4a975242a577d5054807abc, type: 3}
   projectileSpeed: 3
+  moveSpeed: 1
 --- !u!95 &2516994409293147436
 Animator:
   serializedVersion: 3

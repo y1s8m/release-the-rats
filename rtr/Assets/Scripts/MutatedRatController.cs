@@ -12,8 +12,14 @@ public class MutatedRatController : MonoBehaviour
     private bool gameOver = false;
 
     public AudioClip[] punchSounds;
-    private AudioSource audio;
+    public AudioSource audioHit;
+    public AudioSource audioReceive;
     private int index = -1;
+    private int counter = 0;
+    public AudioClip hurtOne;
+    public AudioClip hurtTwo;
+    private AudioClip clip;
+    public AudioClip death;
 
     public GameObject endingVideo;
 
@@ -21,7 +27,6 @@ public class MutatedRatController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        audio = GetComponent<AudioSource>();
         endingVideo.SetActive(false);
     }
 
@@ -39,6 +44,7 @@ public class MutatedRatController : MonoBehaviour
             {
                 anim.SetBool("FinalHit", true);
                 witchAnim.SetBool("isDead", true);
+                audioReceive.PlayOneShot(death);
                 StartCoroutine(GameOver());
             }
         } else {
@@ -54,6 +60,7 @@ public class MutatedRatController : MonoBehaviour
     private IEnumerator GameOver()
     {
         gameOver = true;
+        AmbienceManager.S.EndMusic();
 
         yield return new WaitForSeconds(4);
 
@@ -61,6 +68,7 @@ public class MutatedRatController : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
+        AmbienceManager.S.EndMusic();
         endingVideo.SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
@@ -84,6 +92,17 @@ public class MutatedRatController : MonoBehaviour
                 }
             }
         }
-        audio.PlayOneShot(punchSounds[index]);
+        audioHit.PlayOneShot(punchSounds[index]);
+        StartCoroutine(TakeDamange());
+    }
+
+    private IEnumerator TakeDamange() {
+        if (witchHP > 0) {
+            yield return new WaitForSeconds(.1f);
+            if (counter % 2 == 0) clip = hurtOne;
+            else clip = hurtTwo;
+            audioReceive.PlayOneShot(clip);
+            counter++;
+        }
     }
 }
