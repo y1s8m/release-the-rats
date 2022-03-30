@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class MainMenuController : MonoBehaviour
 {
     public GameObject SettingsPanel;
-    public GameObject ContBtn;
     public GameObject NewGameBtn;
     public GameObject SettingsBtn;
     public GameObject ExitBtn;
@@ -17,13 +16,6 @@ public class MainMenuController : MonoBehaviour
     {
         SettingsPanel.SetActive(false);
         VolumeSlider.value = PlayerPrefs.GetFloat("Volume");
-    }
-
-    public void OnMainMenuContinueClick()
-    {
-         PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
-        //load from last save
-        StartCoroutine(WaitLoadSceneCoroutine(0.3f, 1));
     }
 
     public void OnMainMenuStartClick()
@@ -36,7 +28,6 @@ public class MainMenuController : MonoBehaviour
     public void OnMainMenuSettingsClick()
     {
         SettingsPanel.SetActive(true);
-        ContBtn.SetActive(false);
         NewGameBtn.SetActive(false);
         SettingsBtn.SetActive(false);
         ExitBtn.SetActive(false);
@@ -46,7 +37,6 @@ public class MainMenuController : MonoBehaviour
     public void OnMainMenuSettingsExitClick()
     {
         SettingsPanel.SetActive(false);
-        ContBtn.SetActive(true);
         NewGameBtn.SetActive(true);
         SettingsBtn.SetActive(true);
         ExitBtn.SetActive(true);
@@ -55,8 +45,6 @@ public class MainMenuController : MonoBehaviour
     public void OnMainMenuExitClick()
     {
         Application.Quit();
-
-        //autosave routine
     }
 
     IEnumerator WaitLoadSceneCoroutine(float waitTime, int sceneNum)
