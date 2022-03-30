@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
 			else if (Input.GetButtonDown("Jump")) ratSprite.GetComponent<AudioSource>().PlayOneShot(denied);
 
 			if (Input.GetKeyDown("q")) grabbing = !grabbing;
-			if (touchingMoveable) {
+			if (touchingMoveable || SceneManager.GetActiveScene().buildIndex == 1) {
 				grabbing = false;
 			}
 
