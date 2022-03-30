@@ -250,6 +250,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Die()
     {
+		if (dead) yield return new WaitForSeconds(0);
 		dead = true;
 
 		playerRigidbody.velocity = Vector2.zero;
