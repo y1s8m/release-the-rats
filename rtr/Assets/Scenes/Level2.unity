@@ -1054,11 +1054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2992047603004942484, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.593632
+      value: -7.76
       objectReference: {fileID: 0}
     - target: {fileID: 2992047603004942484, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.665723
+      value: -14.19
       objectReference: {fileID: 0}
     - target: {fileID: 2992047603004942484, guid: 83e82d7e9312dbe40acedb2fa86561f9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3222,6 +3222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_v2
       objectReference: {fileID: 0}
+    - target: {fileID: 3160269216222578426, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3160269216222578427, guid: 390a820f48e6b3140b2a176e0c6552e2, type: 3}
       propertyPath: startPos
       value: 
@@ -4381,6 +4385,7 @@ MonoBehaviour:
   dampTime: 0.1
   repeats: 275
   goal: {fileID: 1852344924}
+  movieNotExists: 1
 --- !u!4 &2082727363 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5527056689593812637, guid: 3eb9f87a0595e8b4a81935424a54aac2, type: 3}

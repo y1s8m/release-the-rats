@@ -59,6 +59,7 @@ public class MoveableObject : MonoBehaviour
             rb = gameObject.AddComponent<Rigidbody2D>();
             rb.mass = 100f;
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - .1f, transform.localPosition.z);
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             wentToCorrect = false;
         }
@@ -66,7 +67,7 @@ public class MoveableObject : MonoBehaviour
 
     public void Hold() {
         this.gameObject.transform.parent = player;
-        GoToCorrectPosition();
+        if (!wentToCorrect) GoToCorrectPosition();
         held = true;
         if (rb != null) {
             Destroy(rb);
@@ -89,5 +90,6 @@ public class MoveableObject : MonoBehaviour
 
     private void GoToCorrectPosition() {
         wentToCorrect = true;
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + .1f, transform.localPosition.z);
     }
 }

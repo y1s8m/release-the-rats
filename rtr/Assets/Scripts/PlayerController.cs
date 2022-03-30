@@ -131,6 +131,8 @@ public class PlayerController : MonoBehaviour
 
 			if (!onGround && !onPipe) airTime += Time.deltaTime;
 			else airTime = 0f;
+
+			if (grabbing) transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 		}
 	}
 
@@ -185,13 +187,27 @@ public class PlayerController : MonoBehaviour
 
 		// And then smoothing it out and applying it to the character
 		playerRigidbody.velocity = Vector3.SmoothDamp(playerRigidbody.velocity, targetVelocity, ref zeroVel, moveSmoothing);
-		float diff = Mathf.Abs(playerRigidbody.velocity.x) + Mathf.Abs(playerRigidbody.velocity.y);
-		running = diff > .1f;
-		if (!grabbing) playerAnimator.SetFloat("speed", diff);
-		else {
+		if (!grabbing && Mathf.Abs(playerRigidbody.velocity.x) > 1f) {
+			playerAnimator.SetFloat("speed", Mathf.Abs(playerRigidbody.velocity.x));
+			running = true;
+		} else if (Mathf.Abs(playerRigidbody.velocity.x) > 5f) {
+			playerAnimator.SetFloat("speed", Mathf.Abs(playerRigidbody.velocity.x));
+			running = true;
+		} else if (!grabbing && Mathf.Abs(playerRigidbody.velocity.y) > 1f) {
+			playerAnimator.SetFloat("speed", Mathf.Abs(playerRigidbody.velocity.y));
+			running = true;
+		} else if (Mathf.Abs(playerRigidbody.velocity.y) > 5f) {
+			playerAnimator.SetFloat("speed", Mathf.Abs(playerRigidbody.velocity.y));
+			running = true;
+		} else {
+			playerAnimator.SetFloat("speed", 0f);
+			running = false;
+		}
+		//if (true) playerAnimator.SetFloat("speed", diff);
+		/*else {
 			if (lookingRight) playerAnimator.SetFloat("speed", playerRigidbody.velocity.x);
 			else playerAnimator.SetFloat("speed", -playerRigidbody.velocity.x);
-		}
+		}*/
 		
 		// If the input is moving the player right and the player is facing left...
 		if (horizMove > 0 && !lookingRight && !onPipe)
@@ -309,9 +325,10 @@ public class PlayerController : MonoBehaviour
 		} else if (!reset && !canJump) LandStep();
 		reset = false;
 		
-		if (!onPipe)
+		if (!onPipe && !grabbing)
 		{
 			this.normal = new Vector3(0, 1, 0);
+
 			transform.rotation = Quaternion.Euler(Vector3.zero);
 		}
 	}
@@ -330,7 +347,6 @@ public class PlayerController : MonoBehaviour
 	}
 
 	public void EnterMoveableObjectCollision() {
-		Debug.Log("moveable object collision");
 		grabbing = false;
 		numGroundObjects++;
 		canJump = true;

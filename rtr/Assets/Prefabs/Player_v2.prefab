@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6b14197fddcf2e3498c040edb6dc362a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 9.6, y: 5.65}
@@ -307,7 +307,6 @@ MonoBehaviour:
   canJump: 0
   startPos: {fileID: 0}
   ratSprite: {fileID: 3160269215963955344}
-  grabbyBoi: {fileID: 7126245757413800725}
 --- !u!50 &3160269216222578426
 Rigidbody2D:
   serializedVersion: 4
