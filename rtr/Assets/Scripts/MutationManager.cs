@@ -43,6 +43,7 @@ public class MutationManager : MonoBehaviour
             UIManager.instance.JumpTextOn();
             mandrakeSR.sprite = mandrakeHighlight;
         }
+        if (potionCount <= 0) PlayerController.instance.Level3End();
     }
 
     public void PotionCountDec()
